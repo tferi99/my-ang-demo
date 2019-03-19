@@ -24,6 +24,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@ng-bootstrap/ng-bootstrap": "^2.0.0-alpha.0",
     "@ng-bootstrap/schematics": "^2.0.0-alpha.1",
+    "angular-gridster2": "^7.1.0",
     "bootstrap": "^4.0.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",

@@ -8,19 +8,23 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LodashPageComponent } from './lodash-page/lodash-page.component';
 import { RxjsPageComponent } from './rxjs-page/rxjs-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { GridsterModule } from 'angular-gridster2';
+import { GridsterPageComponent } from './gridster-page/gridster-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LodashPageComponent,
     RxjsPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    GridsterPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    GridsterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
