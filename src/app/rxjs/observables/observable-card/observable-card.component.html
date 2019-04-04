@@ -1,0 +1,7 @@
+<div class="card" ngClass="border-{{data.color}}">
+  <div class="card-body text-{{data.color}}">
+    <h5 class="card-title">{{data.title}} <i *ngIf="data.completed" class="fa fa-check"></i><i *ngIf="data.errorFound" class="fa fa-exclamation"></i></h5>
+    <h6 class="card-subtitle mb-2">{{data.subtitle}}</h6>
+    <p class="card-text text-">{{data.observable | async}}</p>
+  </div>
+</div>

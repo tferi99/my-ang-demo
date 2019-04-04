@@ -10,17 +10,19 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { AsyncPipeComponent } from './async-pipe/async-pipe.component';
 import { FlatteningComponent } from './flattening/flattening.component';
 import { TypeAheadComponent } from './type-ahead/type-ahead.component';
 import { ErrorTestComponent } from './error-test/error-test.component';
 import { SandboxComponent } from './sandbox/sandbox.component';
-import { ObserversComponent } from './observers/observers.component';
+import { ArrayCardComponent } from './observables/array-card/array-card.component';
+import { ObservablesComponent } from './observables/observables.component';
+import { ObservableCardComponent } from './observables/observable-card/observable-card.component';
 
 @NgModule({
   declarations: [
     MainComponent, CourseListComponent, ImperativeFilterComponent, ReactiveFilterComponent,
-    FormTestComponent, AsyncPipeComponent, FlatteningComponent, TypeAheadComponent, ErrorTestComponent, SandboxComponent, ObserversComponent
+    FormTestComponent, FlatteningComponent, TypeAheadComponent, ErrorTestComponent, SandboxComponent,
+    ArrayCardComponent, ObservablesComponent, ObservableCardComponent
   ],
   imports: [
     CommonModule,

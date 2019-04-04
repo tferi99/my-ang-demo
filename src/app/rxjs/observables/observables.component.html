@@ -1,0 +1,12 @@
+<div class="container">
+  <h4>Observables</h4>
+
+  <div class="card-columns">
+    <div *ngFor="let c of demoData" [ngSwitch]="c.cardType">
+      <rxj-observable-card *ngSwitchCase="cardTypes.OBSERVABLE" [data]="c"></rxj-observable-card>
+      <rxj-array-card *ngSwitchCase="cardTypes.ARRAY" [data]="c"></rxj-array-card>
+    </div>
+  </div>
+</div>
+
+

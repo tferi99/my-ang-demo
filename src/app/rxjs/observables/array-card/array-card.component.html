@@ -1,0 +1,11 @@
+<div class="card" ngClass="border-{{data.color}}">
+  <div class="card-body" ngClass="text-{{data.color}}">
+    <h5 class="card-title">{{data.title}} <i *ngIf="data.completed" class="fa fa-check"></i><i *ngIf="data.errorFound" class="fa fa-exclamation"></i></h5>
+    <h6 class="card-subtitle mb-2">{{data.subtitle}}</h6>
+    <table class="table">
+      <tr *ngFor="let val of data.dataAsArray">
+        <td ngClass="text-{{data.color}}">{{val}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

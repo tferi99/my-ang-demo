@@ -36,7 +36,7 @@ export class TypeAheadComponent implements OnInit, AfterViewInit {
 
     const seachLessons = fromEvent<any>(this.lessonSearchInput.nativeElement, 'keyup').pipe(
       map(event => event.target.value),
-      debounceTime(300),
+      debounceTime(400),
       distinctUntilChanged(),
       tap(x => console.log('SEARCH:' + x)),
       switchMap(search => this.loadLessons(search))
