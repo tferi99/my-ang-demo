@@ -1,3 +1,19 @@
-<p>
-  rxjs main works!
-</p>
+<div class="m-2">
+  <ul class="nav nav-tabs">
+    <li class="nav-item" *ngFor="let t of tabData; index as idx">
+      <a class="nav-link" [class.active]="idx == activeTab" (click)="setActiveTab(idx)">{{t.name}}</a>
+    </li>
+  </ul>
+
+  <div [ngSwitch]="activeTab" class="mt-2">
+    <rxj-observers *ngSwitchCase="'0'"></rxj-observers>
+    <rxj-course-list *ngSwitchCase="'1'"></rxj-course-list>
+    <rxj-imperative-filter *ngSwitchCase="'2'"></rxj-imperative-filter>
+    <rxj-reactive-filter *ngSwitchCase="'3'"></rxj-reactive-filter>
+    <rxj-flattening *ngSwitchCase="'4'"></rxj-flattening>
+    <rxj-form-test *ngSwitchCase="'5'"></rxj-form-test>
+    <rxj-type-ahead *ngSwitchCase="'6'"></rxj-type-ahead>
+    <rxj-error-test *ngSwitchCase="'7'"></rxj-error-test>
+    <rxj-sandbox *ngSwitchCase="'8'"></rxj-sandbox>
+  </div>
+</div>

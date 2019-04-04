@@ -10,8 +10,14 @@
     "component-selector": [
       true,
       "element",
-      ["app", "ebr", "lds", "rxj"],
+      ["app", "dev", "ebr", "lds", "rxj", "rdx"],
       "kebab-case"
+    ],
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore"
     ]
   }
 }

@@ -1,27 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import {EventBroadcasterService} from '../../core/event-broadcaster.service';
-import {Test1Event} from '../../core/event/test1-event';
-import {Test2Event} from '../../core/event/test2-event';
+import {Test1Event} from '../../shared/event/test1-event';
+import {Test2Event} from '../../shared/event/test2-event';
+import {EventBroadcasterLocatorService} from '../../core/event-broadcaster-locator.service';
 
 enum Colors {
   green, blue, brown, coral, gray, cyan, yellow
 }
 
 @Component({
-  selector: 'app-event-provider',
+  selector: 'ebr-event-producer',
   templateUrl: './event-producer.component.html',
   styleUrls: ['./event-producer.component.sass']
 })
 export class EventProducerComponent implements OnInit {
   private static value = 0;
-  constructor(private ebs: EventBroadcasterService) { }
+  constructor(private ebls: EventBroadcasterLocatorService) { }
 
   ngOnInit() {
   }
 
   onClick1() {
     EventProducerComponent.value++;
-    this.ebs.test1Event.next(new Test1Event(EventProducerComponent.value, 'message' + EventProducerComponent.value));
+    const data = new Test1Event(EventProducerComponent.value, 'message' + EventProducerComponent.value);
+    this.ebls.test1EventBroadcaster.sendEvent(data);
   }
 
   onClick2() {
@@ -30,6 +31,7 @@ export class EventProducerComponent implements OnInit {
     const lightValue = Math.random() * 2;
     const light = lightValue < 1;
     const color = (light ? 'light' : '') + Colors[colorIdx];
-    this.ebs.test2Event.next(new Test2Event(colorValue, color, lightValue, light));
+    const data = new Test2Event(colorValue, color, lightValue, light);
+    this.ebls.test2EventBroadcaster.sendEvent(data);
   }
 }

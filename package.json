@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json",
+    "server": "./node_modules/.bin/ts-node ./server/server.ts",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -27,8 +28,11 @@
     "angular-gridster2": "^7.1.0",
     "bootstrap": "^4.0.0",
     "core-js": "^2.5.4",
+    "lodash": "^4.17.11",
+    "redux": "^4.0.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
+    "express": "^4.16.2",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -37,6 +41,7 @@
     "@angular/compiler-cli": "~7.2.0",
     "@angular/language-service": "~7.2.0",
     "@fortawesome/fontawesome-free": "^5.7.2",
+    "@types/express": "^4.0.39",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",

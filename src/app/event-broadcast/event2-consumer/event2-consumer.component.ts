@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {EventBroadcasterService} from '../../core/event-broadcaster.service';
-import {Test2Event} from '../../core/event/test2-event';
+import {Test2Event} from '../../shared/event/test2-event';
+import {EventBroadcasterLocatorService} from '../../core/event-broadcaster-locator.service';
 
 @Component({
   selector: 'app-event2-consumer',
@@ -9,12 +9,14 @@ import {Test2Event} from '../../core/event/test2-event';
 })
 export class Event2ConsumerComponent implements OnInit {
   event: Test2Event;
-  constructor(private ebs: EventBroadcasterService) { }
+  constructor(private ebls: EventBroadcasterLocatorService) {
+    this.event = new Test2Event(0, 'white', 0, false);
+  }
 
   ngOnInit() {
-    this.ebs.test2Event.subscribe((e: Test2Event) => {
-      console.log('Received: ' + JSON.stringify(e));
-      this.event = e;
+    this.ebls.test2EventBroadcaster.subscribe((event: Test2Event) => {
+      console.log('Received: ' + JSON.stringify(event));
+      this.event = event;
     });
   }
 }
