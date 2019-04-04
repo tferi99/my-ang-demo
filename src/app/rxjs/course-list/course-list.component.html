@@ -1,0 +1,17 @@
+<div class="container">
+  <h4>Simple list from (HttpClient) Observable</h4>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let c of (courses$ | async)">
+      <td>{{c.id}}</td>
+      <td>{{c.description}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

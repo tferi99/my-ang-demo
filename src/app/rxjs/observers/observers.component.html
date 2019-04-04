@@ -1,0 +1,26 @@
+<div class="container">
+  <h4>Observers</h4>
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Counter</h5>
+      <h6 class="card-subtitle mb-2 text-muted">with async pipe</h6>
+      <p class="card-text">{{counter$ | async}}</p>
+    </div>
+  </div>
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Range</h5>
+      <table class="table">
+        <tr *ngFor="let v of rangeArr">
+          <td>{{v}}</td>
+        </tr>
+      </table>
+      <p class="card-text">{{numbers1$ | async}}</p>
+    </div>
+  </div>
+
+</div>
+
+

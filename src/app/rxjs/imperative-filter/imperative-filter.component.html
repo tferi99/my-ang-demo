@@ -1,0 +1,30 @@
+<div class="container">
+  <form class="form-inline mb-2">
+    <label class="mr-2" for="cFilter">Filter</label>
+    <input type="text" class="form-control mr-2" id="cFilter" autofocus #cFilter>
+
+    <button class="btn btn-primary mr-2" (click)="filterByDescription(cFilter.value)">OK</button>
+    <label>({{count}})</label>
+  </form>
+
+  <!--
+  <form class="form-inline">
+    <input type="text" class="form-control" #cFilter>
+  </form>
+  -->
+  <h4>Filter - imperative</h4>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let c of courses">
+      <td>{{c.id}}</td>
+      <td>{{c.description}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

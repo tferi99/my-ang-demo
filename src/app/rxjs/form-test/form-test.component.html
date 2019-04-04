@@ -1,0 +1,45 @@
+<div class="container m-2">
+  <form class="section" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h5 class="ui header">Add a person</h5>
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label for="name">Name</label>
+        <span>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name" [formControl]="name" #nameElem>
+            <div *ngIf="name.touched && name.invalid">ERROR!!!</div>
+          <!--
+            <div *ngFor="let err of name.errors"># {{err}}</div>
+            -->
+            <dev-control-status-debug [control]="name" [element]="nameElem"></dev-control-status-debug>
+          </span>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" placeholder="Age" formControlName="age" #ageElem>
+        <dev-control-status-debug [control]="age" [element]="ageElem"></dev-control-status-debug>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="gender">Gender</label>
+        <select class="form-control" id="gender" name="gender" formControlName="gender" #genderElem>
+          <option *ngFor="let g of genders" [value]="g.value">{{g.key}}</option>
+        </select>
+        <dev-control-status-debug [control]="gender"></dev-control-status-debug>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="gender">Birth</label>
+        <div class="input-group">
+          <input type="text" ngbDatepicker #d="ngbDatepicker" class="form-control" formControlName="birth" #birthElem/>
+          <div class="input-group-append">
+            <button (click)="d.toggle()"><i class="fa fa-calendar text-success" ></i></button>
+          </div>
+        </div>
+        <dev-control-status-debug [control]="birth" [element]="birthElem"></dev-control-status-debug>
+      </div>
+
+      </div>
+      <button type="submit" class="ui positive floated button" [disabled]="!form.valid">OK</button>
+  </form>
+  <h5>Form status: {{form.status}}</h5>
+  <h5>Form value: {{form.value | json}}</h5>
+</div>

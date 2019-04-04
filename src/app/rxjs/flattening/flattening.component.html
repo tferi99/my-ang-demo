@@ -1,0 +1,42 @@
+<div class="m-2">
+  <small><i>To view result open console...</i></small>
+</div>
+<div class="container">
+  <div class="row mb-2">
+    <button (click)="staticConcatObservers()" class="btn btn-primary">Static concat</button>
+    <span *ngIf="concatenateObserversActive" class="spinner-border ml-2"></span>
+  </div>
+  <hr>
+
+  <div class="row mb-2">
+    <div>
+      <button (click)="createSubscription()" class="btn btn-primary">Create subscription</button>
+    </div>
+    <div class="p-2">
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="flattMerge" name="flatteningType" class="custom-control-input" [(ngModel)]="flatteningStrategy" value="{{flatteningTypeEnum.MERGE}}">
+        <label class="custom-control-label" for="flattMerge">Merge</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="flattSwitch" name="flatteningType" class="custom-control-input" [(ngModel)]="flatteningStrategy" value="{{flatteningTypeEnum.SWITCH}}">
+        <label class="custom-control-label" for="flattSwitch">Switch</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="flattConcat" name="flatteningType" class="custom-control-input" [(ngModel)]="flatteningStrategy" value="{{flatteningTypeEnum.CONCAT}}">
+        <label class="custom-control-label" for="flattConcat">Concat</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="flattExhaust" name="flatteningType" class="custom-control-input" [(ngModel)]="flatteningStrategy" value="{{flatteningTypeEnum.EXHAUST}}">
+        <label class="custom-control-label" for="flattExhaust">Exhaust</label>
+      </div>
+    </div>
+
+    <span *ngIf="currentSubscriptionType">
+      <span class="p-2">
+        <span class="badge badge-success mr-2">{{currentSubscriptionType}}</span> <i class="fa fa-arrow-right"></i>
+      </span>
+    </span>
+
+    <span style="background-color: orange" class="p-2 ml-2" #clickTarget>Click here to fire event to create observer with ...</span>
+  </div>
+</div>

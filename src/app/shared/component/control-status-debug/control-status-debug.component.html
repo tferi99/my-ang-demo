@@ -1,0 +1,59 @@
+<span *ngIf="errorMsg" style="background-color: red">{{errorMsg}}</span>
+
+<a class="btn btn-{{getStatusColor()}}" data-toggle="collapse" href="#{{id}}" role="button" aria-expanded="false" aria-controls="id" title="{{id}}">
+  <i class="fas fa-{{getStatusIcon()}} fa-sm"></i>
+</a>
+
+<div class="collapse" id="{{id}}">
+  <table class="table table-bordered table-sm">
+    <tr>
+      <th>status</th>
+      <td>{{control.status}}</td>
+    </tr>
+    <tr>
+      <th>valid</th>
+      <td class="status-icon"><dev-boolean-icon [value]="control.valid"></dev-boolean-icon></td>
+    </tr>
+    <!--
+    <tr>
+      <th>invalid</th>
+      <td class="status-icon"><dev-boolean-icon [value]="control.invalid"></dev-boolean-icon></td>
+    </tr>
+    -->
+    <tr>
+      <th>pending</th>
+      <td class="status-icon"><dev-boolean-icon [value]="control.pending"></dev-boolean-icon></td>
+    </tr>
+    <tr>
+      <th>enabled</th>
+      <td class="status-icon"><dev-boolean-icon [value]="control.enabled"></dev-boolean-icon></td>
+    </tr>
+    <!--
+    <tr>
+      <th>disabled</th>
+      <td class="status-icon"><dev-boolean-icon [value]="control.disabled"></dev-boolean-icon></td>
+    </tr>
+    -->
+    <!--
+    <tr>
+      <th>pristine</th>
+      <td class="status-icon"><dev-boolean-icon [value]="control.pristine"></dev-boolean-icon></td>
+    </tr>
+    -->
+    <tr>
+      <th>dirty</th>
+      <td class="status-icon"><dev-boolean-icon [value]="control.dirty"></dev-boolean-icon></td>
+    </tr>
+    <tr>
+      <th>touched</th>
+      <td class="status-icon"><dev-boolean-icon [value]="control.touched"></dev-boolean-icon></td>
+    </tr>
+    <!--
+    <tr>
+      <th>untouched</th>
+      <td class="status-icon"><dev-boolean-icon [value]="control.untouched"></dev-boolean-icon></td>
+    </tr>
+    -->
+  </table>
+</div>
+

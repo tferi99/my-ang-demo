@@ -1,0 +1,26 @@
+import { InjectionToken } from '@angular/core';
+import {
+  createStore,
+  Store,
+  compose,
+  StoreEnhancer
+} from 'redux';
+
+import { AppState } from './app.state';
+import { counterReducer as reducer} from './counter.reducer';
+
+export const APP_STORE = new InjectionToken('App.store');
+
+/*const devtools: StoreEnhancer<AppState> =
+  window['devToolsExtension'] ?
+  window['devToolsExtension']() : f => f;*/
+
+export function createAppStore(): Store<AppState> {
+  //return createStore<AppState>(reducer, compose(devtools));
+  //return createStore<AppState>(reducer);
+  return null;
+}
+
+export const appStoreProviders = [
+   { provide: APP_STORE, useFactory: createAppStore }
+];
