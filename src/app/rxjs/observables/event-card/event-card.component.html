@@ -1,0 +1,20 @@
+<div class="card" ngClass="border-{{data.color}}" #card>
+  <div class="card-body" ngClass="text-{{data.color}}">
+    <h5 class="card-title">{{data.title}} <i *ngIf="data.completed" class="fa fa-check"></i><i *ngIf="data.errorFound" class="fa fa-exclamation"></i></h5>
+    <h6 class="card-subtitle mb-2">{{data.subtitle}}</h6>
+    <div>
+      <div class="my-2">
+        <span>x:{{x}} y:{{y}}</span>
+        <span class="ml-2">{{button}}</span>
+        <span class="ml-2">{{buttons}}</span>
+        <span class="ml-2" *ngIf="ctrlKey">CTRL</span>
+        <span class="ml-2" *ngIf="altKey">ALT</span>
+      </div>
+      <div style="height: 70px">
+        <i class="fa fa-hand-point-left fa-3x" *ngIf="leftButton"></i>
+        <i class="fa fa-hand-point-right fa-3x" *ngIf="rightButton"></i>
+      </div>
+    </div>
+
+  </div>
+</div>

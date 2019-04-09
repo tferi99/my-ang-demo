@@ -30,6 +30,8 @@ export class ObservablesComponent implements OnInit {
       new ObservabledDemoData(CardType.ARRAY, 'never', 'never emits and never completed', NEVER),
       new ObservabledDemoData(CardType.ARRAY, 'throwError', 'stream that fails without emitting a value.', throwError('error found')),
 
+      new ObservabledDemoData(CardType.EVENT, 'Mouse events', 'do any mouse action in this card (+Alt/Ctrl button)'),
+
       new ObservabledDemoData(CardType.OBSERVABLE, 'webSocket', 'listening on localhost:9999', webSocket('ws://localhost:9999')),
     ];
   }

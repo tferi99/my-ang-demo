@@ -1,4 +1,5 @@
 export enum CardType {
   ARRAY,
-  OBSERVABLE
+  OBSERVABLE,
+  EVENT
 }

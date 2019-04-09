@@ -17,12 +17,13 @@ import { SandboxComponent } from './sandbox/sandbox.component';
 import { ArrayCardComponent } from './observables/array-card/array-card.component';
 import { ObservablesComponent } from './observables/observables.component';
 import { ObservableCardComponent } from './observables/observable-card/observable-card.component';
+import { EventCardComponent } from './observables/event-card/event-card.component';
 
 @NgModule({
   declarations: [
     MainComponent, CourseListComponent, ImperativeFilterComponent, ReactiveFilterComponent,
     FormTestComponent, FlatteningComponent, TypeAheadComponent, ErrorTestComponent, SandboxComponent,
-    ArrayCardComponent, ObservablesComponent, ObservableCardComponent
+    ArrayCardComponent, ObservablesComponent, ObservableCardComponent, EventCardComponent
   ],
   imports: [
     CommonModule,

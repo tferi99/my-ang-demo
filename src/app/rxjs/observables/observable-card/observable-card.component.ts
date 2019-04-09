@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ObservabledDemoData} from '../observable-demo-data';
 
