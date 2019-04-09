@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {interval, Observable, pipe, range, timer} from 'rxjs';
 import {delayWhen, filter, map, mergeMap, take, tap} from 'rxjs/operators';
+import { create } from 'rxjs-spy';
 
 @Component({
   selector: 'rxj-sandbox',
@@ -21,6 +22,9 @@ export class SandboxComponent implements OnInit {
       map(x => x * x),
       take(3)
     ).subscribe(console.log);*/
+
+
+
 
     const o1 = interval(300).pipe(
       map(x => String.fromCharCode(65 + x)),
