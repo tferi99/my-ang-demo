@@ -11,6 +11,7 @@ import {catchError, delayWhen, finalize, retryWhen, tap} from 'rxjs/operators';
 })
 export class ErrorTestComponent implements OnInit, AfterViewInit {
   courses$: Observable<Course[]>;
+  errorFound = false;
 
   constructor(private api: ApiStoreService) { }
 
@@ -20,29 +21,43 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
   }
 
+  loadCourses0(): void {
+    const o = this.api.getCoursesErr().pipe(
+      tap(v => console.log),
+      catchError(err => {
+        this.showError(err);
+        return of([]);
+      })         // returning an alternative Observable on error
+    );
+  }
+
   loadCourses1(): void {
     this.courses$ = this.api.getCoursesErr().pipe(
+
       tap(v => console.log),
-      catchError(err => of([]))         // returning an alternative Observable on error
+      catchError(err => {
+        this.showError(err);
+        return of([]);
+      })         // returning an alternative Observable on error
     );
   }
 
   loadCourses2(): void {
+    this.errorFound = false;
     this.courses$ = this.api.getCoursesErr().pipe(
       tap(v => console.log),
       catchError(err => {
-        console.error('Error occured: ' + err);
-        console.error('Error object: ' + JSON.stringify(err));
+        this.showError(err);
         return throwError(err);                   // returning an error Observable on error
       })
     );
   }
 
   loadCourses3(): void {
+    this.errorFound = false;
     this.courses$ = this.api.getCoursesErr().pipe(
-        catchError(err => {                   // you can catch error immediately in the 1st operator, or everywhere error can generated
-        console.error('Error occured: ' + err);
-        console.error('Error object: ' + JSON.stringify(err));
+      catchError(err => {                   // you can catch error immediately in the 1st operator, or everywhere error can generated
+        this.showError(err);
         return throwError(err);                   // returning an error Observable on error
       }),
       tap(v => console.log),
@@ -54,6 +69,7 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
   }
 
   loadCourses4(): void {
+    this.errorFound = false;
     const retryInterval = 2000;
     this.courses$ = this.api.getCoursesErr().pipe(
       tap(v => console.log),
@@ -62,5 +78,10 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
         delayWhen((val, index) => timer(val * retryInterval))   // restart in 6 seconds
       ))
     );
+  }
+
+  showError(err) {
+    this.errorFound = true;
+    console.error('Error occured: ', err);
   }
 }
