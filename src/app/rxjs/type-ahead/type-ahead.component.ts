@@ -3,7 +3,8 @@ import {Course} from '../../shared/model/course.model';
 import {ApiStoreService} from '../../core/api-store.service';
 import {concat, fromEvent, Observable} from 'rxjs';
 import {Lesson} from '../../shared/model/lesson.model';
-import {concatMap, debounceTime, distinctUntilChanged, map, switchMap, tap} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, map, startWith, switchMap, tap} from 'rxjs/operators';
+import {log, RxJsLoggingLevel} from '../../shared/util/log';
 
 @Component({
   selector: 'rxj-type-ahead',
@@ -32,17 +33,15 @@ export class TypeAheadComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const initialLessons = this.loadLessons();
-
-    const seachLessons = fromEvent<any>(this.lessonSearchInput.nativeElement, 'keyup').pipe(
+    this.lessons$ = fromEvent<any>(this.lessonSearchInput.nativeElement, 'keyup').pipe(
       map(event => event.target.value),
+      startWith(''),
       debounceTime(400),
       distinctUntilChanged(),
-      tap(x => console.log('SEARCH:' + x)),
-      switchMap(search => this.loadLessons(search))
+      log(RxJsLoggingLevel.INFO, 'SEARCH'),
+      switchMap(search => this.loadLessons(search)),
+      log(RxJsLoggingLevel.INFO, 'RESULT')
     );
-
-    this.lessons$ = concat(initialLessons, seachLessons);
   }
 
   loadLessons(search = ''): Observable<Lesson[]> {
