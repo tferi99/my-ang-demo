@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RxJsLoggingLevel, setRxJsLoggingLevel} from '../../shared/util/log';
 
 interface TabData {
   name: string;
@@ -20,11 +21,14 @@ export class MainComponent implements OnInit {
     {name: 'Form changes', active: false},
     {name: 'Type-ahead', active: false},
     {name: 'Error handling', active: false},
+    {name: 'Logging', active: false},
     {name: 'Sandbox', active: false}
   ];
-  activeTab = 8;
+  activeTab = 9;
 
-  constructor() {}
+  constructor() {
+    setRxJsLoggingLevel(RxJsLoggingLevel.DEBUG);
+  }
 
   ngOnInit() {}
 
