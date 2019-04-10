@@ -11,15 +11,15 @@ const app: Application = express();
 
 app.use(bodyParser.json());
 
-app.route('/api/courses$$$').get(getAllCourses);
+app.route('/api/courses').get(getAllCourses);
 
-app.route('/api/courses$$$/randomerr').get(getAllCoursesRandomErr);
+app.route('/api/courses/randomerr').get(getAllCoursesRandomErr);
 
-app.route('/api/courses$$$/:id').get(getCourseById);
+app.route('/api/courses/:id').get(getCourseById);
 
-app.route('/api/lessons$').get(searchLessons);
+app.route('/api/lessons').get(searchLessons);
 
-app.route('/api/courses$$$/:id').put(saveCourse);
+app.route('/api/courses/:id').put(saveCourse);
 
 
 
