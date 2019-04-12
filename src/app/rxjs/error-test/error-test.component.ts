@@ -1,8 +1,9 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {Observable, of, throwError, timer} from 'rxjs';
+import {from, Observable, of, throwError, timer} from 'rxjs';
 import {Course} from '../../shared/model/course.model';
 import {ApiStoreService} from '../../core/api-store.service';
 import {catchError, delayWhen, finalize, retryWhen, tap} from 'rxjs/operators';
+import {log, RxJsLoggingLevel} from '../../shared/util/log';
 
 @Component({
   selector: 'rxj-error-test',
@@ -11,41 +12,70 @@ import {catchError, delayWhen, finalize, retryWhen, tap} from 'rxjs/operators';
 })
 export class ErrorTestComponent implements OnInit, AfterViewInit {
   courses$: Observable<Course[]>;
-
-  constructor(private api: ApiStoreService) { }
-
-  ngOnInit() {
+  errorFound = false;
+  alternativeCourse: Course;
+  constructor(private api: ApiStoreService) {
+    this.alternativeCourse = {id: -1, description: 'Error on server. Till problem solved read this:', alternativeCourseTitle: 'Index', alternativeCourseUrl: 'https://index.hu'};
   }
+
+  ngOnInit() {}
 
   ngAfterViewInit(): void {
   }
 
-  loadCourses1(): void {
-    this.courses$ = this.api.getCoursesErr().pipe(
-      tap(v => console.log),
-      catchError(err => of([]))         // returning an alternative Observable on error
+  // ------------------------- handling error in error callback -----------------------------
+  loadCourses0(): void {
+    this.api.getCoursesErr().pipe(
+      log(RxJsLoggingLevel.DEBUG, 'courses-0'),
+    ).subscribe(
+      x => {
+        console.log('HTTP RESPONSE', x);
+        this.courses$ = of(x);                    // because here we subscribe manually and not by async pipe
+      },
+     err => {
+        this.showError('HTTP ERROR', err);
+        this.courses$ = of([this.alternativeCourse]);
+      },
+     () => {
+       this.errorFound = false;
+       console.log('COMPLETED');
+     }
     );
   }
 
-  loadCourses2(): void {
+  // ------------------------- Catch and Replace Strategy -----------------------------
+  loadCoursesWithReplace(): void {
+    this.errorFound = false;
     this.courses$ = this.api.getCoursesErr().pipe(
-      tap(v => console.log),
+      log(RxJsLoggingLevel.DEBUG, 'courses-1'),
       catchError(err => {
-        console.error('Error occured: ' + err);
-        console.error('Error object: ' + JSON.stringify(err));
+        this.showError('courses-1', err);
+        return of([this.alternativeCourse]);           // returning an alternative Observable on error
+      })
+    );
+  }
+
+  // ------------------------- Rethrow Strategy -----------------------------
+  loadCoursesWithRethrow(): void {
+    this.errorFound = false;
+    this.courses$ = this.api.getCoursesErr().pipe(
+      log(RxJsLoggingLevel.DEBUG, 'courses-2'),
+      catchError(err => {
+        this.showError('courses-2', err);
         return throwError(err);                   // returning an error Observable on error
       })
     );
   }
 
-  loadCourses3(): void {
+  // ------------------------- Error Cleanup -----------------------------
+  loadCoursesWithCleanup(): void {
+    this.errorFound = false;
     this.courses$ = this.api.getCoursesErr().pipe(
-        catchError(err => {                   // you can catch error immediately in the 1st operator, or everywhere error can generated
-        console.error('Error occured: ' + err);
-        console.error('Error object: ' + JSON.stringify(err));
+      log(RxJsLoggingLevel.DEBUG, 'courses-3'),
+      catchError(err => {                   // you can catch error immediately in the 1st operator, or everywhere error can generated
+        this.showError('courses-3', err);
         return throwError(err);                   // returning an error Observable on error
       }),
-      tap(v => console.log),
       finalize(() => {
         // SOME CLEANUP LOGIC
         console.log('Error handled with cleanup.');
@@ -53,14 +83,21 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
     );
   }
 
-  loadCourses4(): void {
+  // -------------------------  -----------------------------
+  loadCoursesWithDelayRetry(): void {
+    this.errorFound = false;
     const retryInterval = 2000;
     this.courses$ = this.api.getCoursesErr().pipe(
-      tap(v => console.log),
+      log(RxJsLoggingLevel.DEBUG, 'courses-4'),
       retryWhen(errors => errors.pipe(
         tap(val => console.log(`Error found -> retry in ${retryInterval} msecs`)),      // log error message
-        delayWhen((val, index) => timer(val * retryInterval))   // restart in 6 seconds
+        delayWhen((val, index) => timer(val * retryInterval))   // restart in 2 seconds
       ))
     );
+  }
+
+  showError(msg, err) {
+    this.errorFound = true;
+    console.error(`Error occured - ${msg}:`, err);
   }
 }

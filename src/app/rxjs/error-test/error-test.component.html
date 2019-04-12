@@ -1,22 +1,26 @@
 <div class="container">
-  <h4>Error handling strategies</h4>
+  <h4>Error handling strategies <i class="fa fa-exclamation-circle text-danger" *ngIf="errorFound"></i></h4>
   <div class="my-3" style="font-style: italic">Error generated randomly, open Network tab for monitoring</div>
 
   <div class="row mb-2">
-      <button class="btn btn-primary" (click)="loadCourses1()">Error handling 1 - Alternative</button>
-      <span class="ml-2">returning Alternative Observer</span>
+    <button class="btn btn-primary" (click)="loadCourses0()">Error handling 0 - error callback</button>
+    <span class="ml-2 mt-2">handling error in error callback</span>
   </div>
   <div class="row mb-2">
-    <button class="btn btn-primary" (click)="loadCourses2()">Error handling 2 - Re-throw</button>
-    <span class="ml-2">returning Error Observer</span>
+      <button class="btn btn-primary" (click)="loadCoursesWithReplace()">Error handling 1 - Catch and Replace Strategy</button>
+      <span class="ml-2 mt-2">returning alternative Observer</span>
   </div>
   <div class="row mb-2">
-    <button class="btn btn-primary" (click)="loadCourses3()">Error handling 3 - Cleanup</button>
-    <span class="ml-2">returning Error Observer, but closed with cleanup</span>
+    <button class="btn btn-primary" (click)="loadCoursesWithRethrow()">Error handling 2 - Catch and Rethrow Strategy</button>
+    <span class="ml-2 mt-2">returning Error Observer</span>
   </div>
   <div class="row mb-2">
-    <button class="btn btn-primary" (click)="loadCourses4()">Error handling 4 - Retry</button>
-    <span class="ml-2">on error retrying using Observable again</span>
+    <button class="btn btn-primary" (click)="loadCoursesWithCleanup()">Error handling 3 - Cleanup</button>
+    <span class="ml-2 mt-2">returning Error Observer, but closed with cleanup</span>
+  </div>
+  <div class="row mb-2">
+    <button class="btn btn-primary" (click)="loadCoursesWithDelayRetry()">Error handling 4 - Retry</button>
+    <span class="ml-2 mt-2">on error retrying using Observable again</span>
   </div>
 
   <table class="table">
@@ -24,12 +28,14 @@
     <tr>
       <th>ID</th>
       <th>Description</th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let c of (courses$ | async)">
       <td>{{c.id}}</td>
       <td>{{c.description}}</td>
+      <td><a href="{{c.alternativeCourseUrl}}">{{c.alternativeCourseTitle}}</a></td>
     </tr>
     </tbody>
   </table>
