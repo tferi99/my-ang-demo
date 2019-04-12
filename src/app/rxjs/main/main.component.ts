@@ -22,7 +22,8 @@ export class MainComponent implements OnInit {
     {name: 'Error handling', active: false},
     {name: 'Sandbox', active: false}
   ];
-  activeTab = 7;
+
+  activeTab = 4;
 
   constructor() {}
 
