@@ -26,4 +26,7 @@ export class LogTestComponent implements OnInit {
 
     const o3 = o1.pipe(mergeMap(() => o2, (x, y) => '' + x + y, 2)).subscribe(x => console.log('RESULT >>>>> ' + x));
   }
+
+  ngOnInit(): void {
+  }
 }

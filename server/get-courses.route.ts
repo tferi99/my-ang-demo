@@ -8,6 +8,12 @@ export function getAllCourses(req: Request, res: Response) {
   }, 200);
 }
 
+export function getAllCoursesSlowly(req: Request, res: Response) {
+  setTimeout(() => {
+    res.status(200).json({payload: Object.values(COURSES)});
+  }, 1000);
+}
+
 /**
  * It generates error randomly.
  *
@@ -21,8 +27,7 @@ export function getAllCoursesRandomErr(req: Request, res: Response) {
     if (errorTypeAuth) {
       console.log('ERROR loading courses$!');
       res.status(401).json({message: 'random auth error occurred.'});
-    }
-    else {
+    } else {
       console.log('ERROR loading courses$!');
       res.status(500).json({message: 'random server side error occurred.'});
     }

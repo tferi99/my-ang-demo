@@ -10,7 +10,7 @@
 
   <div class="row mb-2">
     <div>
-      <button (click)="createSubscription()" class="btn btn-primary">Create subscription</button>
+      <button (click)="createSubscription()" class="btn btn-primary">{{subscription ? 'Re-Create' : 'Create'}}  subscription</button>
     </div>
     <div class="p-2">
       <div class="custom-control custom-radio custom-control-inline">
@@ -37,6 +37,11 @@
       </span>
     </span>
 
-    <span style="background-color: orange" class="p-2 ml-2" #clickTarget>Click here to fire event to create observer with ...</span>
+    <span style="background-color: orange" [style.visibility]="clickTargetVisible" class="p-2 ml-2" #clickTarget>Click here to fire event to create observer with ...</span>
+    <span class="p-2 ml-2" [style.visibility]="startBtnVisible">
+      <button #startBtn>Start HTTP requests</button>
+    </span>
   </div>
+
+  <button (click)="slowNetworkOperationSubscribe()">HTTP</button>
 </div>

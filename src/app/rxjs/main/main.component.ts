@@ -24,7 +24,7 @@ export class MainComponent implements OnInit {
     {name: 'Logging', active: false},
     {name: 'Sandbox', active: false}
   ];
-  activeTab = 9;
+  activeTab = 4;
 
   constructor() {
     setRxJsLoggingLevel(RxJsLoggingLevel.DEBUG);

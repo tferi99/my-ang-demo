@@ -1,6 +1,8 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {concat, fromEvent, interval, noop, Observable, of, OperatorFunction, pipe, Subscription} from 'rxjs';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {concat, fromEvent, interval, noop, Observable, of, OperatorFunction, pipe, range, Subscription} from 'rxjs';
 import {concatMap, exhaustMap, map, mergeMap, switchMap, take, tap} from 'rxjs/operators';
+import {ApiStoreService} from '../../core/api-store.service';
+import {Course} from '../../shared/model/course.model';
 
 enum FlatteningStrategy {
   MERGE = 'merge',
@@ -18,11 +20,16 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
   flatteningTypeEnum = FlatteningStrategy;
   concatenateObserversActive = false;
   flatteningStrategy = FlatteningStrategy.CONCAT;
-  @ViewChild('clickTarget') clickTarget: ElementRef;
   private subscription: Subscription;
   currentSubscriptionType: string;
+  networkMode = true;
 
-  constructor() {}
+  @ViewChild('clickTarget') clickTarget: ElementRef;
+  clickTargetVisible = 'hidden';
+  @ViewChild('startBtn') startBtn: ElementRef;
+  startBtnVisible = 'hidden';
+
+  constructor(private api: ApiStoreService) {}
 
   ngOnInit() {}
 
@@ -35,43 +42,86 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
       console.log(this.currentSubscriptionType + ' : unsubscribed');
     }
 
-    let mapOp: OperatorFunction<any, any> = null;
+    setTimeout(() => {
+      const mapOp: OperatorFunction<any, any> = this.getMapOp(this.flatteningStrategy);
+      let o: Observable<any> = null;
 
+      console.log('>>>>>>> ' + this.clickTargetVisible  + ', ' + this.startBtnVisible);
+      if (!this.networkMode) {
+        o = fromEvent(this.clickTarget.nativeElement, 'click').pipe(
+          tap(() => console.log('Clicked --> start ' + this.flatteningStrategy + ' processing')),
+          mapOp
+        );
+      } else {
+        o = fromEvent(this.startBtn.nativeElement, 'click').pipe(
+          tap(() => console.log('Net --> start ' + this.flatteningStrategy + ' processing')),
+          mapOp
+        );
+      }
+      this.subscription = o.subscribe(
+        (evt) => console.log(this.flatteningStrategy + ' event: ' + evt),
+        err => console.error(),
+        () => console.log('----------- ' + this.flatteningStrategy + ' processing completed -----------------')
+      );
+
+      this.clickTargetVisible = this.subscription && !this.networkMode ? 'visible' : 'hidden';
+      this.startBtnVisible = this.subscription && this.networkMode ? 'visible' : 'hidden';
+
+      this.currentSubscriptionType = this.flatteningStrategy;
+      console.log(this.currentSubscriptionType + ' : subscribed');
+    }, 1);
+  }
+
+  getMapOp(fs: FlatteningStrategy): OperatorFunction<any, any> {
+    let mapOp: OperatorFunction<any, any> = null;
     switch (this.flatteningStrategy) {
       case FlatteningStrategy.MERGE:
-        mapOp = mergeMap(this.startLongProcessing);
+        if (this.networkMode) {
+          mapOp = mergeMap(this.slowNetworkOperation);
+        } else {
+          mapOp = mergeMap(this.startLongProcessing);
+        }
         break;
       case FlatteningStrategy.SWITCH:
-        mapOp = switchMap(this.startLongProcessing);
+        if (this.networkMode) {
+          mapOp = switchMap(this.slowNetworkOperation);
+        } else {
+          mapOp = switchMap(this.startLongProcessing);
+        }
         break;
       case FlatteningStrategy.CONCAT:
-        mapOp = concatMap(this.startLongProcessing);
+        if (this.networkMode) {
+          mapOp = concatMap(this.slowNetworkOperation);
+        } else {
+          mapOp = concatMap(this.startLongProcessing);
+        }
         break;
       case FlatteningStrategy.EXHAUST:
-        mapOp = exhaustMap(this.startLongProcessing);
+        if (this.networkMode) {
+          mapOp = exhaustMap(this.slowNetworkOperation);
+        } else {
+          mapOp = exhaustMap(this.startLongProcessing);
+        }
         break;
       default:
         console.error(this.flatteningStrategy + ' : bad flattening strategy');
-    }
-
-    this.subscription = fromEvent(this.clickTarget.nativeElement, 'click').pipe(
-      tap(() => console.log('Clicked --> start ' + this.flatteningStrategy + ' processing')),
-      mapOp
-    ).subscribe(
-      (evt) => console.log(this.flatteningStrategy + ' event: ' + evt),
-      noop,
-      () => console.log('----------- ' + this.flatteningStrategy + ' processing completed -----------------')
-    );
-
-    this.currentSubscriptionType = this.flatteningStrategy;
-    console.log(this.currentSubscriptionType + ' : subscribed');
+     }
+    return mapOp;
   }
 
   startLongProcessing() {
-    return interval(1000).pipe(
+    return interval(500).pipe(
       // tap((x) => console.log('processing-' + x)),
       take(10)
     );
+  }
+
+  slowNetworkOperation(): Observable<Course[]> {
+    return this.api.getCoursesSlow();
+  }
+
+  slowNetworkOperationSubscribe() {
+    this.slowNetworkOperation().subscribe();
   }
 
   createWait(id: number, msecs: number, loop = 1, offset = 0): Observable<number> {
