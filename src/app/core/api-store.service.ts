@@ -22,6 +22,14 @@ export class ApiStoreService {
     );
   }
 
+  getCoursesSlow(): Observable<Course[]> {
+    return this.http.get<Course[]>(SERVER_API_CONTEXT_PATH + '/courses/slow').pipe(
+      tap(() => console.log('Courses - HTTP request executed')),
+      map(res => Object.values(res['payload'])
+      )
+    );
+  }
+
   getCoursesErr(): Observable<Course[]> {
     return this.http.get<Course[]>(SERVER_API_CONTEXT_PATH + '/courses/randomerr').pipe(
       log(RxJsLoggingLevel.DEBUG, 'Courses - HTTP request executed'),
