@@ -22,7 +22,7 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
   flatteningStrategy = FlatteningStrategy.CONCAT;
   private subscription: Subscription;
   currentSubscriptionType: string;
-  networkMode = true;
+  networkMode = false;
 
   @ViewChild('clickTarget') clickTarget: ElementRef;
   clickTargetVisible = 'hidden';

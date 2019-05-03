@@ -29,16 +29,16 @@ export class EventCardComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.data.color = 'warning';
     fromEvent(this.clickTarget.nativeElement, 'mousemove').subscribe(
-      (event: MouseEvent) => this.getMouseEventProperties(event));
+      (event: MouseEvent) => this.renderMouseEventProperties(event));
 
     fromEvent(this.clickTarget.nativeElement, 'mousedown').subscribe(
-      (event: MouseEvent) => this.getMouseEventProperties(event));
+      (event: MouseEvent) => this.renderMouseEventProperties(event));
 
     fromEvent(this.clickTarget.nativeElement, 'mouseup').subscribe(
-      (event: MouseEvent) => this.getMouseEventProperties(event));
+      (event: MouseEvent) => this.renderMouseEventProperties(event));
   }
 
-  getMouseEventProperties(event: MouseEvent) {
+  renderMouseEventProperties(event: MouseEvent) {
     this.x = event.clientX;
     this.y = event.clientY;
     this.ctrlKey = event.ctrlKey;

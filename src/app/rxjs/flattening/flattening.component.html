@@ -39,9 +39,7 @@
 
     <span style="background-color: orange" [style.visibility]="clickTargetVisible" class="p-2 ml-2" #clickTarget>Click here to fire event to create observer with ...</span>
     <span class="p-2 ml-2" [style.visibility]="startBtnVisible">
-      <button #startBtn>Start HTTP requests</button>
+      <button class="btn btn-primary" #startBtn>Start HTTP requests</button>
     </span>
   </div>
-
-  <button (click)="slowNetworkOperationSubscribe()">HTTP</button>
 </div>
