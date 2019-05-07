@@ -12,12 +12,17 @@ export class LogTestComponent implements OnInit {
   values$: Observable<number>;
 
   constructor() {
+  }
+
+  ngOnInit(): void {
+    // A, B, C, D, ...
     const o1 = interval(300).pipe(
       map(x => String.fromCharCode(65 + x)),
       take(3),
       log(RxJsLoggingLevel.DEBUG, 'o2')
     );
 
+    // 0, 1, 2, 3, 4, 5, ...
     const o2 = interval(1000).pipe(
       map(x => x + 1),
       take(3),
@@ -26,7 +31,5 @@ export class LogTestComponent implements OnInit {
 
     const o3 = o1.pipe(mergeMap(() => o2, (x, y) => '' + x + y, 2)).subscribe(x => console.log('RESULT >>>>> ' + x));
   }
-
-  ngOnInit(): void {
-  }
 }
+

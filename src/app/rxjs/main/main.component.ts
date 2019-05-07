@@ -20,10 +20,12 @@ export class MainComponent implements OnInit {
     {name: 'Form changes', active: false},
     {name: 'Type-ahead', active: false},
     {name: 'Error handling', active: false},
+    {name: 'Custom piped operator', active: false},
+    {name: 'Hot vs Cold', active: false},
     {name: 'Sandbox', active: false}
   ];
 
-  activeTab = 4;
+  activeTab = 1;
 
   constructor() {}
 

@@ -40,7 +40,8 @@ export class TypeAheadComponent implements OnInit, AfterViewInit {
       distinctUntilChanged(),
       log(RxJsLoggingLevel.INFO, 'SEARCH'),
       switchMap(search => this.loadLessons(search)),
-      log(RxJsLoggingLevel.INFO, 'RESULT')
+      //log(RxJsLoggingLevel.INFO, 'RESULT')
+      tap(x => console.log('result:', x))
     );
   }
 

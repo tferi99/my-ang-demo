@@ -1,5 +1,5 @@
 <div class="container">
-  <h4>Simple list from (HttpClient) Observable</h4>
+  <h4>Simple list from (HttpClient) Observable ({{coursesCount$ | async}})</h4>
   <table class="table">
     <thead>
     <tr>
@@ -12,6 +12,15 @@
       <td>{{c.id}}</td>
       <td>{{c.description}}</td>
     </tr>
+
+    <hr>
+
+    <tr *ngFor="let c of courses2">
+      <td>### {{c.id}}</td>
+      <td>{{c.description}}</td>
+    </tr>
+
+
     </tbody>
   </table>
 </div>

@@ -12,12 +12,13 @@ import { LodashModule } from './lodash/lodash.module';
 import {RxjsModule} from './rxjs/rxjs.module';
 import {ReduxModule} from './redux/redux.module';
 import {HttpClientModule} from '@angular/common/http';
+import {LifecycleModule} from './lifecycle/lifecycle.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    GridsterPageComponent
+    GridsterPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +29,8 @@ import {HttpClientModule} from '@angular/common/http';
     EventBroadcastModule,
     LodashModule,
     RxjsModule,
-    ReduxModule
+    ReduxModule,
+    LifecycleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

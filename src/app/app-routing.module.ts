@@ -6,7 +6,7 @@ import {MainComponent as EventBroadcastMain} from './event-broadcast/main/main.c
 import {MainComponent as RxjsMain} from './rxjs/main/main.component';
 import {LodashModule} from './lodash/lodash.module';
 import {MainComponent as ReduxMain} from './redux/main/main.component';
-
+import {MainComponent as LifecycleMain} from './lifecycle/main/main.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'rxjs', component: RxjsMain },
   { path: 'redux', component: ReduxMain },
   { path: 'gridster', component: GridsterPageComponent},
+  { path: 'lifecycle', component: LifecycleMain },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },   // default
 ];
 
