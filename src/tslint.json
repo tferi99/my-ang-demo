@@ -10,7 +10,7 @@
     "component-selector": [
       true,
       "element",
-      ["app", "dev", "ebr", "lds", "rxj", "rdx", "lc"],
+      ["app", "dev", "ebr", "lds", "rxj", "rdx", "lc, frm"],
       "kebab-case"
     ],
     "variable-name": [

@@ -13,6 +13,7 @@ import {RxjsModule} from './rxjs/rxjs.module';
 import {ReduxModule} from './redux/redux.module';
 import {HttpClientModule} from '@angular/common/http';
 import {LifecycleModule} from './lifecycle/lifecycle.module';
+import {FormTestModule} from './form-test/form-test.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {LifecycleModule} from './lifecycle/lifecycle.module';
     LodashModule,
     RxjsModule,
     ReduxModule,
-    LifecycleModule
+    LifecycleModule,
+    FormTestModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

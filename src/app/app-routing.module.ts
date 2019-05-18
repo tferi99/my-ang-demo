@@ -7,6 +7,7 @@ import {MainComponent as RxjsMain} from './rxjs/main/main.component';
 import {LodashModule} from './lodash/lodash.module';
 import {MainComponent as ReduxMain} from './redux/main/main.component';
 import {MainComponent as LifecycleMain} from './lifecycle/main/main.component';
+import {MainComponent as FormTestMain} from './form-test/main/main.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'redux', component: ReduxMain },
   { path: 'gridster', component: GridsterPageComponent},
   { path: 'lifecycle', component: LifecycleMain },
+  { path: 'formtest', component: FormTestMain },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },   // default
 ];
 

@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json",
-    "start2": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --host 10.122.188.104",
+    "startOffice": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --host 10.122.188.104",
     "server": "./node_modules/.bin/ts-node ./server/server.ts",
     "build": "ng build",
     "test": "ng test",
