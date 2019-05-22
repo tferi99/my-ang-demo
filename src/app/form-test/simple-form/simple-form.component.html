@@ -1,0 +1,26 @@
+<div class="container">
+  <h3 class="mb-2">{{title}}</h3>
+
+  <form class="section">
+    <h5 class="ui header">Add a person</h5>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Name" #name>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" name="age" placeholder="Age" #age>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="gender">Gender</label>
+        <select class="form-control" id="gender" #gender>
+          <option *ngFor="let g of genders" [value]="g.value">{{g.key}}</option>
+        </select>
+      </div>
+
+    </div>
+    <button (click)="addPerson(name, age, gender)" class="ui positive floated button">OK</button>
+  </form>
+  <h5>Result: {{result}}</h5>
+</div>

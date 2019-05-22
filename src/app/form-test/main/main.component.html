@@ -1,0 +1,20 @@
+<div class="container ml-5 mr-5">
+  <nav class="navbar navbar-dark bg-info">
+    <span class="navbar-brand">Angular Forms</span>
+  </nav>
+
+  <app-simple-form [title] = "'Simple Form (view-local variables)'" (onSubmitSend)="onSimpleFormSubmitted($event)"></app-simple-form>
+  <h5>Result sent back to parent: {{simpleFormResult}}</h5>
+  <hr>
+
+  <app-validated-form-model-driven (onSubmitSend)="onValidatedFormMDSubmitted($event)"></app-validated-form-model-driven>
+  <h5>Result sent back to parent: {{mdFormResult}}</h5>
+  <hr>
+
+  <app-validated-form-temp-driven (onSubmitSend)="onValidatedFormTDSubmitted($event)"></app-validated-form-temp-driven>
+  <h5>Result sent back to parent: {{tdFormResult}}</h5>
+  <hr>
+</div>
+
+
+

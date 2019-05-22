@@ -1,0 +1,27 @@
+<h3>Cold observable = producer inside - unicast</h3>
+<table class="table">
+  <tr>
+    <td><button (click)="subscribeCold1()">Subscribe</button></td>
+    <td>{{coldValue1}}</td>
+  </tr>
+  <tr>
+    <td><button (click)="subscribeCold2()">Subscribe</button></td>
+    <td>{{coldValue2}}</td>
+  </tr>
+</table>
+
+<h3>Hot observable = producer outside - broadcast</h3>
+<table class="table">
+  <tr>
+    <td><button (click)="subscribeHot1()">Subscribe</button></td>
+    <td>{{hotValue1}}</td>
+  </tr>
+  <tr>
+    <td><button (click)="subscribeHot2()">Subscribe</button></td>
+    <td>{{hotValue2}}</td>
+  </tr>
+  <tr>
+    <td><button (click)="subscribeHot3()">Subscribe</button></td>
+    <td>{{hotValue3}}</td>
+  </tr>
+</table>
