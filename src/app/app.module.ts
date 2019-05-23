@@ -14,6 +14,7 @@ import {ReduxModule} from './redux/redux.module';
 import {HttpClientModule} from '@angular/common/http';
 import {LifecycleModule} from './lifecycle/lifecycle.module';
 import {FormTestModule} from './form-test/form-test.module';
+import {NgrxModule} from './ngrx/ngrx.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {FormTestModule} from './form-test/form-test.module';
     ReduxModule,
     LifecycleModule,
     FormTestModule,
+    NgrxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
