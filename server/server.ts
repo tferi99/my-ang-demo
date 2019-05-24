@@ -3,12 +3,15 @@ import {Application} from 'express';
 import {getAllCourses, getAllCoursesRandomErr, getAllCoursesSlowly, getCourseById} from './get-courses.route';
 import {searchLessons} from './search-lessons.route';
 import {saveCourse} from './save-course.route';
+import {loginUser} from './auth.route';
 
 const bodyParser = require('body-parser');
 
 const app: Application = express();
 
 app.use(bodyParser.json());
+
+app.route('/api/login').post(loginUser);
 
 app.route('/api/courses').get(getAllCourses);
 

@@ -16,8 +16,8 @@ export const APP_STORE = new InjectionToken('App.store');
   window['devToolsExtension']() : f => f;*/
 
 export function createAppStore(): Store<AppState> {
-  //return createStore<AppState>(reducer, compose(devtools));
-  //return createStore<AppState>(reducer);
+  //return createStore<AppState>(ngrxReducer, compose(devtools));
+  //return createStore<AppState>(ngrxReducer);
   return null;
 }
 

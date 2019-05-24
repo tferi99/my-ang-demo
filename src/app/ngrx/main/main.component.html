@@ -1,3 +1,7 @@
-<p>
-  main works!
-</p>
+<div class="container mt-2">
+  <!--
+  <ngrx-login *ngIf="isLoggedOut | async"></ngrx-login>
+  -->
+  <ngrx-login></ngrx-login>
+  <ngrx-logout *ngIf="isLoggedIn | async"></ngrx-logout>
+</div>

@@ -15,6 +15,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {LifecycleModule} from './lifecycle/lifecycle.module';
 import {FormTestModule} from './form-test/form-test.module';
 import {NgrxModule} from './ngrx/ngrx.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import {EffectsModule} from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,10 @@ import {NgrxModule} from './ngrx/ngrx.module';
     ReduxModule,
     LifecycleModule,
     FormTestModule,
-    NgrxModule
+    NgrxModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]
