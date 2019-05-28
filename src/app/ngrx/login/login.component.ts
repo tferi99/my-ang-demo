@@ -24,18 +24,13 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
-    this.store.subscribe(
-      state => console.log('LoginComponent INIT:', state)
-    );
-  }
+  ngOnInit() {}
 
   onLogin() {
     const val = this.form.value;
 
-    this.service.login(val.email, val.password).pipe(
-      tap(data => console.log('LoginComponent:', data))
-    ).subscribe(
+    // submit login page
+    this.service.login(val.email, val.password).pipe().subscribe(
       user => {
         this.store.dispatch(new Login({user}))
         this.errorFound = false;

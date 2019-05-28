@@ -3,7 +3,8 @@ import {select, Store} from '@ngrx/store';
 import {NgrxState} from '../ngrx.reducer';
 import {map, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {isLoggedIn, isLoggedOut} from '../ngrx.selectors.ts';
+import {isLoggedIn} from '../ngrx.selectors.ts';
+import {AppState} from '../../reducers';
 
 @Component({
   selector: 'ngrx-main',
@@ -12,24 +13,23 @@ import {isLoggedIn, isLoggedOut} from '../ngrx.selectors.ts';
 })
 export class MainComponent implements OnInit {
   isLoggedIn$: Observable<boolean>;
-  isLoggedOut$: Observable<boolean>;
 
-  constructor(private store: Store<NgrxState>) { }
+  constructor(private store: Store<NgrxState>, private globalStore: Store<AppState>) { }
 
   ngOnInit() {
-    this.store.pipe(
-      tap(state => console.log('Store extracted by component:' + JSON.stringify(state))),
-      map(state => state.auth.loggedIn),
-      tap(loggedIn => console.log('Logged in (from store):', loggedIn))
-    ).subscribe(
+    this.globalStore.subscribe(s => console.log('global state: ', s));
+    this.store.subscribe(s => console.log('module state: ', s));
+
+    this.isLoggedIn$ = this.globalStore.pipe(
+      map(state => state.ngrx.auth.loggedIn),
     );
 
-    this.isLoggedIn$ = this.store.pipe(
+/*    this.isLoggedIn$ = this.store.pipe(
       select(isLoggedIn)
     );
 
     this.isLoggedOut$ = this.store.pipe(
       select(isLoggedOut)
-    );
+    );*/
   }
 }

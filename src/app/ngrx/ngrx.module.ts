@@ -17,7 +17,7 @@ import { NgrxEffects } from './ngrx.effects';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('auth', fromNgrx.ngrxReducer),
+    StoreModule.forFeature('ngrx', fromNgrx.ngrxReducer),       // adding module-specific slice of state
     EffectsModule.forFeature([NgrxEffects]),
   ]
 })

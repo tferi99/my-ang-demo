@@ -20,18 +20,19 @@ export class NgrxEffects {
     tap(action => localStorage.removeItem('user'))
   );
 
+  // -------------------------- restoring auth from local storage
+/*
   @Effect()
   init$ = defer(() => {
 
-    const userData = localStorage.getItem("user");
+    const userData = localStorage.getItem('user');
 
     if (userData) {
-      return of(new Login({user:JSON.parse(userData)}));
-    }
-    else {
-      return <any>of(new Logout());
+      return of(new Login({user: JSON.parse(userData)}));      // by dispatcing a login action
+    } else {
+      return of(new Logout());
     }
   });
-
+*/
   constructor(private actions$: Actions) {}
 }
