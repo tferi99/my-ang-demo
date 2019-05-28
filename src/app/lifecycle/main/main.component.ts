@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import {Gender, Person} from '../../shared/model/person.model';
 
 @Component({
   selector: 'lc-main',
@@ -6,8 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.sass']
 })
 export class MainComponent implements OnInit {
+  @Input()
+  person: Person;
 
-  constructor() { }
+  constructor() {
+    this.person = {
+      name: 'John Smith',
+      born: 100,
+      gender: Gender.MALE
+    };
+  }
 
   ngOnInit() {
   }

@@ -1,6 +1,12 @@
 <div class="container">
   <h4>Lifecycle changes</h4>
   <div class="my-3" style="font-style: italic">Open Console tab for monitoring</div>
+  <hr>
+  <h2>Parent</h2>
+  <input [(ngModel)]="person.name">
+  Name: {{person.name}}
 
-  <lc-dump-all-state [testText]="'cica'" [testNumber]="5"></lc-dump-all-state>
+  <hr>
+  <h2>Child</h2>
+  <lc-dump-all-state [testText]="'cica'" [testNumber]="5" [testObject]="person"></lc-dump-all-state>
 </div>
