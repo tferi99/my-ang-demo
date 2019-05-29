@@ -7,6 +7,7 @@ import {Login, Logout} from '../auth.actions';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AppState} from '../../reducers';
 import {AuthState} from '../auth.reducer';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngrx-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   private errorFound = false;
   private form;
 
-  constructor(private store: Store<AuthState>, private service: LoginService, private fb: FormBuilder) {
+  constructor(private store: Store<AuthState>, private service: LoginService, private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
         email: ['a@b.c', [Validators.required]],
         password: ['abc', [Validators.required]]
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
         this.store.dispatch(new Login({user}))
         this.errorFound = false;
         console.log('next:', user);
+        this.router.navigateByUrl('/ngrx');
       },
       err => {
         this.errorFound = true;

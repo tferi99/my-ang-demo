@@ -5,6 +5,8 @@ import {Logout} from '../auth.actions';
 import {Observable} from 'rxjs';
 import {User} from '../../shared/model/user.model';
 import {isLoggedIn, selectUser} from '../auth.selectors';
+import {FormBuilder} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngrx-logout',
@@ -14,7 +16,7 @@ import {isLoggedIn, selectUser} from '../auth.selectors';
 export class LogoutComponent implements OnInit {
   user$: Observable<User>;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>, private router: Router) { }
 
   ngOnInit() {
     this.user$ = this.store.pipe(
@@ -24,6 +26,7 @@ export class LogoutComponent implements OnInit {
 
   onLogout() {
     this.store.dispatch(new Logout());
+    this.router.navigateByUrl('/ngrx/login');
 
     return false;
   }

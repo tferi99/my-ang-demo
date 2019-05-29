@@ -9,12 +9,14 @@ import {MainComponent as ReduxMain} from './redux/main/main.component';
 import {MainComponent as LifecycleMain} from './lifecycle/main/main.component';
 import {MainComponent as FormTestMain} from './form-test/main/main.component';
 import {MainComponent as NgrxMain} from './ngrx/main/main.component';
+import {LoginComponent} from './ngrx/login/login.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'broadcast', component: EventBroadcastMain },
   { path: 'rxjs', component: RxjsMain },
   { path: 'ngrx', component: NgrxMain },
+  { path: 'ngrx/login', component: LoginComponent },
   { path: 'redux', component: ReduxMain },
   { path: 'gridster', component: GridsterPageComponent},
   { path: 'lifecycle', component: LifecycleMain },

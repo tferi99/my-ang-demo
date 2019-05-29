@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 import {AuthState} from '../ngrx/auth.reducer';
 
 export interface AppState {
-  auth?: AuthState;
+//  auth?: AuthState;
 }
 
 
