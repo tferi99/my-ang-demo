@@ -10,7 +10,7 @@ import {
 
 const initialState: AppState = { counter: 0 };
 
-// Create our ngrxReducer that will handle changes to the state
+// Create our authReducer that will handle changes to the state
 export const counterReducer: Reducer<AppState> =
   (state: AppState = initialState, action: Action): AppState => {
     switch (action.type) {

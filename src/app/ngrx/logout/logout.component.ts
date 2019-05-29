@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {AppState} from '../../reducers';
-import {Logout} from '../ngrx.actions';
+import {Logout} from '../auth.actions';
+import {Observable} from 'rxjs';
+import {User} from '../../shared/model/user.model';
+import {isLoggedIn, selectUser} from '../auth.selectors';
 
 @Component({
   selector: 'ngrx-logout',
@@ -9,10 +12,14 @@ import {Logout} from '../ngrx.actions';
   styleUrls: ['./logout.component.sass']
 })
 export class LogoutComponent implements OnInit {
+  user$: Observable<User>;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
+    this.user$ = this.store.pipe(
+      select(selectUser)
+    );
   }
 
   onLogout() {

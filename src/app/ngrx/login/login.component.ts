@@ -3,10 +3,10 @@ import {Store} from '@ngrx/store';
 import {LoginService} from '../../core/login.service';
 import {User} from '../../shared/model/user.model';
 import {tap} from 'rxjs/operators';
-import {Login, Logout} from '../ngrx.actions';
+import {Login, Logout} from '../auth.actions';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AppState} from '../../reducers';
-import {NgrxState} from '../ngrx.reducer';
+import {AuthState} from '../auth.reducer';
 
 @Component({
   selector: 'ngrx-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   private errorFound = false;
   private form;
 
-  constructor(private store: Store<NgrxState>, private service: LoginService, private fb: FormBuilder) {
+  constructor(private store: Store<AuthState>, private service: LoginService, private fb: FormBuilder) {
     this.form = this.fb.group({
         email: ['a@b.c', [Validators.required]],
         password: ['abc', [Validators.required]]
