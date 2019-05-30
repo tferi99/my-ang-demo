@@ -5,11 +5,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Backend test server
 
 Run `npm server` for a dev server.
-HTTP REST API Server running at http://localhost:9000
+HTTP REST API Server running at http://localhost:9001
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4201/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 

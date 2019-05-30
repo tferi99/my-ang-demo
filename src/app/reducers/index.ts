@@ -6,10 +6,10 @@ import {
   MetaReducer
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
-import {NgrxState} from '../ngrx/ngrx.reducer';
+import {AuthState} from '../ngrx/auth.reducer';
 
 export interface AppState {
-  ngrx?: NgrxState;
+//  auth?: AuthState;
 }
 
 

@@ -3,9 +3,13 @@ export const USERS = {
   1: {
     id: 1,
     email: 'a@b.c',
-    password:'abc'
+    password: 'abc'
+  },
+  2: {
+    id: 1,
+    email: 'u@b.c',
+    password: 'ubc'
   }
-
 };
 
 
