@@ -7,7 +7,7 @@ export namespace Gender {
   export function asArray(): string[] {
     const arr = [];
 
-    for(const n in Gender) {
+    for (const n in Gender) {
       if (typeof Gender[n] === 'string') {
         arr.push(n);
       }

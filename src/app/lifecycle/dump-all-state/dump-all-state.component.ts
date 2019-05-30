@@ -10,6 +10,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {Person} from '../../shared/model/person.model';
 
 @Component({
   selector: 'lc-dump-all-state',
@@ -19,6 +20,7 @@ import {NgForm} from '@angular/forms';
 export class DumpAllStateComponent implements OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
   @Input() testText: string
   @Input() testNumber: number
+  @Input() testObject: Person
 
   constructor() {
     console.log('=== CONSTRUCTOR');
