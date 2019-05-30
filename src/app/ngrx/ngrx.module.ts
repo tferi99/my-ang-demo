@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import * as fromNgrx from './auth.reducer';
+import * as fromAuth from './auth.reducer';
 import { LogoutComponent } from './logout/logout.component';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth.effects';
@@ -17,7 +17,7 @@ import { AuthEffects } from './auth.effects';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('auth', fromNgrx.authReducer),       // adding module-specific slice of state
+    StoreModule.forFeature('auth', fromAuth.authReducer),       // adding module-specific slice of state
     EffectsModule.forFeature([AuthEffects]),
   ]
 })

@@ -1,5 +1,6 @@
 <div class="container">
+  Currently logged in: {{(user$ | async)?.email}}
   <button (click)="onLogout()" class="ui positive floated button">Logout</button>
-  User: {{(user$ | async)?.email}}
+
 </div>
 

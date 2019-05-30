@@ -10,12 +10,13 @@ import {MainComponent as LifecycleMain} from './lifecycle/main/main.component';
 import {MainComponent as FormTestMain} from './form-test/main/main.component';
 import {MainComponent as NgrxMain} from './ngrx/main/main.component';
 import {LoginComponent} from './ngrx/login/login.component';
+import {AuthGuard} from './ngrx/auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'broadcast', component: EventBroadcastMain },
   { path: 'rxjs', component: RxjsMain },
-  { path: 'ngrx', component: NgrxMain },
+  { path: 'ngrx', component: NgrxMain, canActivate: [AuthGuard]},
   { path: 'ngrx/login', component: LoginComponent },
   { path: 'redux', component: ReduxMain },
   { path: 'gridster', component: GridsterPageComponent},
