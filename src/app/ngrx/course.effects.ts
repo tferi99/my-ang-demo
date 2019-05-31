@@ -21,21 +21,20 @@ export class CourseEffects {
       map(course => new CourseLoaded({course}))
     );
 
-  // ... other effects
+
+    @Effect()
+    loadAllCourses$ = this.actions$
+      .pipe(
+        ofType<AllCoursesRequested>(CourseActionTypes.AllCoursesRequested),
+        tap(act => console.log('>>>>>>>>>>>', act)),
+        withLatestFrom(this.store.pipe(select(allCoursesLoaded))),
+  //      filter(([action, allCoursesLoaded]) => !allCoursesLoaded),
+        mergeMap(() => this.coursesService.findAllCourses()),
+        map(courses => new AllCoursesLoaded({courses}))
+      );
 
   constructor(private actions$: Actions<CourseActions>, private coursesService: CoursesService, private store: Store<AppState>) {}
 }
 
 
-
-/*  @Effect()
-  loadAllCourses$ = this.actions$
-    .pipe(
-      ofType<AllCoursesRequested>(CourseActionTypes.AllCoursesRequested),
-      tap(act => console.log('>>>>>>>>>>>', act)),
-      withLatestFrom(this.store.pipe(select(allCoursesLoaded))),
-//      filter(([action, allCoursesLoaded]) => !allCoursesLoaded),
-      mergeMap(() => this.coursesService.findAllCourses()),
-      map(courses => new AllCoursesLoaded({courses}))
-    );*/
 
