@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'broadcast', component: EventBroadcastMain },
   { path: 'rxjs', component: RxjsMain },
-  { path: 'ngrx', component: NgrxMain, canActivate: [AuthGuard]},
+  { path: 'ngrx', component: NgrxMain, canActivate: [AuthGuard]
+  },
   { path: 'ngrx/login', component: LoginComponent },
   { path: 'redux', component: ReduxMain },
   { path: 'gridster', component: GridsterPageComponent},

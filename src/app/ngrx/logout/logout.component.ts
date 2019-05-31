@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from '../../reducers';
 import {Logout} from '../auth.actions';
 import {Observable} from 'rxjs';
 import {User} from '../../shared/model/user.model';
-import {isLoggedIn, selectUser} from '../auth.selectors';
-import {FormBuilder} from '@angular/forms';
+import {selectUser} from '../auth.selectors';
 import {Router} from '@angular/router';
 
 @Component({

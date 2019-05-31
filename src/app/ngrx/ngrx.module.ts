@@ -10,15 +10,19 @@ import * as fromAuth from './auth.reducer';
 import { LogoutComponent } from './logout/logout.component';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth.effects';
+import * as fromCourse from './course.reducers';
+import { CourseEffects } from './course.effects';
+import { CourseListComponent } from './course-list/course-list.component';
 
 
 @NgModule({
-  declarations: [MainComponent, LoginComponent, LogoutComponent],
+  declarations: [MainComponent, LoginComponent, LogoutComponent, CourseListComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     StoreModule.forFeature('auth', fromAuth.authReducer),       // adding module-specific slice of state
-    EffectsModule.forFeature([AuthEffects]),
+    StoreModule.forFeature('courses', fromCourse.coursesReducer),
+    EffectsModule.forFeature([AuthEffects, CourseEffects]),
   ]
 })
 export class NgrxModule { }

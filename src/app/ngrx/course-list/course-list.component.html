@@ -1,0 +1,12 @@
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Description</th>
+    <th>Category</th>
+  </tr>
+  <tr *ngFor="let course of courses$ | async">
+    <td>{{course.id}}</td>
+    <td>{{course.description}}</td>
+    <td>{{course.category}}</td>
+  </tr>
+</table>

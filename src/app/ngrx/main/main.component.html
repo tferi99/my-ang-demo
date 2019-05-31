@@ -1,8 +1,8 @@
 <div class="container mt-2">
   <h2>Main</h2>
   <div *ngIf="isLoggedIn$ | async">
-    <ngrx-logout ></ngrx-logout>
-    main content
+    <ngrx-logout></ngrx-logout>
+    <ngrx-course-list></ngrx-course-list>
   </div>
   <div *ngIf="(isLoggedIn$ | async) === false">
     not logged in

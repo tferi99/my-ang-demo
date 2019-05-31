@@ -5,6 +5,7 @@ import {map, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {isLoggedIn} from '../auth.selectors';
 import {AppState} from '../../reducers';
+import {AllCoursesRequested} from '../course.actions';
 
 @Component({
   selector: 'ngrx-main',
@@ -23,5 +24,7 @@ export class MainComponent implements OnInit {
       tap(s => console.log('LOGGED_IN:', s)),
       select(isLoggedIn)
     );
+
+    this.store.dispatch(new AllCoursesRequested());
   }
 }
