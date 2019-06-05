@@ -24,7 +24,5 @@ export class MainComponent implements OnInit {
       tap(s => console.log('LOGGED_IN:', s)),
       select(isLoggedIn)
     );
-
-    this.store.dispatch(new AllCoursesRequested());
   }
 }

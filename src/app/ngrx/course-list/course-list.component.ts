@@ -4,6 +4,7 @@ import {AuthState} from '../auth.reducer';
 import {Observable} from 'rxjs';
 import {Course} from '../../shared/model/course.model';
 import {selectAllCourses} from '../course.selectors';
+import {AllCoursesRequested} from '../course.actions';
 
 @Component({
   selector: 'ngrx-course-list',
@@ -16,6 +17,8 @@ export class CourseListComponent implements OnInit {
   constructor(private store: Store<AuthState>) {}
 
   ngOnInit() {
+    this.store.dispatch(new AllCoursesRequested());
+
     this.courses$ = this.store.pipe(select(selectAllCourses));
   }
 }
