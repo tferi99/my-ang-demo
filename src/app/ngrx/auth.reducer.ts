@@ -15,6 +15,13 @@ export const initialState: AuthState = {
 export function authReducer(state = initialState, action: AuthActions): AuthState {
   switch (action.type) {
     case AuthActionTypes.LoginAction:
+/*
+      // DON'T DO THAT, state IS IMMUTABLE
+      state.loggedIn = true;
+      state.user = action.payload.user;
+      return state;
+*/
+      // IT's OK !!!
       return {
         loggedIn: true,
         user: action.payload.user
