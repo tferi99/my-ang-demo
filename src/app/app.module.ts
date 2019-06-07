@@ -20,6 +20,7 @@ import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
+import {LoggerModule, NgxLoggerLevel} from 'ngx-logger';
 
 @NgModule({
   declarations: [
@@ -42,8 +43,9 @@ import {EffectsModule} from '@ngrx/effects';
     NgrxModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([])
-  ],
+    EffectsModule.forRoot([]),
+    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG})
+],
   providers: [],
   bootstrap: [AppComponent]
 })

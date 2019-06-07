@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {KeyValuePair, stringEnumToKeyValuePairArray} from '../../shared/util/key-value-pair';
 import {Gender, Person} from '../../shared/model/person.model';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {NGXLogger} from 'ngx-logger';
 
 @Component({
   selector: 'rxj-form-test',
@@ -23,16 +24,16 @@ export class FormTestComponent implements OnInit {
   gender = this.form.controls['gender'];
   birth = this.form.controls['birth'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private log: NGXLogger) {
     this.genders = stringEnumToKeyValuePairArray(Gender, true);
   }
 
   ngOnInit() {
-    this.form.valueChanges.subscribe(console.log);
+    this.form.valueChanges.subscribe(this.log.debug);
   }
 
   onSubmit() {
-    console.warn('SUBMITTED: ' + this.form.value);
+    this.log.warn('SUBMITTED: ' + this.form.value);
 
     const p = new Person(this.name.value, parseInt(this.age.value, 10), this.gender.value);
   }

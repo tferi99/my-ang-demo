@@ -4,7 +4,8 @@ import {ApiStoreService} from '../../core/api-store.service';
 import {concat, fromEvent, Observable} from 'rxjs';
 import {Lesson} from '../../shared/model/lesson.model';
 import {debounceTime, distinctUntilChanged, map, startWith, switchMap, tap} from 'rxjs/operators';
-import {log, RxJsLoggingLevel} from '../../shared/util/log';
+import {rxJsLog, RxJsLoggingLevel} from '../../shared/util/rxJsLog';
+import {NGXLogger} from 'ngx-logger';
 
 @Component({
   selector: 'rxj-type-ahead',
@@ -16,7 +17,7 @@ export class TypeAheadComponent implements OnInit, AfterViewInit {
   lessons$: Observable<Lesson[]>;
   @ViewChild('lessonSearchInput') lessonSearchInput: ElementRef;
 
-  constructor(private api: ApiStoreService) {
+  constructor(private api: ApiStoreService, private log: NGXLogger) {
     this.currentCource = {
       'id': 1,
       'description': 'Angular for Beginners - DUMMY',
@@ -38,10 +39,10 @@ export class TypeAheadComponent implements OnInit, AfterViewInit {
       startWith(''),
       debounceTime(400),
       distinctUntilChanged(),
-      log(RxJsLoggingLevel.INFO, 'SEARCH'),
+      rxJsLog(this.log, RxJsLoggingLevel.INFO, 'SEARCH'),
       switchMap(search => this.loadLessons(search)),
-      //log(RxJsLoggingLevel.INFO, 'RESULT')
-      tap(x => console.log('result:', x))
+      // rxJsLog(this.log, RxJsLoggingLevel.INFO, 'RESULT')
+      tap(x => this.log.debug('result:', x))
     );
   }
 

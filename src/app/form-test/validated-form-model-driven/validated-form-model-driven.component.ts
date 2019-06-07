@@ -3,6 +3,8 @@ import {FormBuilder, Validators, ValidatorFn, FormControl} from '@angular/forms'
 import {Gender, Person} from '../../shared/model/person.model';
 import {KeyValuePair, stringEnumToKeyValuePairArray} from '../../shared/util/component-helper';
 import {CustomValidators} from '../../shared/util/custom-validators';
+import {EventBroadcasterLocatorService} from '../../core/event-broadcaster-locator.service';
+import {NGXLogger} from 'ngx-logger';
 
 @Component({
   selector: 'app-validated-form-model-driven',
@@ -22,9 +24,9 @@ export class ValidatedFormModelDrivenComponent implements OnInit {
   age = this.form.controls['age'];
   gender = this.form.controls['gender'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private log: NGXLogger) {
     this.onSubmitSend = new EventEmitter<Person>();
-    this.onSubmitSend.subscribe((person: Person) => console.log('SENT BACK: ' + JSON.stringify(person)));
+    this.onSubmitSend.subscribe((person: Person) => this.log.debug('SENT BACK: ' + JSON.stringify(person)));
     this.genders = stringEnumToKeyValuePairArray(Gender, true);
   }
 
@@ -32,7 +34,7 @@ export class ValidatedFormModelDrivenComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn('SUBMITTED: ' + this.form.value);
+    this.log.warn('SUBMITTED: ' + this.form.value);
 
     const p = new Person(this.name.value, parseInt(this.age.value, 10), this.gender.value);
     this.onSubmitSend.emit(p);

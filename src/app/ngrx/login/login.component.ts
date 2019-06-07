@@ -8,6 +8,8 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {AppState} from '../../reducers';
 import {AuthState} from '../auth.reducer';
 import {Router} from '@angular/router';
+import {EventBroadcasterLocatorService} from '../../core/event-broadcaster-locator.service';
+import {NGXLogger} from 'ngx-logger';
 
 @Component({
   selector: 'ngrx-login',
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
   private errorFound = false;
   private form;
 
-  constructor(private store: Store<AuthState>, private service: LoginService, private fb: FormBuilder, private router: Router) {
+  constructor(private store: Store<AuthState>, private service: LoginService, private fb: FormBuilder, private router: Router, private log: NGXLogger) {
     this.form = this.fb.group({
         email: ['a@b.c', [Validators.required]],
         password: ['abc', [Validators.required]]
@@ -35,12 +37,12 @@ export class LoginComponent implements OnInit {
       user => {
         this.store.dispatch(new Login({user}))
         this.errorFound = false;
-        console.log('next:', user);
+        this.log.debug('next:', user);
         this.router.navigateByUrl('/ngrx');
       },
       err => {
         this.errorFound = true;
-        console.log('Error during login', err);
+        this.log.debug('Error during login', err);
       }
     );
     return false;

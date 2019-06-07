@@ -11,6 +11,8 @@ import {
 } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Person} from '../../shared/model/person.model';
+import {EventBroadcasterLocatorService} from '../../core/event-broadcaster-locator.service';
+import {NGXLogger} from 'ngx-logger';
 
 @Component({
   selector: 'lc-dump-all-state',
@@ -22,40 +24,40 @@ export class DumpAllStateComponent implements OnChanges, OnInit, DoCheck, AfterC
   @Input() testNumber: number
   @Input() testObject: Person
 
-  constructor() {
-    console.log('=== CONSTRUCTOR');
+  constructor(private log: NGXLogger) {
+    this.log.debug('=== CONSTRUCTOR');
   }
 
   // ------------------------------------ hooks ----------------------------------------
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('=== ngOnChanges: ', changes);
+    this.log.debug('=== ngOnChanges: ', changes);
   }
 
   ngOnInit() {
   }
 
   ngDoCheck(): void {
-    console.log('=== ngDoCheck');
+    this.log.debug('=== ngDoCheck');
   }
 
   ngAfterContentInit(): void {
-    console.log('=== ngAfterContentInit');
+    this.log.debug('=== ngAfterContentInit');
   }
 
   ngAfterContentChecked(): void {
-    console.log('=== ngAfterContentChecked');
+    this.log.debug('=== ngAfterContentChecked');
   }
 
   ngAfterViewChecked(): void {
-    console.log('=== ngAfterViewChecked');
+    this.log.debug('=== ngAfterViewChecked');
   }
 
   ngAfterViewInit(): void {
-    console.log('=== ngAfterViewInit');
+    this.log.debug('=== ngAfterViewInit');
   }
 
   ngOnDestroy(): void {
-    console.log('=== ngOnDestroy');
+    this.log.debug('=== ngOnDestroy');
   }
 
   // ------------------------------------------------------------------------------

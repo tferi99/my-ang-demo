@@ -8,10 +8,13 @@ import {AppState} from '../reducers';
 import {select, Store} from '@ngrx/store';
 import {allCoursesLoaded} from './course.selectors';
 import {CoursesService} from '../core/courses.service';
+import {EventBroadcasterLocatorService} from '../core/event-broadcaster-locator.service';
+import {NGXLogger} from 'ngx-logger';
 
 
 @Injectable()
 export class CourseEffects {
+  constructor(private actions$: Actions<CourseActions>, private coursesService: CoursesService, private store: Store<AppState>, private log: NGXLogger) {}
 
   @Effect()
   loadCourse$ = this.actions$
@@ -26,14 +29,12 @@ export class CourseEffects {
     loadAllCourses$ = this.actions$
       .pipe(
         ofType<AllCoursesRequested>(CourseActionTypes.AllCoursesRequested),
-        tap(act => console.log('>>>>>>>>>>>', act)),
+        // tap(act => this.log.debug('>>>', act)),
         withLatestFrom(this.store.pipe(select(allCoursesLoaded))),
-  //      filter(([action, allCoursesLoaded]) => !allCoursesLoaded),
+        // filter(([action, allCoursesLoaded]) => !allCoursesLoaded),
         mergeMap(() => this.coursesService.findAllCourses()),
         map(courses => new AllCoursesLoaded({courses}))
       );
-
-  constructor(private actions$: Actions<CourseActions>, private coursesService: CoursesService, private store: Store<AppState>) {}
 }
 
 
