@@ -1,5 +1,6 @@
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {NGXLogger} from 'ngx-logger';
 
 export enum RxJsLoggingLevel {
   TRACE,
@@ -23,7 +24,7 @@ export function setRxJsLoggingLevel(level: RxJsLoggingLevel) {
  * @param level
  * @param message
  */
-export const log = (level: RxJsLoggingLevel, message: string) =>
+export const rxJsLog = (log: NGXLogger, level: RxJsLoggingLevel, message: string) =>
   (source: Observable<any>) => source.pipe(
       tap(val => {
        if (level >= rxjsLoggingLevel) {
@@ -42,7 +43,21 @@ export const log = (level: RxJsLoggingLevel, message: string) =>
               levelName = '[ERROR]';
               break;
           }
-          console.log(levelName + ' - ' + message + ': ', val);
+
+          switch (level) {
+           case RxJsLoggingLevel.TRACE:
+             log.trace(levelName + ' - ' + message + ': ', val);
+             break;
+           case RxJsLoggingLevel.DEBUG:
+             log.debug(levelName + ' - ' + message + ': ', val);
+             break;
+           case RxJsLoggingLevel.INFO:
+             log.info(levelName + ' - ' + message + ': ', val);
+             break;
+           case RxJsLoggingLevel.ERROR:
+             log.error(levelName + ' - ' + message + ': ', val);
+             break;
+         }
         }
       })
     );

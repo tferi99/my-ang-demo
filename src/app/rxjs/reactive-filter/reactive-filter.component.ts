@@ -3,6 +3,7 @@ import {ApiStoreService} from '../../core/api-store.service';
 import {interval, Observable, of} from 'rxjs';
 import {filter, map, shareReplay, take} from 'rxjs/operators';
 import {Course} from '../../shared/model/course.model';
+import {NGXLogger} from 'ngx-logger';
 
 @Component({
   selector: 'rxj-reactive-filter',
@@ -10,11 +11,12 @@ import {Course} from '../../shared/model/course.model';
   styleUrls: ['./reactive-filter.component.sass']
 })
 export class ReactiveFilterComponent implements OnInit {
-  constructor(private service: ApiStoreService) {}
   courses$: Observable<Course[]>;
   filtered$: Observable<Course[]>;
 
   count: number;
+
+  constructor(private service: ApiStoreService, private log: NGXLogger) {}
 
   ngOnInit() {
     this.courses$ = this.service.getCourses().pipe(shareReplay());
@@ -32,7 +34,7 @@ export class ReactiveFilterComponent implements OnInit {
 
   filterByDescription(desc: string) {
     const flt = desc.toLowerCase();
-    console.log('filterByDescription[' + flt  + ']');
+    this.log.debug('filterByDescription[' + flt  + ']');
     this.filtered$ = this.courses$.pipe(
       map(courses => courses.filter(course => (desc !== '' ? course.description.toLowerCase().indexOf(flt) >= 0 : true)))
     );

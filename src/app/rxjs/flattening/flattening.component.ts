@@ -3,6 +3,7 @@ import {concat, fromEvent, interval, noop, Observable, of, OperatorFunction, pip
 import {concatMap, exhaustMap, map, mergeMap, switchMap, take, tap} from 'rxjs/operators';
 import {ApiStoreService} from '../../core/api-store.service';
 import {Course} from '../../shared/model/course.model';
+import {NGXLogger} from 'ngx-logger';
 
 enum FlatteningStrategy {
   MERGE = 'merge',
@@ -29,7 +30,7 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
   @ViewChild('startBtn') startBtn: ElementRef;
   startBtnVisible = 'hidden';
 
-  constructor(private api: ApiStoreService) {}
+  constructor(private api: ApiStoreService, private log: NGXLogger) {}
 
   ngOnInit() {}
 
@@ -39,36 +40,36 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
   createSubscription(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
-      console.log(this.currentSubscriptionType + ' : unsubscribed');
+      this.log.debug(this.currentSubscriptionType + ' : unsubscribed');
     }
 
     setTimeout(() => {
       const mapOp: OperatorFunction<any, any> = this.getMapOp(this.flatteningStrategy);
       let o: Observable<any> = null;
 
-      console.log('>>>>>>> ' + this.clickTargetVisible  + ', ' + this.startBtnVisible);
+      this.log.debug('>>>>>>> ' + this.clickTargetVisible  + ', ' + this.startBtnVisible);
       if (!this.networkMode) {
         o = fromEvent(this.clickTarget.nativeElement, 'click').pipe(
-          tap(() => console.log('Clicked --> start ' + this.flatteningStrategy + ' processing')),
+          tap(() => this.log.debug('Clicked --> start ' + this.flatteningStrategy + ' processing')),
           mapOp
         );
       } else {
         o = fromEvent(this.startBtn.nativeElement, 'click').pipe(
-          tap(() => console.log('Net --> start ' + this.flatteningStrategy + ' processing')),
+          tap(() => this.log.debug('Net --> start ' + this.flatteningStrategy + ' processing')),
           mapOp
         );
       }
       this.subscription = o.subscribe(
-        (evt) => console.log(this.flatteningStrategy + ' event: ' + evt),
-        err => console.error(),
-        () => console.log('----------- ' + this.flatteningStrategy + ' processing completed -----------------')
+        (evt) => this.log.debug(this.flatteningStrategy + ' event: ' + evt),
+        err => this.log.error(err),
+        () => this.log.debug('----------- ' + this.flatteningStrategy + ' processing completed -----------------')
       );
 
       this.clickTargetVisible = this.subscription && !this.networkMode ? 'visible' : 'hidden';
       this.startBtnVisible = this.subscription && this.networkMode ? 'visible' : 'hidden';
 
       this.currentSubscriptionType = this.flatteningStrategy;
-      console.log(this.currentSubscriptionType + ' : subscribed');
+      this.log.debug(this.currentSubscriptionType + ' : subscribed');
     }, 1);
   }
 
@@ -104,14 +105,14 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
         }
         break;
       default:
-        console.error(this.flatteningStrategy + ' : bad flattening strategy');
+        this.log.error(this.flatteningStrategy + ' : bad flattening strategy');
      }
     return mapOp;
   }
 
   startLongProcessing() {
     return interval(500).pipe(
-      // tap((x) => console.log('processing-' + x)),
+      // tap((x) => rxJsLog('processing-' + x), this.log),
       take(10)
     );
   }
@@ -127,7 +128,7 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
   createWait(id: number, msecs: number, loop = 1, offset = 0): Observable<number> {
     return interval(msecs).pipe(
       map(x => x + offset),
-      tap(x => console.log('wait[' + id + ']:' + msecs)),
+      tap(x => this.log.debug('wait[' + id + ']:' + msecs)),
       take(loop)
     );
   }
@@ -143,11 +144,11 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
 
     const result = concat(source1$, wait1$, source2$, wait2$, source3$);
     result.subscribe(
-      (x) => console.log('>>> ' + x),
-      () => console.log('error'),
+      (x) => this.log.debug('>>> ' + x),
+      () => this.log.debug('error'),
       () => {
         this.concatenateObserversActive = false;
-        console.log('--------- completed -------------');
+        this.log.debug('--------- completed -------------');
       }
     );
   }

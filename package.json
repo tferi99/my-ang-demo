@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json",
+    "start": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --evalSourceMap=true",
     "startOffice": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --host 10.122.188.104",
     "server": "./node_modules/.bin/ts-node ./server/server.ts",
     "build": "ng build",
@@ -37,6 +37,8 @@
     "core-js": "^2.5.4",
     "express": "^4.16.2",
     "lodash": "^4.17.11",
+    "ngx-logger": "^3.3.13",
+    "path": "^0.12.7",
     "redux": "^4.0.1",
     "rxjs": "~6.5.2",
     "rxjs-spy": "^7.5.1",

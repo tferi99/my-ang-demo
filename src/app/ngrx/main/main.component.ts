@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {isLoggedIn} from '../auth.selectors';
 import {AppState} from '../../reducers';
 import {AllCoursesRequested} from '../course.actions';
+import {NGXLogger} from 'ngx-logger';
 
 @Component({
   selector: 'ngrx-main',
@@ -15,13 +16,13 @@ import {AllCoursesRequested} from '../course.actions';
 export class MainComponent implements OnInit {
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>, private log: NGXLogger) { }
 
   ngOnInit() {
-    this.store.subscribe(s => console.log('module state: ', s));
+    this.store.subscribe(s => this.log.debug('module state: ', s));
 
     this.isLoggedIn$ = this.store.pipe(
-      tap(s => console.log('LOGGED_IN:', s)),
+      tap(s => this.log.debug('LOGGED_IN:', s)),
       select(isLoggedIn)
     );
   }

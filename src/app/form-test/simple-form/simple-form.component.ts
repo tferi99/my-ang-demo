@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Gender, Person} from '../../shared/model/person.model';
 import {KeyValuePair, stringEnumToKeyValuePairArray} from '../../shared/util/component-helper';
+import {EventBroadcasterLocatorService} from '../../core/event-broadcaster-locator.service';
+import {NGXLogger} from 'ngx-logger';
 
 @Component({
   selector: 'app-simple-form',
@@ -13,9 +15,9 @@ export class SimpleFormComponent implements OnInit {
   result: string;
   genders: KeyValuePair<string, string>[];
 
-  constructor() {
+  constructor(private log: NGXLogger) {
     this.onSubmitSend = new EventEmitter<Person>();
-    this.onSubmitSend.subscribe((person: Person) => console.log('SENT BACK: ' + JSON.stringify(person)));
+    this.onSubmitSend.subscribe((person: Person) => this.log.debug('SENT BACK: ' + JSON.stringify(person)));
     this.genders = stringEnumToKeyValuePairArray(Gender, true);
   }
 

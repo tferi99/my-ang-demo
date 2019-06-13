@@ -3,7 +3,8 @@ import {from, Observable, of, throwError, timer} from 'rxjs';
 import {Course} from '../../shared/model/course.model';
 import {ApiStoreService} from '../../core/api-store.service';
 import {catchError, delayWhen, finalize, retryWhen, tap} from 'rxjs/operators';
-import {log, RxJsLoggingLevel} from '../../shared/util/log';
+import {rxJsLog, RxJsLoggingLevel} from '../../shared/util/rxJsLog';
+import {NGXLogger} from 'ngx-logger';
 
 @Component({
   selector: 'rxj-error-test',
@@ -14,7 +15,8 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
   courses$: Observable<Course[]>;
   errorFound = false;
   alternativeCourse: Course;
-  constructor(private api: ApiStoreService) {
+
+  constructor(private api: ApiStoreService, private log: NGXLogger) {
     this.alternativeCourse = {id: -1, description: 'Error on server. Till problem solved read this:', alternativeCourseTitle: 'Index', alternativeCourseUrl: 'https://index.hu'};
   }
 
@@ -26,10 +28,10 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
   // ------------------------- handling error in error callback -----------------------------
   loadCourses0(): void {
     this.api.getCoursesErr().pipe(
-      log(RxJsLoggingLevel.DEBUG, 'courses-0'),
+      rxJsLog(this.log, RxJsLoggingLevel.DEBUG, 'courses-0'),
     ).subscribe(
       x => {
-        console.log('HTTP RESPONSE', x);
+        this.log.debug('HTTP RESPONSE', x);
         this.courses$ = of(x);                    // because here we subscribe manually and not by async pipe
       },
      err => {
@@ -38,7 +40,7 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
       },
      () => {
        this.errorFound = false;
-       console.log('COMPLETED');
+       this.log.debug('COMPLETED');
      }
     );
   }
@@ -47,7 +49,7 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
   loadCoursesWithReplace(): void {
     this.errorFound = false;
     this.courses$ = this.api.getCoursesErr().pipe(
-      log(RxJsLoggingLevel.DEBUG, 'courses-1'),
+      rxJsLog(this.log, RxJsLoggingLevel.DEBUG, 'courses-1'),
       catchError(err => {
         this.showError('courses-1', err);
         return of([this.alternativeCourse]);           // returning an alternative Observable on error
@@ -59,7 +61,7 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
   loadCoursesWithRethrow(): void {
     this.errorFound = false;
     this.courses$ = this.api.getCoursesErr().pipe(
-      log(RxJsLoggingLevel.DEBUG, 'courses-2'),
+      rxJsLog(this.log, RxJsLoggingLevel.DEBUG, 'courses-2'),
       catchError(err => {
         this.showError('courses-2', err);
         return throwError(err);                   // returning an error Observable on error
@@ -71,14 +73,14 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
   loadCoursesWithCleanup(): void {
     this.errorFound = false;
     this.courses$ = this.api.getCoursesErr().pipe(
-      log(RxJsLoggingLevel.DEBUG, 'courses-3'),
+      rxJsLog(this.log, RxJsLoggingLevel.DEBUG, 'courses-3'),
       catchError(err => {                   // you can catch error immediately in the 1st operator, or everywhere error can generated
         this.showError('courses-3', err);
         return throwError(err);                   // returning an error Observable on error
       }),
       finalize(() => {
         // SOME CLEANUP LOGIC
-        console.log('Error handled with cleanup.');
+        this.log.debug('Error handled with cleanup.');
       })
     );
   }
@@ -88,9 +90,9 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
     this.errorFound = false;
     const retryInterval = 2000;
     this.courses$ = this.api.getCoursesErr().pipe(
-      log(RxJsLoggingLevel.DEBUG, 'courses-4'),
+      rxJsLog(this.log, RxJsLoggingLevel.DEBUG, 'courses-4'),
       retryWhen(errors => errors.pipe(
-        tap(val => console.log(`Error found -> retry in ${retryInterval} msecs`)),      // log error message
+        tap(val => this.log.debug(`Error found -> retry in ${retryInterval} msecs`)),      // rxJsLog error message
         delayWhen((val, index) => timer(val * retryInterval))   // restart in 2 seconds
       ))
     );
@@ -98,6 +100,6 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
 
   showError(msg, err) {
     this.errorFound = true;
-    console.error(`Error occured - ${msg}:`, err);
+    this.log.error(`Error occured - ${msg}:`, err);
   }
 }
