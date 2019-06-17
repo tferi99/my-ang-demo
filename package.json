@@ -37,6 +37,7 @@
     "core-js": "^2.5.4",
     "express": "^4.16.2",
     "lodash": "^4.17.11",
+    "ngrx-store-freeze": "^0.2.4",
     "ngx-logger": "^3.3.13",
     "path": "^0.12.7",
     "redux": "^4.0.1",

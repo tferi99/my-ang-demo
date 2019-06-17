@@ -2,6 +2,7 @@
   <h2>Main</h2>
   <div *ngIf="isLoggedIn$ | async">
     <ngrx-logout></ngrx-logout>
+
     <ngrx-course-list></ngrx-course-list>
   </div>
   <div *ngIf="(isLoggedIn$ | async) === false">
