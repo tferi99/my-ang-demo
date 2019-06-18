@@ -13,4 +13,8 @@ export class LoginService {
     login(email: string, password: string): Observable<User> {
         return this.http.post<User>('/api/login', {email, password});
     }
+
+  logout(email: string): Observable<User> {
+    return this.http.post<User>('/api/login', {email, password});
+  }
 }

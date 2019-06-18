@@ -9,6 +9,7 @@ import {NGXLogger} from 'ngx-logger';
 export class AuthEffects {
   constructor(private actions$: Actions, private log: NGXLogger) {}
 
+  // -------------------------- saving auth into local storage --------------------------
   @Effect({dispatch: false})
   login$ = this.actions$.pipe(
     ofType<Login>(AuthActionTypes.LoginAction),       // filtering by action type
@@ -18,13 +19,15 @@ export class AuthEffects {
     tap(action => localStorage.setItem('user', JSON.stringify(action.payload.user)))
   );
 
+  // -------------------------- removing auth from local storage --------------------------
+
   @Effect({dispatch: false})
   logout$ = this.actions$.pipe(
     ofType<Logout>(AuthActionTypes.LogoutAction),
     tap(action => localStorage.removeItem('user'))
   );
 
-  // -------------------------- restoring auth from local storage
+  // -------------------------- restoring auth from local storage --------------------------
 /*
   @Effect()
   init$ = defer(() => {
