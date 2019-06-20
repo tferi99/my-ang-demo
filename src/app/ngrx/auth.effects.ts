@@ -1,29 +1,50 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {AuthActionTypes, Login, Logout} from './auth.actions';
-import {tap} from 'rxjs/operators';
-import {defer, of} from 'rxjs';
+import {AuthActionTypes, LoginAction, LoginFailedAction, LoginSuccessAction, LogoutAction} from './auth.actions';
+import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {NGXLogger} from 'ngx-logger';
+import {LoginService} from '../core/login.service';
+import {watch} from 'rxjs-watcher/dist';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
-  constructor(private actions$: Actions, private log: NGXLogger) {}
+  constructor(private actions$: Actions, private log: NGXLogger, private loginService: LoginService, private router: Router) {}
+
+  @Effect()
+  login$ = this.actions$.pipe(
+    ofType<LoginAction>(AuthActionTypes.LoginAction),       // filtering by action type
+    map((action: LoginAction) => action.payload),
+    switchMap(payload =>
+      this.loginService.login(payload.email, payload.password).pipe(
+        watch('from loginService.login()', 10),
+        map(user => new LoginSuccessAction(user)),
+        catchError(error => new LoginFailedAction({ message: error })),
+        watch('login$ output', 10)
+      )
+    )
+  );
 
   // -------------------------- saving auth into local storage --------------------------
   @Effect({dispatch: false})
-  login$ = this.actions$.pipe(
-    ofType<Login>(AuthActionTypes.LoginAction),       // filtering by action type
-    tap(a => {
-      this.log.debug('Action in effects: ', a);
-    }),
-    tap(action => localStorage.setItem('user', JSON.stringify(action.payload.user)))
+  loginSuccess$ = this.actions$.pipe(
+    ofType<LoginSuccessAction>(AuthActionTypes.LoginSuccessAction),
+    tap(action => {
+      localStorage.setItem('user', JSON.stringify(action.payload.user));
+      this.router.navigateByUrl('/ngrx');
+    })
+  );
+
+  @Effect({dispatch: false})
+  loginFailed$ = this.actions$.pipe(
+    ofType<LoginFailedAction>(AuthActionTypes.LoginFailedAction),
+    tap(action => localStorage.removeItem('user'))
   );
 
   // -------------------------- removing auth from local storage --------------------------
-
   @Effect({dispatch: false})
   logout$ = this.actions$.pipe(
-    ofType<Logout>(AuthActionTypes.LogoutAction),
+    ofType<LogoutAction>(AuthActionTypes.LogoutAction),
     tap(action => localStorage.removeItem('user'))
   );
 
@@ -35,9 +56,9 @@ export class AuthEffects {
     const userData = localStorage.getItem('selectUser');
 
     if (userData) {
-      return of(new Login({selectUser: JSON.parse(userData)}));      // by dispatcing a login action
+      return of(new LoginAction({selectUser: JSON.parse(userData)}));      // by dispatcing a login action
     } else {
-      return of(new Logout());
+      return of(new LogoutAction());
     }
   });
 */

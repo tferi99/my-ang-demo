@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
       .pipe(
         select(isLoggedIn),
         tap(loggedIn => {
-
           if (!loggedIn) {
             this.router.navigateByUrl('/ngrx/login');
           }

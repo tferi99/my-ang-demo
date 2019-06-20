@@ -1,9 +1,10 @@
 import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {concat, fromEvent, interval, noop, Observable, of, OperatorFunction, pipe, range, Subscription} from 'rxjs';
-import {concatMap, exhaustMap, map, mergeMap, switchMap, take, tap} from 'rxjs/operators';
+import {concat, fromEvent, interval, noop, Observable, of, OperatorFunction, pipe, range, Subscription, timer} from 'rxjs';
+import {concatMap, exhaustMap, filter, map, mergeMap, switchMap, take, tap} from 'rxjs/operators';
 import {ApiStoreService} from '../../core/api-store.service';
 import {Course} from '../../shared/model/course.model';
 import {NGXLogger} from 'ngx-logger';
+import {getGroup, watch} from 'rxjs-watcher/dist';
 
 enum FlatteningStrategy {
   MERGE = 'merge',
@@ -25,14 +26,22 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
   currentSubscriptionType: string;
   networkMode = false;
 
-  @ViewChild('clickTarget') clickTarget: ElementRef;
+  @ViewChild('clickTarget', {static: true})
+  clickTarget: ElementRef;
+
   clickTargetVisible = 'hidden';
-  @ViewChild('startBtn') startBtn: ElementRef;
+
+  @ViewChild('clickTarget2', {static: true})
+  clickTarget2: ElementRef;
+
+  @ViewChild('startBtn', {static: true}) startBtn: ElementRef;
   startBtnVisible = 'hidden';
 
-  constructor(private api: ApiStoreService, private log: NGXLogger) {}
+  constructor(private api: ApiStoreService, private log: NGXLogger) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   ngAfterViewInit(): void {
   }
@@ -47,16 +56,20 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
       const mapOp: OperatorFunction<any, any> = this.getMapOp(this.flatteningStrategy);
       let o: Observable<any> = null;
 
-      this.log.debug('>>>>>>> ' + this.clickTargetVisible  + ', ' + this.startBtnVisible);
+      this.log.debug('>>>>>>> ' + this.clickTargetVisible + ', ' + this.startBtnVisible);
       if (!this.networkMode) {
         o = fromEvent(this.clickTarget.nativeElement, 'click').pipe(
+          watch('Input', 60),
           tap(() => this.log.debug('Clicked --> start ' + this.flatteningStrategy + ' processing')),
-          mapOp
+          mapOp,
+          watch('Output', 60),
         );
       } else {
         o = fromEvent(this.startBtn.nativeElement, 'click').pipe(
+          watch('Input', 60),
           tap(() => this.log.debug('Net --> start ' + this.flatteningStrategy + ' processing')),
-          mapOp
+          mapOp,
+          watch('Output', 60),
         );
       }
       this.subscription = o.subscribe(
@@ -74,51 +87,56 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
   }
 
   getMapOp(fs: FlatteningStrategy): OperatorFunction<any, any> {
+    const id = 0;
     let mapOp: OperatorFunction<any, any> = null;
     switch (this.flatteningStrategy) {
       case FlatteningStrategy.MERGE:
         if (this.networkMode) {
           mapOp = mergeMap(this.slowNetworkOperation);
         } else {
-          mapOp = mergeMap(this.startLongProcessing);
+          mapOp = mergeMap(this.createInternalObservable);
         }
         break;
       case FlatteningStrategy.SWITCH:
         if (this.networkMode) {
           mapOp = switchMap(this.slowNetworkOperation);
         } else {
-          mapOp = switchMap(this.startLongProcessing);
+          mapOp = switchMap(this.createInternalObservable);
         }
         break;
       case FlatteningStrategy.CONCAT:
         if (this.networkMode) {
           mapOp = concatMap(this.slowNetworkOperation);
         } else {
-          mapOp = concatMap(this.startLongProcessing);
+          mapOp = concatMap(this.createInternalObservable);
         }
         break;
       case FlatteningStrategy.EXHAUST:
         if (this.networkMode) {
           mapOp = exhaustMap(this.slowNetworkOperation);
         } else {
-          mapOp = exhaustMap(this.startLongProcessing);
+          mapOp = exhaustMap(this.createInternalObservable);
         }
         break;
       default:
         this.log.error(this.flatteningStrategy + ' : bad flattening strategy');
-     }
+    }
     return mapOp;
   }
 
-  startLongProcessing() {
-    return interval(500).pipe(
-      // tap((x) => rxJsLog('processing-' + x), this.log),
+  createInternalObservable(): Observable<number> {
+    const innerWatch = getGroup('Inner');
+
+    return timer(0, 500).pipe(
+      innerWatch('Internal timer'),
       take(10)
     );
   }
 
   slowNetworkOperation(): Observable<Course[]> {
-    return this.api.getCoursesSlow();
+    return this.api.getCoursesSlow().pipe(
+      watch('slowNetworkOperation')
+    );
   }
 
   slowNetworkOperationSubscribe() {
@@ -137,9 +155,9 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
     this.concatenateObserversActive = true;
     const source1$ = of(1, 2, 3);
     // const wait0 = interval(1000);        // never completed!
-    const wait1$ = this.createWait(1,1000, 1, 10);
+    const wait1$ = this.createWait(1, 1000, 1, 10);
     const source2$ = of(4, 5, 6);
-    const wait2$ = this.createWait(2,2000, 1, 20);
+    const wait2$ = this.createWait(2, 2000, 1, 20);
     const source3$ = of(7, 8, 9);
 
     const result = concat(source1$, wait1$, source2$, wait2$, source3$);
@@ -153,4 +171,21 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
     );
   }
 
+  test() {
+    let counter = 0;
+
+    const innerWatch2 = getGroup('Inner2');
+
+    fromEvent(this.clickTarget2.nativeElement, 'click').pipe(
+      map(() => counter++),
+      watch('input', 30),
+      take(5),
+      mergeMap(x => interval(500).pipe(
+        innerWatch2('interval-' + counter),
+        take(10)
+        )
+      ),
+      watch('output', 30),
+    ).subscribe();
+  }
 }

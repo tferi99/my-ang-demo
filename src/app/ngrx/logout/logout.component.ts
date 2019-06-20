@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from '../../reducers';
-import {Logout} from '../auth.actions';
+import {LogoutAction} from '../auth.actions';
 import {Observable} from 'rxjs';
 import {User} from '../../shared/model/user.model';
 import {selectUser} from '../auth.selectors';
@@ -24,7 +24,7 @@ export class LogoutComponent implements OnInit {
   }
 
   onLogout() {
-    this.store.dispatch(new Logout());
+    this.store.dispatch(new LogoutAction());
     this.router.navigateByUrl('/ngrx/login');
 
     return false;

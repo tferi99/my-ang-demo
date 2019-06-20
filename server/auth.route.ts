@@ -20,9 +20,9 @@ export function logoutUser(req: Request, res: Response)
 {
   console.log('User logout');
   const {email} = req.body;
-  const user = logout({});
-  if (user) {
-    res.status(200).json();
+  const username = logout(email);
+  if (username) {
+    res.status(200).json({username});
   } else {
     res.sendStatus(403);
   }

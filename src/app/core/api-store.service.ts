@@ -9,9 +9,7 @@ import {rxJsLog, RxJsLoggingLevel} from '../shared/util/rxJsLog';
 import {NGXLogger} from 'ngx-logger';
 import {logger} from 'codelyzer/util/logger';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class ApiStoreService {
 
   constructor(private http: HttpClient, private log: NGXLogger) { }
@@ -32,7 +30,7 @@ export class ApiStoreService {
     );
   }
 
-  getCoursesErr(): Observable<Course[]> {
+  getCoursesWithRandomErr(): Observable<Course[]> {
     return this.http.get<Course[]>(SERVER_API_CONTEXT_PATH + '/courses/randomerr').pipe(
       rxJsLog(this.log, RxJsLoggingLevel.DEBUG, 'Courses - HTTP request executed'),
       map(res => Object.values(res['payload'])

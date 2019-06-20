@@ -1,25 +1,29 @@
 <div class="container">
-  <h4>Error handling strategies <i class="fa fa-exclamation-circle text-danger" *ngIf="errorFound"></i></h4>
+  <h4>Error handling strategies <i class="fa fa-exclamation-circle text-danger blink" *ngIf="errorFound"></i></h4>
   <div class="my-3" style="font-style: italic">Error generated randomly, open Network tab for monitoring</div>
 
   <div class="row mb-2">
     <button class="btn btn-primary" (click)="loadCourses0()">Error handling 0 - error callback</button>
-    <span class="ml-2 mt-2">handling error in error callback</span>
+    <span class="ml-2 mt-2">handling error in subscribe() => error</span>
   </div>
   <div class="row mb-2">
       <button class="btn btn-primary" (click)="loadCoursesWithReplace()">Error handling 1 - Catch and Replace Strategy</button>
-      <span class="ml-2 mt-2">returning alternative Observer</span>
+      <span class="ml-2 mt-2">catchError in main Observable which returns an alternative Observable</span>
   </div>
   <div class="row mb-2">
     <button class="btn btn-primary" (click)="loadCoursesWithRethrow()">Error handling 2 - Catch and Rethrow Strategy</button>
-    <span class="ml-2 mt-2">returning Error Observer</span>
+    <span class="ml-2 mt-2">returning Error Observable</span>
   </div>
   <div class="row mb-2">
     <button class="btn btn-primary" (click)="loadCoursesWithCleanup()">Error handling 3 - Cleanup</button>
-    <span class="ml-2 mt-2">returning Error Observer, but closed with cleanup</span>
+    <span class="ml-2 mt-2">returning Error Observable, but closed with cleanup</span>
   </div>
   <div class="row mb-2">
-    <button class="btn btn-primary" (click)="loadCoursesWithDelayRetry()">Error handling 4 - Retry</button>
+    <button class="btn btn-primary" (click)="loadCoursesWithDelayRetrySimple()">Error handling 4 - Retry simple</button>
+    <span class="ml-2 mt-2">on error retrying using Observable again</span>
+  </div>
+  <div class="row mb-2">
+    <button class="btn btn-primary" (click)="loadCoursesWithDelayRetry()">Error handling 4 - Retry - HTTP</button>
     <span class="ml-2 mt-2">on error retrying using Observable again</span>
   </div>
 

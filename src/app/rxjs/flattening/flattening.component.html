@@ -1,36 +1,49 @@
-<div class="m-2">
-  <small><i>To view result open console...</i></small>
-</div>
 <div class="container">
-  <div class="row mb-2">
-    <button (click)="staticConcatObservers()" class="btn btn-primary">Static concat</button>
+  <div class="m-2">
+    <small><i>To view result open console... <b>OR use RxJs watcher browser extension</b></i></small>
+  </div>
+
+  <h3>Concat with static method</h3>
+  <div class="row mb-5">
+    <button (click)="staticConcatObservers()" class="btn btn-primary">Start</button>
     <span *ngIf="concatenateObserversActive" class="spinner-border ml-2"></span>
   </div>
-  <hr>
 
+  <h3>Flattening - mergeMap</h3>
+  <div class="row mb-5">
+    <button (click)="test()" class="btn btn-primary">Start</button>
+    <span style="background-color: orange" class="p-2 ml-2" #clickTarget2>Click here to fire event to create observer with ...</span>
+  </div>
+
+  <h3>Flattening - ALL</h3>
   <div class="row mb-2">
-    <div>
+    <div class="col">
       <button (click)="createSubscription()" class="btn btn-primary">{{subscription ? 'Re-Create' : 'Create'}}  subscription</button>
     </div>
-    <div class="p-2">
-      <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="flattMerge" name="flatteningType" class="custom-control-input" [(ngModel)]="flatteningStrategy" value="{{flatteningTypeEnum.MERGE}}">
-        <label class="custom-control-label" for="flattMerge">Merge</label>
-      </div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="flattSwitch" name="flatteningType" class="custom-control-input" [(ngModel)]="flatteningStrategy" value="{{flatteningTypeEnum.SWITCH}}">
-        <label class="custom-control-label" for="flattSwitch">Switch</label>
-      </div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="flattConcat" name="flatteningType" class="custom-control-input" [(ngModel)]="flatteningStrategy" value="{{flatteningTypeEnum.CONCAT}}">
-        <label class="custom-control-label" for="flattConcat">Concat</label>
-      </div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="flattExhaust" name="flatteningType" class="custom-control-input" [(ngModel)]="flatteningStrategy" value="{{flatteningTypeEnum.EXHAUST}}">
-        <label class="custom-control-label" for="flattExhaust">Exhaust</label>
+    <div class="col">
+      <div class="p-2">
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="flattMerge" name="flatteningType" class="custom-control-input" [(ngModel)]="flatteningStrategy" value="{{flatteningTypeEnum.MERGE}}">
+          <label class="custom-control-label" for="flattMerge">Merge</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="flattSwitch" name="flatteningType" class="custom-control-input" [(ngModel)]="flatteningStrategy" value="{{flatteningTypeEnum.SWITCH}}">
+          <label class="custom-control-label" for="flattSwitch">Switch</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="flattConcat" name="flatteningType" class="custom-control-input" [(ngModel)]="flatteningStrategy" value="{{flatteningTypeEnum.CONCAT}}">
+          <label class="custom-control-label" for="flattConcat">Concat</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="flattExhaust" name="flatteningType" class="custom-control-input" [(ngModel)]="flatteningStrategy" value="{{flatteningTypeEnum.EXHAUST}}">
+          <label class="custom-control-label" for="flattExhaust">Exhaust</label>
+        </div>
       </div>
     </div>
+  </div>
 
+  <div class="row">
+    <p>
     <span *ngIf="currentSubscriptionType">
       <span class="p-2">
         <span class="badge badge-success mr-2">{{currentSubscriptionType}}</span> <i class="fa fa-arrow-right"></i>

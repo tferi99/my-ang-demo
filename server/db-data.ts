@@ -6,21 +6,20 @@ interface User {
   loggedIn: boolean;
 }
 
-export const USERS: User[] = {
-  1: {
+export const USERS: User[] = [
+  {
     id: 1,
     email: 'a@b.c',
     password: 'abc',
     loggedIn: false
   },
-  2: {
+  {
     id: 1,
     email: 'u@b.c',
     password: 'ubc',
     loggedIn: false
   }
-};
-
+];
 
 
 export const COURSES: any = {
@@ -381,11 +380,11 @@ export function login(email: string, password: string): User {
   return undefined;
 }
 
-export function logout(email: string): User {
+export function logout(email: string): string {
   const user: User = Object.values(USERS).find(u => u.email === email);
   if (user) {
     user.loggedIn = false;
-    return user;
+    return user.email;
   }
   return undefined;
 }

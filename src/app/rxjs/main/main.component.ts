@@ -12,20 +12,20 @@ interface TabData {
 })
 export class MainComponent implements OnInit {
   tabData: TabData[] = [
-    {name: 'Observables', active: false},
-    {name: 'Simple list', active: false},
-    {name: 'Imperative filter', active: false},
-    {name: 'Reactive filter', active: false},
-    {name: 'Flattening', active: false},
-    {name: 'Form changes', active: false},
-    {name: 'Type-ahead', active: false},
-    {name: 'Error handling', active: false},
-    {name: 'Custom piped operator', active: false},
-    {name: 'Hot vs Cold', active: false},
-    {name: 'Sandbox', active: false}
+    {name: 'Observables', active: false},         // 0
+    {name: 'Simple list', active: false},         // 1
+    {name: 'Imperative filter', active: false},   // 2
+    {name: 'Reactive filter', active: false},     // 3
+    {name: 'Flattening', active: false},          // 4
+    {name: 'Form changes', active: false},        // 5
+    {name: 'Type-ahead', active: false},          // 6
+    {name: 'Error handling', active: false},      // 7
+    {name: 'Custom piped operator', active: false},         // 8
+    {name: 'Hot vs Cold', active: false},         // 9
+    {name: 'Sandbox', active: false}              // 10
   ];
 
-  activeTab = 1;
+  activeTab = 7;
 
   constructor() {}
 

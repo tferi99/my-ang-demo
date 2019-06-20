@@ -10,7 +10,7 @@ import {tap} from 'rxjs/operators';
 })
 export class EventCardComponent implements OnInit, AfterViewInit {
   @Input() data: ObservabledDemoData
-  @ViewChild('card') clickTarget: ElementRef;
+  @ViewChild('card', {static: true}) clickTarget: ElementRef;
 
   x: number;
   y: number;
