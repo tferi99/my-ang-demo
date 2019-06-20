@@ -41,7 +41,7 @@ import {LoggerModule, NgxLoggerLevel} from 'ngx-logger';
     LifecycleModule,
     FormTestModule,
     NgrxModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers, { metaReducers, runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
     LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG})
