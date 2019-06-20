@@ -5,13 +5,13 @@ import {User} from '../shared/model/user.model';
 export interface AuthState {
   loggedIn: boolean;
   user: User;
-  loginError: string;
+  errorMessage: string;
 }
 
 export const initialState: AuthState = {
   loggedIn: false,
   user: undefined,
-  loginError: undefined,
+  errorMessage: undefined,
 };
 
 export function authReducer(state = initialState, action: AuthActions): AuthState {
@@ -20,19 +20,19 @@ export function authReducer(state = initialState, action: AuthActions): AuthStat
       return {
         loggedIn: true,
         user: action.payload,
-        loginError: undefined
+        errorMessage: undefined
       }
     case AuthActionTypes.LoginFailedAction:
       return {
         loggedIn: false,
         user: undefined,
-        loginError: action.payload.message
+        errorMessage: action.payload.errorMessage
       }
     case AuthActionTypes.LogoutAction:
       return {
         loggedIn: false,
         user: undefined,
-        loginError: undefined
+        errorMessage: undefined
       }
     default:
       return state;

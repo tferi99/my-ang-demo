@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {EventBroadcaster} from '../shared/event/event-broadcaster';
-import {Test1Event} from '../shared/event/test1-event';
-import {Test2Event} from '../shared/event/test2-event';
+import {EventBroadcaster} from '../../shared/event/event-broadcaster';
+import {Test1Event} from '../../shared/event/test1-event';
+import {Test2Event} from '../../shared/event/test2-event';
 
 @Injectable({
   providedIn: 'root'

@@ -7,6 +7,7 @@ import {isLoggedIn} from '../auth.selectors';
 import {AppState} from '../../reducers';
 import {AllCoursesRequested} from '../course.actions';
 import {NGXLogger} from 'ngx-logger';
+import {LocalStorageService} from '../../core/service/local-storage.service';
 
 @Component({
   selector: 'ngrx-main',
@@ -16,7 +17,7 @@ import {NGXLogger} from 'ngx-logger';
 export class MainComponent implements OnInit {
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private store: Store<AppState>, private log: NGXLogger) { }
+  constructor(private store: Store<AppState>, private log: NGXLogger, private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
     this.store.subscribe(s => this.log.debug('module state: ', s));
@@ -25,5 +26,10 @@ export class MainComponent implements OnInit {
       tap(s => this.log.debug('LOGGED_IN:', s)),
       select(isLoggedIn)
     );
+  }
+
+  cleanLocalStorage() {
+    this.localStorageService.deleteUser();
+    window.location.reload();
   }
 }

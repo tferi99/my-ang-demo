@@ -6,7 +6,10 @@
     <ngrx-course-list></ngrx-course-list>
   </div>
   <div *ngIf="(isLoggedIn$ | async) === false">
-    not logged in
+    <i>You are not logged in. Maybe user stuck into Local Storage.</i>
+    <p>
+      <button class="btn btn-danger" (click)="cleanLocalStorage()">Clean Local Storage</button>
+    </p>
   </div>
 
 </div>

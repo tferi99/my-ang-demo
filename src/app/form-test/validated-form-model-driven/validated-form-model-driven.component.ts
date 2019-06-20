@@ -3,7 +3,7 @@ import {FormBuilder, Validators, ValidatorFn, FormControl} from '@angular/forms'
 import {Gender, Person} from '../../shared/model/person.model';
 import {KeyValuePair, stringEnumToKeyValuePairArray} from '../../shared/util/component-helper';
 import {CustomValidators} from '../../shared/util/custom-validators';
-import {EventBroadcasterLocatorService} from '../../core/event-broadcaster-locator.service';
+import {EventBroadcasterLocatorService} from '../../core/service/event-broadcaster-locator.service';
 import {NGXLogger} from 'ngx-logger';
 
 @Component({

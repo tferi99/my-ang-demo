@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Course} from '../../shared/model/course.model';
-import {ApiStoreService} from '../../core/api-store.service';
+import {ApiService} from '../../core/service/api.service';
 import {concat, fromEvent, Observable} from 'rxjs';
 import {Lesson} from '../../shared/model/lesson.model';
 import {debounceTime, distinctUntilChanged, map, startWith, switchMap, tap} from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class TypeAheadComponent implements OnInit, AfterViewInit {
   lessons$: Observable<Lesson[]>;
   @ViewChild('lessonSearchInput', {static: true}) lessonSearchInput: ElementRef;
 
-  constructor(private api: ApiStoreService, private log: NGXLogger) {
+  constructor(private api: ApiService, private log: NGXLogger) {
     this.currentCource = {
       'id': 1,
       'description': 'Angular for Beginners - DUMMY',

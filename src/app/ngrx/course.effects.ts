@@ -7,8 +7,8 @@ import {CourseActionTypes, CourseActions, CourseRequested, CourseLoaded, AllCour
 import {AppState} from '../reducers';
 import {select, Store} from '@ngrx/store';
 import {allCoursesLoaded} from './course.selectors';
-import {CoursesService} from '../core/courses.service';
-import {EventBroadcasterLocatorService} from '../core/event-broadcaster-locator.service';
+import {CoursesService} from '../core/service/courses.service';
+import {EventBroadcasterLocatorService} from '../core/service/event-broadcaster-locator.service';
 import {NGXLogger} from 'ngx-logger';
 
 

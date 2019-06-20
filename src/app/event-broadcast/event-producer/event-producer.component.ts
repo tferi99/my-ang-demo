@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Test1Event} from '../../shared/event/test1-event';
 import {Test2Event} from '../../shared/event/test2-event';
-import {EventBroadcasterLocatorService} from '../../core/event-broadcaster-locator.service';
+import {EventBroadcasterLocatorService} from '../../core/service/event-broadcaster-locator.service';
 
 enum Colors {
   green, blue, brown, coral, gray, cyan, yellow
@@ -21,7 +21,7 @@ export class EventProducerComponent implements OnInit {
 
   onClick1() {
     EventProducerComponent.value++;
-    const data = new Test1Event(EventProducerComponent.value, 'message' + EventProducerComponent.value);
+    const data = new Test1Event(EventProducerComponent.value, 'errorMessage' + EventProducerComponent.value);
     this.ebls.test1EventBroadcaster.sendEvent(data);
   }
 

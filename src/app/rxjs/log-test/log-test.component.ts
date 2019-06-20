@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {interval, Observable} from 'rxjs';
 import {map, mergeMap, take, tap} from 'rxjs/operators';
 import {rxJsLog, RxJsLoggingLevel, setRxJsLoggingLevel} from '../../shared/util/rxJsLog';
-import {ApiStoreService} from '../../core/api-store.service';
+import {ApiService} from '../../core/service/api.service';
 import {NGXLogger} from 'ngx-logger';
 
 @Component({

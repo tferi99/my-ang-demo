@@ -1,11 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {LoginService} from '../../core/login.service';
+import {select, Store} from '@ngrx/store';
+import {LoginService} from '../../core/service/login.service';
 import {LoginAction} from '../auth.actions';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthState} from '../auth.reducer';
 import {NGXLogger} from 'ngx-logger';
 import {Observable, Subscription} from 'rxjs';
+import {selectAuthState} from '../auth.selectors';
 
 @Component({
   selector: 'ngrx-login',
@@ -26,6 +27,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.auth = this.store.pipe(
+      select(selectAuthState)
+    );
 /*    this.authSub = this.store.pipe(
       select(selectAuthState)
     ).subscribe(

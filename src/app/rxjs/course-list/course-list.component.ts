@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiStoreService} from '../../core/api-store.service';
+import { ApiService} from '../../core/service/api.service';
 import {Course} from '../../shared/model/course.model';
 import {Observable} from 'rxjs';
 import {map, share} from 'rxjs/operators';
@@ -14,7 +14,7 @@ export class CourseListComponent implements OnInit {
   coursesCount$: Observable<number>;
   courses2: Course[];
 
-  constructor(private store: ApiStoreService) {}
+  constructor(private store: ApiService) {}
 
   ngOnInit() {
     this.courses$ = this.store.getCourses().pipe(

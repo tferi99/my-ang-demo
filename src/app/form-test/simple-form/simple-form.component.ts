@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Gender, Person} from '../../shared/model/person.model';
 import {KeyValuePair, stringEnumToKeyValuePairArray} from '../../shared/util/component-helper';
-import {EventBroadcasterLocatorService} from '../../core/event-broadcaster-locator.service';
+import {EventBroadcasterLocatorService} from '../../core/service/event-broadcaster-locator.service';
 import {NGXLogger} from 'ngx-logger';
 
 @Component({

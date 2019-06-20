@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiStoreService} from '../../core/api-store.service';
+import {ApiService} from '../../core/service/api.service';
 import {filter} from 'rxjs/operators';
 import {Observable, pipe} from 'rxjs';
 import {Course} from '../../shared/model/course.model';
@@ -14,7 +14,7 @@ export class ImperativeFilterComponent implements OnInit {
   courses: Course[];
   count: number;
 
-  constructor(private service: ApiStoreService, private log: NGXLogger) {}
+  constructor(private service: ApiService, private log: NGXLogger) {}
 
   ngOnInit() {
     this.filterByDescription('');

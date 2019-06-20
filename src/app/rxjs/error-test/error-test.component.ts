@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {from, interval, Observable, of, throwError, timer} from 'rxjs';
 import {Course} from '../../shared/model/course.model';
-import {ApiStoreService} from '../../core/api-store.service';
+import {ApiService} from '../../core/service/api.service';
 import {catchError, delayWhen, finalize, mergeMap, retry, retryWhen, tap} from 'rxjs/operators';
 import {rxJsLog, RxJsLoggingLevel} from '../../shared/util/rxJsLog';
 import {NGXLogger} from 'ngx-logger';
@@ -19,7 +19,7 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
 
   WATCH_SECS = 3;
 
-  constructor(private api: ApiStoreService, private log: NGXLogger) {}
+  constructor(private api: ApiService, private log: NGXLogger) {}
 
   ngOnInit() {}
 
@@ -122,7 +122,7 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
       watch('error 0', this.WATCH_SECS),
       rxJsLog(this.log, RxJsLoggingLevel.DEBUG, 'loadCoursesWithDelayRetry'),
       retryWhen(errors => errors.pipe(
-        tap(err => this.log.debug(`Error found -> retry in ${retryInterval} msecs`, err)),      // rxJsLog error message
+        tap(err => this.log.debug(`Error found -> retry in ${retryInterval} msecs`, err)),      // rxJsLog error errorMessage
         delayWhen((val, index) => timer(val * retryInterval))   // restart in 2 seconds
       ))
     );

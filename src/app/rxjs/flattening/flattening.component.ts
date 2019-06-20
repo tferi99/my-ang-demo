@@ -1,7 +1,7 @@
 import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {concat, fromEvent, interval, noop, Observable, of, OperatorFunction, pipe, range, Subscription, timer} from 'rxjs';
 import {concatMap, exhaustMap, filter, map, mergeMap, switchMap, take, tap} from 'rxjs/operators';
-import {ApiStoreService} from '../../core/api-store.service';
+import {ApiService} from '../../core/service/api.service';
 import {Course} from '../../shared/model/course.model';
 import {NGXLogger} from 'ngx-logger';
 import {getGroup, watch} from 'rxjs-watcher/dist';
@@ -37,7 +37,7 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
   @ViewChild('startBtn', {static: true}) startBtn: ElementRef;
   startBtnVisible = 'hidden';
 
-  constructor(private api: ApiStoreService, private log: NGXLogger) {
+  constructor(private api: ApiService, private log: NGXLogger) {
   }
 
   ngOnInit() {

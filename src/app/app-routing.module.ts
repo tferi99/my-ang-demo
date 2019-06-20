@@ -10,7 +10,7 @@ import {MainComponent as LifecycleMain} from './lifecycle/main/main.component';
 import {MainComponent as FormTestMain} from './form-test/main/main.component';
 import {MainComponent as NgrxMain} from './ngrx/main/main.component';
 import {LoginComponent} from './ngrx/login/login.component';
-import {AuthGuard} from './ngrx/auth.guard';
+import {AuthGuard} from './core/guard/auth-guard';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },

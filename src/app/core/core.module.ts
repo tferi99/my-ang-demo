@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpErrorInterceptor} from './interceptor/http-error.interceptor';
 
 @NgModule({
   declarations: [],
@@ -9,4 +11,4 @@ import { CommonModule } from '@angular/common';
   providers: [
   ]
 })
-export class CoreModule { }
+export class CoreModule {}

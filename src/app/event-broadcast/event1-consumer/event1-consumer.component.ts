@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Test1Event} from '../../shared/event/test1-event';
-import {EventBroadcasterLocatorService} from '../../core/event-broadcaster-locator.service';
+import {EventBroadcasterLocatorService} from '../../core/service/event-broadcaster-locator.service';
 import {NGXLogger} from 'ngx-logger';
 
 @Component({

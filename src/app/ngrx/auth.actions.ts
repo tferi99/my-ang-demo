@@ -20,7 +20,7 @@ export class LoginSuccessAction implements Action {
 
 export class LoginFailedAction implements Action {
   readonly type = AuthActionTypes.LoginFailedAction;
-  constructor(public payload: {message: string}) {}
+  constructor(public payload: {errorMessage: string}) {}
 }
 
 export class LogoutAction implements Action {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiStoreService} from '../../core/api-store.service';
+import {ApiService} from '../../core/service/api.service';
 import {interval, Observable, of} from 'rxjs';
 import {filter, map, shareReplay, take} from 'rxjs/operators';
 import {Course} from '../../shared/model/course.model';
@@ -16,7 +16,7 @@ export class ReactiveFilterComponent implements OnInit {
 
   count: number;
 
-  constructor(private service: ApiStoreService, private log: NGXLogger) {}
+  constructor(private service: ApiService, private log: NGXLogger) {}
 
   ngOnInit() {
     this.courses$ = this.service.getCourses().pipe(shareReplay());
