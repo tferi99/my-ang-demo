@@ -22,10 +22,11 @@ export class MainComponent implements OnInit {
     {name: 'Error handling', active: false},      // 7
     {name: 'Custom piped operator', active: false},         // 8
     {name: 'Hot vs Cold', active: false},         // 9
-    {name: 'Sandbox', active: false}              // 10
+    {name: 'Snippets', active: false},            // 10
+    {name: 'Sandbox', active: false}              // 11
   ];
 
-  activeTab = 7;
+  activeTab = 10;
 
   constructor() {}
 

@@ -21,12 +21,13 @@ import { EventCardComponent } from './observables/event-card/event-card.componen
 import { LogTestComponent } from './log-test/log-test.component';
 import { HotVsColdComponent } from './hot-vs-cold/hot-vs-cold.component';
 import { AvoidMemLeakComponent } from './avoid-mem-leak/avoid-mem-leak.component';
+import { SnippetsComponent } from './snippets/snippets.component';
 
 @NgModule({
   declarations: [
     MainComponent, CourseListComponent, ImperativeFilterComponent, ReactiveFilterComponent,
     FormTestComponent, FlatteningComponent, TypeAheadComponent, ErrorTestComponent, SandboxComponent,
-    ArrayCardComponent, ObservablesComponent, ObservableCardComponent, EventCardComponent, LogTestComponent, HotVsColdComponent, AvoidMemLeakComponent
+    ArrayCardComponent, ObservablesComponent, ObservableCardComponent, EventCardComponent, LogTestComponent, HotVsColdComponent, AvoidMemLeakComponent, SnippetsComponent
   ],
   imports: [
     CommonModule,
