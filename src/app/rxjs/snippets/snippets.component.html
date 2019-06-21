@@ -1,15 +1,39 @@
 <div class="container">
+  <!--
   <form [formGroup]="form">
     <input type="checkbox" [formControl]="form">
   </form>
+-->
 
-  <div class="row mb-2">
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand">Snippets</a>
+    <form class="form-inline">
+      <button class="btn btn-danger mr-2" (click)="stopExisting()" [disabled]="!running"  title="Stop running stream"><i class="fa fa-stop"></i></button>
+      <button class="btn btn-danger mr-2" (click)="fireError()" [disabled]="!running"  title="Fire an error"><i class="fa fa-poo-storm"></i></button>
+      <button class="btn btn-primary mr-2" (click)="pageReload()" title="Reload page/Clean RxJS watcher"><i class="fa fa-sync-alt"></i></button>
+    </form>
+  </nav>
+
+  <div class="row p-2" style="position: relative">
+    <ngx-spinner [fullScreen]="false"></ngx-spinner>
+
+    <table class="table">
+      <tr>
+        <td>Counter - 3 steps</td>
+        <td><button class="btn btn-success" (click)="count3()">Count 3 <i class="fa fa-play"></i></button></td>
+      </tr>
+      <tr>
+        <td>Counter - ALL steps, but filtering 3 steps</td>
+        <td><button class="btn btn-success" (click)="count3_filter()">Count 3 with filter <i class="fa fa-play"></i></button></td>
+      </tr>
+    </table>
+
     <div class="col">
-      <button class="btn btn-primary" (click)="count3()">Count 3</button>
-    </div>
-    <div class="col">
-      <button class="btn btn-primary" (click)="count3_filter()">Count 3 with filter</button>
-    </div>
+
+      </div>
+      <div class="col">
+
+      </div>
   </div>
   <div class="row">
   </div>

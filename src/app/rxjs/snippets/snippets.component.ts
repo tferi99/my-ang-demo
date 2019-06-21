@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {interval, Observable, OperatorFunction, pipe, timer} from 'rxjs';
+import {interval, merge, noop, Observable, OperatorFunction, pipe, Subject, Subscription, throwError, timer} from 'rxjs';
 import {watch} from 'rxjs-watcher/dist';
-import {filter, take} from 'rxjs/operators';
+import {filter, map, switchMap, take, takeUntil, takeWhile} from 'rxjs/operators';
 import {Form, FormBuilder, Validators} from '@angular/forms';
 import {CustomValidators} from '../../shared/util/custom-validators';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 const TEST_SECS = 5;
 
@@ -16,18 +17,26 @@ type BehaviorImpl = () => OperatorFunction<any, any>;
   styleUrls: ['./snippets.component.sass']
 })
 export class SnippetsComponent implements OnInit {
-  form = this.fb.group({
+/*  form = this.fb.group({
     withInterval: [],
     age: ['0', [CustomValidators.required, Validators.min(1), , Validators.max(150)]],
     gender: ['', CustomValidators.required]
-  });
+  });*/
 
-  constructor(private fb: FormBuilder) { }
+  subscription: Subscription;
+/*  get running() {
+    return (this.subscription !== undefined);
+  }*/
+  running = false;
+  stopSignal$: Subject<boolean>;
+  errorEmitter$: Subject<number>;
+
+  constructor(private fb: FormBuilder, private ngxSpinnerService: NgxSpinnerService) {
+    this.errorEmitter$ = new Subject<number>();
+  }
 
   ngOnInit() {
   }
-
-
 
   count3() {
     const ops = pipe(
@@ -50,10 +59,57 @@ export class SnippetsComponent implements OnInit {
   }
 
   run(observable: Observable<number>, ops: OperatorFunction<any, any>, watchSteps: number) {
-    observable.pipe(
-      watch('input', watchSteps),
+    this.unsubscribeExisting();
+
+    this.stopSignal$ = new Subject();
+    const errorGen$ = this.errorEmitter$.asObservable().pipe(
+      switchMap(x => throwError('Fired error :)')),
+      watch('error', watchSteps),
+    );
+
+    this.running = true;
+    this.ngxSpinnerService.show();
+    const source$ = observable.pipe(
+      watch('source input', watchSteps),
       ops,
-      watch('output', watchSteps),
-    ).subscribe();
+      watch('source output', watchSteps),
+    );
+
+    this.subscription = merge(source$, errorGen$).pipe(
+      takeUntil(this.stopSignal$),
+      watch('merged', watchSteps),
+    ).subscribe(
+      (val) => {},
+      err => {
+        console.error('Error found:', err);
+        this.running = false;
+        this.ngxSpinnerService.hide();
+      },
+      () => {
+        this.running = false;
+        this.ngxSpinnerService.hide();
+      }
+    );
+  }
+
+  fireError() {
+    this.errorEmitter$.next(0);
+  }
+
+  stopExisting() {
+    console.log('STOP!!!!!');
+    this.stopSignal$.next(true);
+    this.stopSignal$.complete();
+  }
+
+  pageReload() {
+    window.location.reload();
+  }
+
+  unsubscribeExisting() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      this.subscription = undefined;
+    }
   }
 }

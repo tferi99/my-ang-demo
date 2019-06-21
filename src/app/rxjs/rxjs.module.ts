@@ -22,6 +22,8 @@ import { LogTestComponent } from './log-test/log-test.component';
 import { HotVsColdComponent } from './hot-vs-cold/hot-vs-cold.component';
 import { AvoidMemLeakComponent } from './avoid-mem-leak/avoid-mem-leak.component';
 import { SnippetsComponent } from './snippets/snippets.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
+import {NgxLoadingModule} from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { SnippetsComponent } from './snippets/snippets.component';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    NgxSpinnerModule,
+    NgxLoadingModule.forRoot({})
   ],
   exports: [
     MainComponent
