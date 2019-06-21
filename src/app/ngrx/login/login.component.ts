@@ -43,21 +43,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   onLogin() {
     const val = this.form.value;
     this.store.dispatch(new LoginAction({email: val.email, password: val.password}));
-
-/*    // submit login page
-    this.service.login(val.email, val.password).pipe().subscribe(
-      user => {
-        this.store.dispatch(new LoginAction({user}))
-        this.errorFound = false;
-        this.log.debug('next:', user);
-        this.router.navigateByUrl('/ngrx');
-      },
-      err => {
-        this.errorFound = true;
-        this.log.debug('Error during login', err);
-      }
-    );
- */
     return false;
   }
 
