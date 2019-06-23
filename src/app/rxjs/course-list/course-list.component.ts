@@ -18,8 +18,8 @@ export class CourseListComponent implements OnInit {
 
   ngOnInit() {
     this.courses$ = this.store.getCourses().pipe(
-      // it makes cold to hot
-      // if you don't share this stream, 2 XHR querty will be performed
+      // It makes cold to hot.
+      // If you don't share this stream this way, 2 HTTP (XHR) query will be performed
       share()
     );
     this.coursesCount$ = this.courses$.pipe(

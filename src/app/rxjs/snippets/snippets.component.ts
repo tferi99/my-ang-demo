@@ -5,6 +5,7 @@ import {filter, map, switchMap, take, takeUntil, takeWhile} from 'rxjs/operators
 import {Form, FormBuilder, Validators} from '@angular/forms';
 import {CustomValidators} from '../../shared/util/custom-validators';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {SPINNER_TYPE} from '../../shared/app.constants';
 
 const TEST_SECS = 5;
 
@@ -30,6 +31,7 @@ export class SnippetsComponent implements OnInit {
   running = false;
   stopSignal$: Subject<boolean>;
   errorEmitter$: Subject<number>;
+  spinnerType = SPINNER_TYPE;
 
   constructor(private fb: FormBuilder, private ngxSpinnerService: NgxSpinnerService) {
     this.errorEmitter$ = new Subject<number>();
@@ -62,10 +64,14 @@ export class SnippetsComponent implements OnInit {
     this.unsubscribeExisting();
 
     this.stopSignal$ = new Subject();
+
+    // error interrupt
+    /*
     const errorGen$ = this.errorEmitter$.asObservable().pipe(
       switchMap(x => throwError('Fired error :)')),
       watch('error', watchSteps),
     );
+    */
 
     this.running = true;
     this.ngxSpinnerService.show();
@@ -75,9 +81,14 @@ export class SnippetsComponent implements OnInit {
       watch('source output', watchSteps),
     );
 
+    // error interrupt
+    /*
     this.subscription = merge(source$, errorGen$).pipe(
+    */
+
+    this.subscription = source$.pipe(
       takeUntil(this.stopSignal$),
-      watch('merged', watchSteps),
+//      watch('merged', watchSteps),
     ).subscribe(
       (val) => {},
       err => {
