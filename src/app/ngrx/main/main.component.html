@@ -4,6 +4,14 @@
     <ngrx-logout></ngrx-logout>
 
     <ngrx-course-list></ngrx-course-list>
+
+    <div>
+      <div class="row">
+        <div class="col-4"><ngrx-search-panel [color]="'red'"></ngrx-search-panel></div>
+        <div class="col-4"><ngrx-search-panel></ngrx-search-panel></div>
+        <div class="col-4"><ngrx-search-panel></ngrx-search-panel></div>
+      </div>
+    </div>
   </div>
   <div *ngIf="(isLoggedIn$ | async) === false">
     <i>You are not logged in. Maybe user stuck into Local Storage.</i>

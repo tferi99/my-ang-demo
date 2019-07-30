@@ -5,6 +5,7 @@ import {searchLessons} from './search-lessons.route';
 import {saveCourse} from './save-course.route';
 import {loginUser, logoutUser} from './auth.route';
 import {AddressInfo} from 'net';
+import {searchUsers} from './search';
 
 const bodyParser = require('body-parser');
 
@@ -25,6 +26,8 @@ app.route('/api/courses/:id').get(getCourseById);
 app.route('/api/lessons').get(searchLessons);
 
 app.route('/api/courses/:id').put(saveCourse);
+
+app.route('/api/search/:src').get(searchUsers);
 
 const httpServer = app.listen(9001, () => {
   console.log('HTTP REST API Server running at http://localhost:' + (httpServer.address() as AddressInfo).port);

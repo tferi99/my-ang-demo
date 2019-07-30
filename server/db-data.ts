@@ -14,13 +14,55 @@ export const USERS: User[] = [
     loggedIn: false
   },
   {
-    id: 1,
+    id: 2,
     email: 'u@b.c',
     password: 'ubc',
     loggedIn: false
-  }
-];
+  },
+  {
+    id: 3,
+    email: 'u3@b.c',
+    password: 'ubc',
+    loggedIn: false
+  },
+  {
+    id: 10,
+    email: 'a10@b.c',
+    password: 'abc',
+    loggedIn: false
+  },
+  {
+    id: 11,
+    email: 'u11@b.c',
+    password: 'ubc',
+    loggedIn: false
+  },
+  {
+    id: 12,
+    email: 'a12@b.c',
+    password: 'abc',
+    loggedIn: false
+  },
+  {
+    id: 13,
+    email: 'u13@b.c',
+    password: 'ubc',
+    loggedIn: false
+  },
+  {
+    id: 14,
+    email: 'a14@b.c',
+    password: 'abc',
+    loggedIn: false
+  },
+  {
+    id: 15,
+    email: 'u15@b.c',
+    password: 'ubc',
+    loggedIn: false
+  },
 
+];
 
 export const COURSES: any = {
 

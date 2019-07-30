@@ -13,10 +13,11 @@ import { AuthEffects } from './auth.effects';
 import * as fromCourse from './course.reducers';
 import { CourseEffects } from './course.effects';
 import { CourseListComponent } from './course-list/course-list.component';
+import { SearchPanelComponent } from './search-panel/search-panel.component';
 
 
 @NgModule({
-  declarations: [MainComponent, LoginComponent, LogoutComponent, CourseListComponent],
+  declarations: [MainComponent, LoginComponent, LogoutComponent, CourseListComponent, SearchPanelComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
