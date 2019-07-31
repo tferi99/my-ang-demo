@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {AuthState} from '../auth.reducer';
+import {AuthState} from '../store/auth/auth.reducer';
 import {Observable, Subscription} from 'rxjs';
 import {Course} from '../../shared/model/course.model';
-import {selectAllCourses} from '../course.selectors';
-import {AllCoursesRequested} from '../course.actions';
+import {selectAllCourses} from '../store/course/course.selectors';
+import {AllCoursesRequested} from '../store/course/course.actions';
 import * as _ from 'lodash';
 
 @Component({

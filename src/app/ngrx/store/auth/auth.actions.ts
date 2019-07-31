@@ -1,4 +1,4 @@
-import {User} from '../shared/model/user.model';
+import {User} from '../../../shared/model/user.model';
 import {Action} from '@ngrx/store';
 
 export enum AuthActionTypes {

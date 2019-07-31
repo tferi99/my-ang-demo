@@ -4,12 +4,11 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import {concatMap, filter, map, mergeMap, tap, withLatestFrom} from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import {CourseActionTypes, CourseActions, CourseRequested, CourseLoaded, AllCoursesRequested, AllCoursesLoaded} from './course.actions';
-import {AppState} from '../reducers';
 import {select, Store} from '@ngrx/store';
 import {allCoursesLoaded} from './course.selectors';
-import {CoursesService} from '../core/service/courses.service';
-import {EventBroadcasterLocatorService} from '../core/service/event-broadcaster-locator.service';
 import {NGXLogger} from 'ngx-logger';
+import {CoursesService} from '../../../core/service/courses.service';
+import {AppState} from '../../../reducers';
 
 
 @Injectable()

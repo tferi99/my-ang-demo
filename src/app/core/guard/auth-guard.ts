@@ -8,10 +8,10 @@ import {NGXLogger} from 'ngx-logger';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private localStoreService: LocalStorageService, public router: Router, private log: NGXLogger) {}
+  constructor(private localStorageService: LocalStorageService, public router: Router, private log: NGXLogger) {}
 
   canActivate(): boolean {
-    if (!this.localStoreService.getUser()) {
+    if (!this.localStorageService.getUser()) {
       this.log.debug('\'' + LocalStorageService.USER_LOC_STORE_KEY + '\' cannot cannot found in local storage -> login')
       this.router.navigateByUrl('/ngrx/login');
       return false;

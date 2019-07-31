@@ -1,5 +1,5 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {AppState} from '../reducers';
+import {AppState} from '../../../reducers';
 import {AuthState} from './auth.reducer';
 
 // feature selector

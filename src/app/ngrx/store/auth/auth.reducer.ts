@@ -1,5 +1,5 @@
 import {AuthActions, AuthActionTypes, LoginSuccessAction} from './auth.actions';
-import {User} from '../shared/model/user.model';
+import {User} from '../../../shared/model/user.model';
 
 
 export interface AuthState {

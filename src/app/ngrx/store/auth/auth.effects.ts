@@ -3,11 +3,11 @@ import {Actions, Effect, ofType} from '@ngrx/effects';
 import {AuthActionTypes, LoginAction, LoginFailedAction, LoginSuccessAction, LogoutAction} from './auth.actions';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {NGXLogger} from 'ngx-logger';
-import {LoginService} from '../core/service/login.service';
+import {LoginService} from '../../../core/service/login.service';
 import {watch} from 'rxjs-watcher/dist';
 import {Router} from '@angular/router';
 import {of} from 'rxjs';
-import {LocalStorageService} from '../core/service/local-storage.service';
+import {LocalStorageService} from '../../../core/service/local-storage.service';
 
 @Injectable()
 export class AuthEffects {

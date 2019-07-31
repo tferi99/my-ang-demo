@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import {Course} from '../shared/model/course.model';
+import {Course} from '../../../shared/model/course.model';
 
 export enum CourseActionTypes {
   CourseRequested = '[View Course Page] Course Requested',

@@ -7,9 +7,14 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class SearchPanelComponent implements OnInit {
   @Input() color: string;
+  @Input() searchPattern: string;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSearch() {
+
   }
 }

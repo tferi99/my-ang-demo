@@ -1,4 +1,4 @@
-import {Course} from '../shared/model/course.model';
+import {Course} from '../../../shared/model/course.model';
 import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
 import {CourseActions, CourseActionTypes} from './course.actions';
 
