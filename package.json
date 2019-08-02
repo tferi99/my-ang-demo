@@ -6,6 +6,7 @@
     "start": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --evalSourceMap=true",
     "startOffice": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --host 10.122.188.104",
     "server": "./node_modules/.bin/ts-node ./server/server.ts",
+    "server-watch": "ts-node-dev --respawn --transpileOnly ./server/server.ts",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -73,6 +74,7 @@
     "protractor": "~5.4.0",
     "rxjs-watcher": "^1.1.2",
     "ts-node": "~8.3.0",
+    "ts-node-dev": "^1.0.0-pre.40",
     "tslint": "~5.17.0",
     "typescript": "^3.4.5"
   }

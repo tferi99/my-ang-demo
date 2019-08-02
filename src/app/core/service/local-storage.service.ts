@@ -18,7 +18,13 @@ export class LocalStorageService {
   getUser(): User {
     const u = localStorage.getItem(LocalStorageService.USER_LOC_STORE_KEY);
     if (u) {
-      return JSON.parse(u);
+      let user: User;
+      try {
+        user = JSON.parse(u);
+        return user;
+      } catch (e) {
+        this.deleteUser();
+      }
     }
     return undefined;
   }

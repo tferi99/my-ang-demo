@@ -25,7 +25,6 @@ import {HttpErrorInterceptor} from './core/interceptor/http-error.interceptor';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {TokenCleanInterceptor} from './core/interceptor/token.interceptor';
-import {NgxLoadingModule} from 'ngx-loading';
 
 @NgModule({
   declarations: [

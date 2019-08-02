@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {LoginService} from '../../core/service/login.service';
-import {LoginAction} from '../auth.actions';
+import {LoginAction} from '../store/auth/auth.actions';
 import {FormBuilder, Validators} from '@angular/forms';
-import {AuthState} from '../auth.reducer';
+import {AuthState} from '../store/auth/auth.reducer';
 import {NGXLogger} from 'ngx-logger';
 import {Observable, Subscription} from 'rxjs';
-import {selectAuthState} from '../auth.selectors';
+import {selectAuthState} from '../store/auth/auth.selectors';
 
 @Component({
   selector: 'ngrx-login',
