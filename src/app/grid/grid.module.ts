@@ -14,13 +14,16 @@ import * as fromConfig from './store/config/config.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {GridsterEffects} from './store/gridster/gridster.effects';
 import {ConfigEffects} from './store/config/config.effects';
+import { CounterComponent } from './widgets/counter/counter.component';
+import * as fromCounter from './store/counter/counter.reducer';
 
 @NgModule({
   declarations: [
     MainComponent,
     GridsterContainerComponent,
     WidgetWrapperComponent,
-    SampleNavComponent
+    SampleNavComponent,
+    CounterComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,7 @@ import {ConfigEffects} from './store/config/config.effects';
     StoreModule.forFeature('config', fromConfig.reducer),
     StoreModule.forFeature('gridster', fromGridster.reducer),
     EffectsModule.forFeature([GridsterEffects, ConfigEffects]),
+    StoreModule.forFeature('counters', fromCounter.reducer),
   ]
 })
 export class GridModule { }

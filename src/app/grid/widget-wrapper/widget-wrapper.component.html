@@ -2,39 +2,7 @@
     <!-- This is where the dynamic widgets are defined and registered-->
     <div *ngSwitchCase="WidgetTypeEnum.PLACEHOLDER" style="background-color: darkseagreen;height: 100%;width: 100%">placeholder</div>
     <div *ngSwitchDefault class="h-100">
-      
-
-        <div class="h-100 d-flex flex-column overflow-auto" style="border: solid 1px green;">
-          <div class="" style="background: deepskyblue">
-            header header header header
-            header header header header
-            header header header header
-            header header header header
-            header header header header
-          </div>
-          <div class="d-flex flex-grow-1 overflow-auto" style="background: yellow; min-height: 25% !important;">
-            <div class="align-self-center">
-              content content content content content
-              content content content content content
-              content content content content content
-              content content content content content
-              content content content content content
-              content content content content content
-              content content content content content
-              content content content content content
-              content content content content content
-            </div>
-          </div>
-          <div class="" style="background: khaki">
-            footer footer footer footer footer 
-            footer footer footer footer footer 
-            footer footer footer footer footer 
-            footer footer footer footer footer 
-            footer footer footer footer footer 
-          </div>
-        </div>
-
-        
+      <grid-counter></grid-counter>
     </div>
 
 </div>
