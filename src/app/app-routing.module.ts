@@ -4,7 +4,6 @@ import {HomePageComponent} from './home-page/home-page.component';
 import {MainComponent as EventBroadcastMain} from './event-broadcast/main/main.component';
 import {MainComponent as RxjsMain} from './rxjs/main/main.component';
 import {LodashModule} from './lodash/lodash.module';
-import {MainComponent as ReduxMain} from './redux/main/main.component';
 import {MainComponent as LifecycleMain} from './lifecycle/main/main.component';
 import {MainComponent as FormTestMain} from './form-test/main/main.component';
 import {MainComponent as NgrxMain} from './ngrx/main/main.component';
@@ -18,7 +17,6 @@ const routes: Routes = [
   { path: 'rxjs', component: RxjsMain },
   { path: 'ngrx', component: NgrxMain, canActivate: [AuthGuard]},
   { path: 'ngrx/login', component: LoginComponent },
-  { path: 'redux', component: ReduxMain },
   { path: 'gridster', component: GridMain},
   { path: 'lifecycle', component: LifecycleMain },
   { path: 'formtest', component: FormTestMain },

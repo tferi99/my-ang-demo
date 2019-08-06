@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../reducers';
+import {LoginSuccessAction} from '../../ngrx/store/auth/auth.actions';
+import {GridsterLoadRequestedAction} from '../store/gridster/gridster.actions';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
+    this.store.dispatch(new GridsterLoadRequestedAction());
   }
-
 }

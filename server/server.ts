@@ -1,11 +1,11 @@
 import * as express from 'express';
 import {Application} from 'express';
-import {getAllCourses, getAllCoursesRandomErr, getAllCoursesSlowly, getCourseById} from './get-courses.route';
+import {getAllCourses, getAllCoursesRandomErr, getAllCoursesSlowly, getCourseById, saveCourse} from './course.route';
 import {searchLessons} from './search-lessons.route';
-import {saveCourse} from './save-course.route';
 import {loginUser, logoutUser} from './auth.route';
 import {AddressInfo} from 'net';
 import {searchUsers} from './search';
+import {getGridster, saveGridster} from './gridster.route';
 
 const bodyParser = require('body-parser');
 
@@ -28,6 +28,9 @@ app.route('/api/lessons').get(searchLessons);
 app.route('/api/courses/:id').put(saveCourse);
 
 app.route('/api/search/:src').get(searchUsers);
+
+app.route('/api/gridster').get(getGridster);
+app.route('/api/gridster').post(saveGridster);
 
 const httpServer = app.listen(9001, () => {
   console.log('HTTP REST API Server running at http://localhost:' + (httpServer.address() as AddressInfo).port);

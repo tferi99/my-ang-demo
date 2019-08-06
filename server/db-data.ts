@@ -397,12 +397,34 @@ export const LESSONS = {
         'seqNo': 5,
         courseId: 0
     },
-
-
-
-
-
 };
+
+export const GRIDSTER = {
+  grids: [
+    {
+      x: 0,
+      y: 0,
+      rows: 1,
+      cols: 4,
+      widgetType: 'wac-widget-call'
+    },
+    {
+      x: 0,
+      y: 1,
+      rows: 1,
+      cols: 2,
+      widgetType: 'wac-widget-callcenter'
+    },
+/*    {
+      x: 1,
+      y: 1,
+      rows: 1,
+      cols: 2,
+      widgetType: 'wac-widget-callcenter'
+    },*/
+  ]
+};
+
 
 export function findCourseById(courseId: number) {
     return COURSES[courseId];

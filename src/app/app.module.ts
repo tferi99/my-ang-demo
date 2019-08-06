@@ -9,7 +9,6 @@ import {HomePageComponent} from './home-page/home-page.component';
 import {EventBroadcastModule} from './event-broadcast/event-broadcast.module';
 import {LodashModule} from './lodash/lodash.module';
 import {RxjsModule} from './rxjs/rxjs.module';
-import {ReduxModule} from './redux/redux.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {LifecycleModule} from './lifecycle/lifecycle.module';
 import {FormTestModule} from './form-test/form-test.module';
@@ -40,7 +39,6 @@ import {GridModule} from './grid/grid.module';
     EventBroadcastModule,
     LodashModule,
     RxjsModule,
-    ReduxModule,
     GridModule,
     LifecycleModule,
     FormTestModule,

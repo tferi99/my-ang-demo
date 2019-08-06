@@ -2,10 +2,16 @@ import {Action} from '@ngrx/store';
 import {WacGridster} from '../../grid-api.service';
 
 export enum GridsterActionTypes {
+  GridsterLoadRequestedAction = '[Init] GridsterLoadRequested',
   GridsterLoadedAction = '[Init] GridsterLoaded',
   GridsterChangedAction = '[GridsterContainerComponent] GridsterChangedAction',
   GridsterSavedAction = '[GridsterEffects] GridsterSavedAction',
 }
+
+export class GridsterLoadRequestedAction implements Action {
+  readonly type = GridsterActionTypes.GridsterLoadRequestedAction;
+}
+
 
 export class GridsterLoadedAction implements Action {
   readonly type = GridsterActionTypes.GridsterLoadedAction;
@@ -22,4 +28,4 @@ export class GridsterSavedAction implements Action {
   constructor(public payload: WacGridster) {}
 }
 
-export type GridsterActions = GridsterLoadedAction | GridsterChangedAction | GridsterSavedAction;
+export type GridsterActions = GridsterLoadRequestedAction  | GridsterLoadedAction | GridsterChangedAction | GridsterSavedAction;

@@ -7,13 +7,13 @@ $enghouse-liteblue: #72B5CC;
 
 .wac-gridster-container {
   position: fixed;
-  top: 0; right: 0; bottom: 0; left: $navbar-width;
+  top: 55px; right: 0; bottom: 0; left: $navbar-width;
   background: white;
 }
 
 .wac-left-navbar {
   position: fixed;
-  top: 10; right: 0; bottom: 0; left: 0;
+  top: 55px; right: 0; bottom: 0; left: 0;
   width: $navbar-width;
   padding-top: 15px;
   padding-bottom: 15px;
