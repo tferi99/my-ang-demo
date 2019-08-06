@@ -1,0 +1,21 @@
+<div class="d-flex align-items-start flex-column" style="height: 100%;">
+  <div class="mb-auto" style="width: 100%">
+
+    <div class="p-2" style="border: solid 1px white; width: 100%; text-align: center; cursor: pointer" (click)="toggleGridLock()" [attr.title]="(editable$ | async) ? 'Close to save changes' : ''">
+      <i *ngIf="!(editable$ | async)" class="fas fa-lock"></i>
+      <i *ngIf="editable$ | async" class="fas fa-lock-open blinking"></i>
+    </div>
+  </div>
+
+  <div class="mt-auto" style="width: 100%">
+    <div class="mb-1" style="border: solid 1px white; width: 100%; text-align: center; cursor: pointer">
+      <button class="btn btn-danger" (click)="cleanLocalStorage()" title="Delete user from local storage">
+        <i class="fas fa-radiation"></i>
+      </button>
+    </div>
+    <div class="p-2 mb-1" style="border: solid 1px white; width: 100%; text-align: center; cursor: pointer" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+    </div>
+
+  </div>
+</div>

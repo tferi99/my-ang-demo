@@ -1,0 +1,61 @@
+<div class="gridster-item-content wa-gridster-item-content" [ngSwitch]="gridsterItem.widgetType" [class.blur]="editable">
+    <!-- This is where the dynamic widgets are defined and registered-->
+    <div *ngSwitchCase="WidgetTypeEnum.PLACEHOLDER" style="background-color: darkseagreen;height: 100%;width: 100%">placeholder</div>
+    <div *ngSwitchDefault class="h-100">
+      
+
+        <div class="h-100 d-flex flex-column overflow-auto" style="border: solid 1px green;">
+          <div class="" style="background: deepskyblue">
+            header header header header
+            header header header header
+            header header header header
+            header header header header
+            header header header header
+          </div>
+          <div class="d-flex flex-grow-1 overflow-auto" style="background: yellow; min-height: 25% !important;">
+            <div class="align-self-center">
+              content content content content content
+              content content content content content
+              content content content content content
+              content content content content content
+              content content content content content
+              content content content content content
+              content content content content content
+              content content content content content
+              content content content content content
+            </div>
+          </div>
+          <div class="" style="background: khaki">
+            footer footer footer footer footer 
+            footer footer footer footer footer 
+            footer footer footer footer footer 
+            footer footer footer footer footer 
+            footer footer footer footer footer 
+          </div>
+        </div>
+
+        
+    </div>
+
+</div>
+
+<div *ngIf="editable" class="content-cover">
+</div>
+
+<div *ngIf="editable" class="wa-grid-top-left-buttons" >
+  <div ngbDropdown class="d-inline-block">
+    <button ngbDropdownToggle class="btn btn-secondary btn-sm dropdown-toggle-nocaret" id="dropdownBasic"><i class="fas fa-caret-down"></i></button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic">
+      <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.CALL)">Call</button>
+      <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.CALLCENTER)">Call Center</button>
+      <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.CALLLIST)">Call List</button>
+      <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.DIRECTORY)">Directory</button>
+      <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.EMPTY)">Empty</button>
+
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-secondary btn-sm" (mousedown)="onButtonMouseDown($event)" (click)="deleteWidget($event)"><i class="fas fa-trash-alt"></i></button>
+</div>
+
+

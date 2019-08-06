@@ -6,7 +6,6 @@ import {AppComponent} from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {HomePageComponent} from './home-page/home-page.component';
-import {GridsterPageComponent} from './gridster-page/gridster-page.component';
 import {EventBroadcastModule} from './event-broadcast/event-broadcast.module';
 import {LodashModule} from './lodash/lodash.module';
 import {RxjsModule} from './rxjs/rxjs.module';
@@ -25,12 +24,12 @@ import {HttpErrorInterceptor} from './core/interceptor/http-error.interceptor';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {TokenCleanInterceptor} from './core/interceptor/token.interceptor';
+import {GridModule} from './grid/grid.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    GridsterPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +41,7 @@ import {TokenCleanInterceptor} from './core/interceptor/token.interceptor';
     LodashModule,
     RxjsModule,
     ReduxModule,
+    GridModule,
     LifecycleModule,
     FormTestModule,
     NgrxModule,

@@ -6,6 +6,7 @@ import {Course} from '../../shared/model/course.model';
 import {selectAllCourses} from '../store/course/course.selectors';
 import {AllCoursesRequested} from '../store/course/course.actions';
 import * as _ from 'lodash';
+import {AppState} from '../../reducers';
 
 @Component({
   selector: 'ngrx-course-list',
@@ -18,7 +19,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
   coursesHereDeep: Course[];
   coursesHereSub: Subscription;
 
-  constructor(private store: Store<AuthState>) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
     this.store.dispatch(new AllCoursesRequested());

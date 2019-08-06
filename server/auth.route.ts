@@ -14,7 +14,7 @@ export function loginUser(req: Request, res: Response) {
     } else {
       res.sendStatus(403);
     }
-  }, 3000);
+  }, 100);
 }
 
 export function logoutUser(req: Request, res: Response) {

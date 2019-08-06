@@ -1,0 +1,9 @@
+<gridster class="wa-gridster" [options]="options">
+  <gridster-item [item]="item" *ngFor="let item of dashboard" class="wa-gridster-item">
+    <grid-widget-wrapper [gridsterItem]="item" [editable]="editable" (delete)="removeWidget($event, item)"></grid-widget-wrapper>
+  </gridster-item>
+</gridster>
+<div *ngIf="editable" class="wa-grid-right-bottom">
+  <button type="button" class="btn btn-secondary btn-sm" (click)="pushWidget()"><i class="fas fa-plus fa-lg"></i></button>
+</div>
+
