@@ -14,6 +14,8 @@ import * as fromCourse from './store/course/course.reducers';
 import { CourseEffects } from './store/course/course.effects';
 import { CourseListComponent } from './course-list/course-list.component';
 import { SearchPanelComponent } from './search-panel/search-panel.component';
+import * as fromSpinner from './store/spinner/spinner.reducer';
+import { SpinnerEffects } from './store/spinner/spinner.effects';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { SearchPanelComponent } from './search-panel/search-panel.component';
     ReactiveFormsModule,
     StoreModule.forFeature('auth', fromAuth.authReducer),       // adding module-specific slice of state
     StoreModule.forFeature('courses', fromCourse.coursesReducer),
-    EffectsModule.forFeature([AuthEffects, CourseEffects]),
+    StoreModule.forFeature('spinner', fromSpinner.reducer),
+    EffectsModule.forFeature([AuthEffects, CourseEffects, SpinnerEffects]),
   ]
 })
 export class NgrxModule {
