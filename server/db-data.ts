@@ -425,6 +425,10 @@ export const GRIDSTER = {
   ]
 };
 
+export const SIMPLE_INPUT_VALUE = {
+  value: 'hello'
+}
+
 
 export function findCourseById(courseId: number) {
     return COURSES[courseId];

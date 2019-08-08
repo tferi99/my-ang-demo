@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {AppState} from '../../../reducers';
 import {select, Store} from '@ngrx/store';
-import {AddCounter, DecrementAction, IncrementAction} from '../../store/counter/counter.actions';
+import {AddCounter, DecrementAction, DeleteCounter, IncrementAction} from '../../store/counter/counter.actions';
 import * as uuid from 'uuid';
 import {Observable} from 'rxjs';
 import {Counter} from '../../store/counter/counter.model';
@@ -12,7 +12,7 @@ import {selectCounterById} from '../../store/counter/counter.selector';
   templateUrl: './counter.component.html',
   styleUrls: ['./counter.component.sass']
 })
-export class CounterComponent implements OnInit {
+export class CounterComponent implements OnInit, OnDestroy {
   id: string;
   counter$: Observable<Counter>;
 
@@ -23,8 +23,11 @@ export class CounterComponent implements OnInit {
     this.counter$ = this.store.pipe(
       select(selectCounterById(this.id))
     );
-
     this.store.dispatch(new AddCounter({counter: {id: this.id, value: 0}}));
+  }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(new DeleteCounter({id: this.id}));
   }
 
   increment() {

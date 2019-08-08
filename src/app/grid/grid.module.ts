@@ -16,6 +16,7 @@ import {GridsterEffects} from './store/gridster/gridster.effects';
 import {ConfigEffects} from './store/config/config.effects';
 import { CounterComponent } from './widgets/counter/counter.component';
 import * as fromCounter from './store/counter/counter.reducer';
+import { SimpleInputComponent } from './widgets/simple-input/simple-input.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import * as fromCounter from './store/counter/counter.reducer';
     GridsterContainerComponent,
     WidgetWrapperComponent,
     SampleNavComponent,
-    CounterComponent
+    CounterComponent,
+    SimpleInputComponent,
   ],
   imports: [
     CommonModule,

@@ -6,6 +6,7 @@ import {loginUser, logoutUser} from './auth.route';
 import {AddressInfo} from 'net';
 import {searchUsers} from './search';
 import {getGridster, saveGridster} from './gridster.route';
+import {getSimpleInputValue, saveSimpleInputValue} from './simple-input.route';
 
 const bodyParser = require('body-parser');
 
@@ -31,6 +32,9 @@ app.route('/api/search/:src').get(searchUsers);
 
 app.route('/api/gridster').get(getGridster);
 app.route('/api/gridster').post(saveGridster);
+
+app.route('/api/simpleinput').get(getSimpleInputValue);
+app.route('/api/simpleinput').post(saveSimpleInputValue);
 
 const httpServer = app.listen(9001, () => {
   console.log('HTTP REST API Server running at http://localhost:' + (httpServer.address() as AddressInfo).port);

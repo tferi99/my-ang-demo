@@ -12,7 +12,7 @@ export const initialState: SpinnerState = {
 };
 
 export function reducer(state = initialState, action: any): SpinnerState {
-  switch(action.type) {
+  switch (action.type) {
     case SpinnerActionTypes.ShowSpinnerAction: {
 
       const isActionAlreadyInProgress = state.actionsInProgress
@@ -21,7 +21,7 @@ export function reducer(state = initialState, action: any): SpinnerState {
         .length;
       // If the action in already in progress and is registered
       // we don't modify the state
-      if(isActionAlreadyInProgress) {
+      if (isActionAlreadyInProgress) {
         return state;
       }
       // Adding the action type in our actionsInProgress array
@@ -52,5 +52,4 @@ export function reducer(state = initialState, action: any): SpinnerState {
       return state;
   }
 }
-export const isLoadingSpinnerActive =
-  (state: SpinnerState) => state.active;
+

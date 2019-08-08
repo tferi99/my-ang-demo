@@ -17,6 +17,9 @@ export class SandboxComponent implements OnInit {
   constructor(private log: NGXLogger) {}
 
   ngOnInit() {
+      
+
+
     /*    this.obs$ = range(100, 3);
         this.obs$.subscribe(this.log.debug);*/
 
