@@ -6,7 +6,7 @@
 -->
 
   <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand">Snippets</a>
+    <a class="navbar-brand">Snippets (monitor with RxJs watcher)</a>
     <form class="form-inline">
       <button class="btn btn-danger mr-2" (click)="stopExisting()" [disabled]="!running"  title="Stop running stream"><i class="fa fa-stop"></i></button>
       <!--
@@ -22,11 +22,15 @@
     <table class="table">
       <tr>
         <td>Counter - 3 steps</td>
-        <td><button class="btn btn-success" (click)="count3()">Count 3 <i class="fa fa-play"></i></button></td>
+        <td><button class="btn btn-success" (click)="count3()">Count 3<i class="fa fa-play ml-1"></i></button></td>
       </tr>
       <tr>
         <td>Counter - ALL steps, but filtering 3 steps</td>
-        <td><button class="btn btn-success" (click)="count3_filter()">Count 3 with filter <i class="fa fa-play"></i></button></td>
+        <td><button class="btn btn-success" (click)="count3_filter()">Count 3 with filter<i class="fa fa-play ml-1"></i></button></td>
+      </tr>
+      <tr>
+        <td>2 Counters - withLatestFrom</td>
+        <td><button class="btn btn-success" (click)="withLatestFrom()">withLatestFrom<i class="fa fa-play ml-1"></i></button></td>
       </tr>
     </table>
 

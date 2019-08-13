@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {interval, merge, noop, Observable, OperatorFunction, pipe, Subject, Subscription, throwError, timer} from 'rxjs';
-import {watch} from 'rxjs-watcher/dist';
-import {filter, map, switchMap, take, takeUntil, takeWhile} from 'rxjs/operators';
+import {getGroup, watch} from 'rxjs-watcher/dist';
+import {filter, map, switchMap, take, takeUntil, takeWhile, withLatestFrom} from 'rxjs/operators';
 import {Form, FormBuilder, Validators} from '@angular/forms';
 import {CustomValidators} from '../../shared/util/custom-validators';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {SPINNER_TYPE} from '../../shared/app.constants';
 
-const TEST_SECS = 5;
+const TEST_SECS = 15;
 
 type BehaviorImpl = () => OperatorFunction<any, any>;
 
@@ -55,6 +55,16 @@ export class SnippetsComponent implements OnInit {
     this.runInterval(ops, TEST_SECS);
   }
 
+  withLatestFrom() {
+    const timer2 = interval(600).pipe(watch('counter-2', TEST_SECS));
+
+    const ops = pipe(
+      take(14),
+      withLatestFrom(timer2)
+    );
+    this.runInterval(ops, TEST_SECS);
+  }
+
   // -------------- runner ----------------------
   runInterval(ops: OperatorFunction<any, any>, watchSteps: number) {
     this.run(interval(1000), ops, watchSteps);
@@ -76,9 +86,9 @@ export class SnippetsComponent implements OnInit {
     this.running = true;
     this.ngxSpinnerService.show();
     const source$ = observable.pipe(
-      watch('source input', watchSteps),
+      watch('INPUT', watchSteps),
       ops,
-      watch('source output', watchSteps),
+      watch('OUTPUT', watchSteps),
     );
 
     // error interrupt
