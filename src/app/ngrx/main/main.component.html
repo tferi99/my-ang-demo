@@ -1,6 +1,9 @@
 <div class="container mt-2">
-  <h2>Main</h2>
-  <div *ngIf="isLoggedIn$ | async">
+  <nav class="navbar navbar-dark bg-info">
+    <span class="navbar-brand">NgRx</span>
+  </nav>
+
+    <div *ngIf="isLoggedIn$ | async">
     <ngrx-logout></ngrx-logout>
 
     <ngrx-course-list></ngrx-course-list>
