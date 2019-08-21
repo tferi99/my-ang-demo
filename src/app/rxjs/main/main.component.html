@@ -1,5 +1,11 @@
 <div class="m-2">
   <ul class="nav nav-tabs">
+    <li>
+      <span class="navbar navbar-dark bg-info">
+        <span class="navbar-brand">RxJs</span>
+      </span>
+
+    </li>
     <li class="nav-item" *ngFor="let t of tabData; index as idx">
       <a class="nav-link" [class.active]="idx == activeTab" (click)="setActiveTab(idx)">{{t.name}}</a>
     </li>

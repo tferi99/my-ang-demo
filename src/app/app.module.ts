@@ -24,6 +24,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {TokenCleanInterceptor} from './core/interceptor/token.interceptor';
 import {GridModule} from './grid/grid.module';
+import {KeepaliveModule} from './keepalive/keepalive.module';
 import {I18nModule} from './i18n/i18n.module';
 
 @NgModule({
@@ -44,6 +45,7 @@ import {I18nModule} from './i18n/i18n.module';
     LifecycleModule,
     FormTestModule,
     NgrxModule,
+    KeepaliveModule,
     I18nModule,
     StoreModule.forRoot(reducers, { metaReducers, runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
