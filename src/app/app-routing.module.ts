@@ -8,6 +8,7 @@ import {MainComponent as LifecycleMain} from './lifecycle/main/main.component';
 import {MainComponent as FormTestMain} from './form-test/main/main.component';
 import {MainComponent as NgrxMain} from './ngrx/main/main.component';
 import {MainComponent as GridMain} from './grid/main/main.component';
+import {MainComponent as I18nMain} from './i18n/main/main.component';
 import {LoginComponent} from './ngrx/login/login.component';
 import {AuthGuard} from './core/guard/auth-guard';
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'lifecycle', component: LifecycleMain },
   { path: 'formtest', component: FormTestMain },
   { path: 'lodash', component: LodashModule },
+  { path: 'i18n', component: I18nMain },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },   // default
 ];
 
