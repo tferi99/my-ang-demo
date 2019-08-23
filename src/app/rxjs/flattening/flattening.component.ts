@@ -22,7 +22,7 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
   flatteningTypeEnum = FlatteningStrategy;
   concatenateObserversActive = false;
   flatteningStrategy = FlatteningStrategy.CONCAT;
-  private subscription: Subscription;
+  subscription: Subscription;
   currentSubscriptionType: string;
   networkMode = false;
 

@@ -15,8 +15,8 @@ import {selectAuthState} from '../store/auth/auth.selectors';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private errorFound = false;
-  private form;
-  private auth: Observable<AuthState>;
+  form = null;
+  auth: Observable<AuthState>;
   private authSub: Subscription;
 
   constructor(private store: Store<AuthState>, private service: LoginService, private fb: FormBuilder, private log: NGXLogger) {

@@ -26,6 +26,11 @@ import {TokenCleanInterceptor} from './core/interceptor/token.interceptor';
 import {GridModule} from './grid/grid.module';
 import {KeepaliveModule} from './keepalive/keepalive.module';
 import {I18nModule} from './i18n/i18n.module';
+import localeHu from '@angular/common/locales/hu';
+import localeHuExtra from '@angular/common/locales/extra/hu';
+import {registerLocaleData} from '@angular/common';
+
+registerLocaleData(localeHu, 'hu', localeHuExtra);
 
 @NgModule({
   declarations: [

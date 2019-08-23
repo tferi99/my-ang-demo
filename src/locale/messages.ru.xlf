@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="ru">
+  <file original="ng.template" id="ngi18n">
+    <unit id="ngb.alert.close">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/alert/alert.d.ts:3</note>
+      </notes>
+      <segment>
+        <source>Close</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.carousel.previous">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts:13</note>
+      </notes>
+      <segment>
+        <source>Previous</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.carousel.next">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts:17</note>
+      </notes>
+      <segment>
+        <source>Next</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.datepicker.previous-month">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:4</note>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:5</note>
+      </notes>
+      <segment>
+        <source>Previous month</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.datepicker.next-month">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:26</note>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:27</note>
+      </notes>
+      <segment>
+        <source>Next month</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.datepicker.select-month">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:6</note>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:7</note>
+      </notes>
+      <segment>
+        <source>Select month</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.datepicker.select-year">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:15</note>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:16</note>
+      </notes>
+      <segment>
+        <source>Select year</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.pagination.first">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:2</note>
+      </notes>
+      <segment>
+        <source>««</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.pagination.previous">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:3</note>
+      </notes>
+      <segment>
+        <source>«</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.pagination.next">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:4</note>
+      </notes>
+      <segment>
+        <source>»</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.pagination.last">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:5</note>
+      </notes>
+      <segment>
+        <source>»»</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.pagination.first-aria">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:14</note>
+      </notes>
+      <segment>
+        <source>First</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.pagination.previous-aria">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:23</note>
+      </notes>
+      <segment>
+        <source>Previous</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.pagination.next-aria">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:41</note>
+      </notes>
+      <segment>
+        <source>Next</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.pagination.last-aria">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:49</note>
+      </notes>
+      <segment>
+        <source>Last</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.progressbar.value">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/progressbar/progressbar.d.ts:6</note>
+      </notes>
+      <segment>
+        <source><ph id="0" equiv="INTERPOLATION" disp="{{getPercentValue()}}"/>%</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.timepicker.increment-hours">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:9</note>
+      </notes>
+      <segment>
+        <source>Increment hours</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.timepicker.HH">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:12</note>
+      </notes>
+      <segment>
+        <source>HH</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.timepicker.hours">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:14</note>
+      </notes>
+      <segment>
+        <source>Hours</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.timepicker.decrement-hours">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:21</note>
+      </notes>
+      <segment>
+        <source>Decrement hours</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.timepicker.increment-minutes">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:30</note>
+      </notes>
+      <segment>
+        <source>Increment minutes</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.timepicker.MM">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:33</note>
+      </notes>
+      <segment>
+        <source>MM</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.timepicker.minutes">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:35</note>
+      </notes>
+      <segment>
+        <source>Minutes</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.timepicker.decrement-minutes">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:42</note>
+      </notes>
+      <segment>
+        <source>Decrement minutes</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.timepicker.increment-seconds">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:51</note>
+      </notes>
+      <segment>
+        <source>Increment seconds</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.timepicker.SS">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:54</note>
+      </notes>
+      <segment>
+        <source>SS</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.timepicker.seconds">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:56</note>
+      </notes>
+      <segment>
+        <source>Seconds</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.timepicker.decrement-seconds">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:63</note>
+      </notes>
+      <segment>
+        <source>Decrement seconds</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.timepicker.PM">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:71</note>
+      </notes>
+      <segment>
+        <source>PM</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="ngb.timepicker.AM">
+      <notes>
+        <note category="location">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:72</note>
+      </notes>
+      <segment>
+        <source>AM</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="6947830843539421219">
+      <notes>
+        <note category="description">i18n main component header</note>
+        <note category="location">app/i18n/main/main.component.html:6</note>
+      </notes>
+      <segment>
+        <source>Hello World!</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="5744940780535970762">
+      <notes>
+        <note category="description">i18n demo description</note>
+        <note category="location">app/i18n/main/main.component.html:8</note>
+      </notes>
+      <segment>
+        <source>This is the description text for i18n demo</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="3512626523818773850">
+      <notes>
+        <note category="location">app/i18n/main/main.component.html:12</note>
+      </notes>
+      <segment>
+        <source>row</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="yesButton">
+      <notes>
+        <note category="location">app/i18n/main/main.component.html:14</note>
+        <note category="location">app/i18n/main/main.component.html:21</note>
+      </notes>
+      <segment>
+        <source>Yes</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="1358139825663854973">
+      <notes>
+        <note category="location">app/i18n/main/main.component.html:14</note>
+      </notes>
+      <segment>
+        <source>This is YES button</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+    <unit id="2439809159657033164">
+      <notes>
+        <note category="location">app/i18n/main/main.component.html:19</note>
+      </notes>
+      <segment>
+        <source>this is also a row</source>
+        <target>!MISSING_TRANSLATION!</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

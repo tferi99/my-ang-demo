@@ -60,6 +60,15 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "hu": {
+              "aot": true,
+              "outputPath": "dist/my-ang-demo-hu",
+              "baseHref": "/hu/",
+              "i18nFile": "src/locale/messages.hu.xlf",
+              "i18nFormat": "xlf2",
+              "i18nLocale": "hu",
+              "i18nMissingTranslation": "error"
             }
           }
         },
@@ -72,6 +81,10 @@
           "configurations": {
             "production": {
               "browserTarget": "my-ang-demo:build:production"
+            },
+            "hu": {
+              "browserTarget": "my-ang-demo:build:hu",
+              "servePath": "/hu/"
             }
           }
         },

@@ -4,9 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --evalSourceMap=true",
-    "startOffice": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --host 10.122.188.104",
+    "start:hu": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --evalSourceMap=true --configuration=hu",
     "server-with-watch": "ts-node-dev --respawn --transpileOnly ./server/server.ts",
+    "i18n:extract": "ng xi18n --output-path locale --i18n-format=xlf2",
     "build": "ng build",
+    "build:hu": "ng build --configuration=hu",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
