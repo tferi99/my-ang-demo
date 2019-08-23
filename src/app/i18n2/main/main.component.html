@@ -1,0 +1,29 @@
+<div class="container mt-2">
+  <nav class="navbar navbar-dark bg-info">
+    <span class="navbar-brand">ngx-translate - non-official internationalization of Angular</span>
+  </nav>
+
+  <h1>{{'demo.hello' | translate}}</h1>
+  <h4>{{'demo.currentLocale' | translate}}: {{locale}}</h4>
+  <h4>{{'demo.now' | translate}}: {{now | date: 'short'}}</h4>
+
+  <table class="table">
+    <tr>
+      <td><span i18n>row</span> A</td>
+      <td>
+        <button class="mr-2" title="{{'demo.yesButtonTitle' | translate}}">{{'global.yes' | translate}}</button>
+        <button class="mr-2">{{'global.no' | translate}}</button>
+      </td>
+    </tr>
+    <tr>
+      <td><span i18n>{{'demo.alsoRow' | translate}}</span> B</td>
+      <td>
+        <button class="mr-2">{{'global.yes' | translate}}</button>
+        <button class="mr-2">{{'global.no' | translate}}</button>
+      </td>
+    </tr>
+  </table>
+
+  <button (click)="useLanguage('en')">English</button>
+  <button (click)="useLanguage('hu')">Magyar</button>
+</div>

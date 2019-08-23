@@ -1,9 +1,17 @@
 <div class="container mt-2">
   <nav class="navbar navbar-dark bg-info">
-    <span class="navbar-brand">i18n</span>
+    <span class="navbar-brand">i18n - official internationalization of Angular</span>
   </nav>
 
   <h1 i18n="i18n main component header">Hello World!</h1>
+  <h4 i18n>Current locale: {{locale}}</h4>
+  <h4 i18n>Now: {{now | date: 'short'}}</h4>
+
+  <div class="m-2" *ngIf="locale != 'hu'" style="color: red">
+    <small><i>
+      To translate this page to HU you have to start app with start:hu
+    </i></small>
+  </div>
 
   <div i18n="i18n demo description">This is the description text for i18n demo</div>
 

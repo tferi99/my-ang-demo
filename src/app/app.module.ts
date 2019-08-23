@@ -9,7 +9,7 @@ import {HomePageComponent} from './home-page/home-page.component';
 import {EventBroadcastModule} from './event-broadcast/event-broadcast.module';
 import {LodashModule} from './lodash/lodash.module';
 import {RxjsModule} from './rxjs/rxjs.module';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {LifecycleModule} from './lifecycle/lifecycle.module';
 import {FormTestModule} from './form-test/form-test.module';
 import {NgrxModule} from './ngrx/ngrx.module';
@@ -26,11 +26,13 @@ import {TokenCleanInterceptor} from './core/interceptor/token.interceptor';
 import {GridModule} from './grid/grid.module';
 import {KeepaliveModule} from './keepalive/keepalive.module';
 import {I18nModule} from './i18n/i18n.module';
-import localeHu from '@angular/common/locales/hu';
-import localeHuExtra from '@angular/common/locales/extra/hu';
-import {registerLocaleData} from '@angular/common';
+import {I18n2Module} from './i18n2/i18n2.module';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
-registerLocaleData(localeHu, 'hu', localeHuExtra);
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -52,12 +54,20 @@ registerLocaleData(localeHu, 'hu', localeHuExtra);
     NgrxModule,
     KeepaliveModule,
     I18nModule,
+    I18n2Module,
     StoreModule.forRoot(reducers, { metaReducers, runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
     LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG}),
     BrowserAnimationsModule,  // for Toastr
     ToastrModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    })
   ],
   exports: [
   ],

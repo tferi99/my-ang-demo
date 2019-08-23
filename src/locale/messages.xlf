@@ -254,10 +254,26 @@
         <source>Hello World!</source>
       </segment>
     </unit>
+    <unit id="3012178889329421845">
+      <notes>
+        <note category="location">app/i18n/main/main.component.html:7</note>
+      </notes>
+      <segment>
+        <source>Current locale: <ph id="0" equiv="INTERPOLATION" disp="{{locale}}"/></source>
+      </segment>
+    </unit>
+    <unit id="530758572142561831">
+      <notes>
+        <note category="location">app/i18n/main/main.component.html:8</note>
+      </notes>
+      <segment>
+        <source>Now: <ph id="0" equiv="INTERPOLATION" disp="{{now | date: &apos;short&apos;}}"/></source>
+      </segment>
+    </unit>
     <unit id="5744940780535970762">
       <notes>
         <note category="description">i18n demo description</note>
-        <note category="location">app/i18n/main/main.component.html:8</note>
+        <note category="location">app/i18n/main/main.component.html:16</note>
       </notes>
       <segment>
         <source>This is the description text for i18n demo</source>
@@ -265,7 +281,7 @@
     </unit>
     <unit id="3512626523818773850">
       <notes>
-        <note category="location">app/i18n/main/main.component.html:12</note>
+        <note category="location">app/i18n/main/main.component.html:20</note>
       </notes>
       <segment>
         <source>row</source>
@@ -273,8 +289,8 @@
     </unit>
     <unit id="yesButton">
       <notes>
-        <note category="location">app/i18n/main/main.component.html:14</note>
-        <note category="location">app/i18n/main/main.component.html:21</note>
+        <note category="location">app/i18n/main/main.component.html:22</note>
+        <note category="location">app/i18n/main/main.component.html:29</note>
       </notes>
       <segment>
         <source>Yes</source>
@@ -282,7 +298,7 @@
     </unit>
     <unit id="1358139825663854973">
       <notes>
-        <note category="location">app/i18n/main/main.component.html:14</note>
+        <note category="location">app/i18n/main/main.component.html:22</note>
       </notes>
       <segment>
         <source>This is YES button</source>
@@ -290,7 +306,7 @@
     </unit>
     <unit id="2439809159657033164">
       <notes>
-        <note category="location">app/i18n/main/main.component.html:19</note>
+        <note category="location">app/i18n/main/main.component.html:27</note>
       </notes>
       <segment>
         <source>this is also a row</source>
