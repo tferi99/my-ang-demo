@@ -1,9 +1,10 @@
 <div class="gridster-item-content wa-gridster-item-content" [ngSwitch]="gridsterItem.widgetType" [class.blur]="editable">
     <!-- This is where the dynamic widgets are defined and registered-->
     <div *ngSwitchCase="WidgetTypeEnum.PLACEHOLDER" style="background-color: darkseagreen;height: 100%;width: 100%">placeholder</div>
-    <div *ngSwitchDefault class="h-100">
-      <grid-counter></grid-counter>
-    </div>
+  <div *ngSwitchCase="WidgetTypeEnum.PLACEHOLDER" style="background-color: darkseagreen;height: 100%;width: 100%">placeholder</div>
+    <grid-simple-input *ngSwitchCase="WidgetTypeEnum.INPUT"></grid-simple-input>
+    <grid-counter *ngSwitchCase="WidgetTypeEnum.COUNTER"></grid-counter>
+    <div *ngSwitchDefault class="h-100">DEFAULT</div>
 
 </div>
 
@@ -19,7 +20,6 @@
       <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.CALLLIST)">Call List</button>
       <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.DIRECTORY)">Directory</button>
       <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.EMPTY)">Empty</button>
-
     </div>
   </div>
 

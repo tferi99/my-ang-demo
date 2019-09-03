@@ -406,22 +406,29 @@ export const GRIDSTER = {
       y: 0,
       rows: 1,
       cols: 4,
-      widgetType: 'wac-widget-call'
+      widgetType: 'grid-counter'
     },
     {
       x: 0,
       y: 1,
       rows: 1,
       cols: 2,
-      widgetType: 'wac-widget-callcenter'
+      widgetType: 'grid-counter'
     },
-/*    {
-      x: 1,
+    {
+      x: 3,
       y: 1,
       rows: 1,
-      cols: 2,
-      widgetType: 'wac-widget-callcenter'
-    },*/
+      cols: 1,
+      widgetType: 'grid-simple-input'
+    },
+    {
+      x: 1,
+      y: 2,
+      rows: 1,
+      cols: 3,
+      widgetType: 'valami'
+    },
   ]
 };
 

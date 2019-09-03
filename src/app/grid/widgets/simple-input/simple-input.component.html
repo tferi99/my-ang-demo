@@ -1,3 +1,9 @@
-<p>
-  simple-input works!
-</p>
+<h4>Input</h4>
+<div class="mb-2"><input type="text" (keyup)="changed($event)"></div>
+<div class="mb-2">
+  Search:
+  <input type="text" autofocus #search> <span class="ml-2">{{typedCharacter$ | async}}</span>
+
+</div>
+
+

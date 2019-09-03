@@ -10,10 +10,8 @@ import {map} from 'rxjs/operators';
 export enum WidgetTypeEnum {
   EMPTY = 'wac-widget-empty',
   PLACEHOLDER = 'wac-widget-placeholder',
-  CALL = 'wac-widget-call',
-  CALLCENTER = 'wac-widget-callcenter',
-  DIRECTORY = 'wac-widget-directory',
-  CALLLIST = 'wac-widget-call-list'
+  INPUT = 'grid-simple-input',
+  COUNTER = 'grid-counter'
 }
 export interface WacGridster {
   grids: Array<WacGridsterItem>;
