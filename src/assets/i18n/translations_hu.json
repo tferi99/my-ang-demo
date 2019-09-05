@@ -1,0 +1,14 @@
+{
+  "demo": {
+    "alsoRow": "ez is egy sor",
+    "currentLocale": "Aktuális nyelv",
+    "hello": "Szia Világ!",
+    "now": "Most",
+    "row": "sor áÁéÉíÍöÖőŐüÜúÚűŰ",
+    "yesButtonTitle": "Ez egy IGEN gomb"
+  },
+  "global": {
+    "no": "Nem",
+    "yes": "Igen"
+  }
+}

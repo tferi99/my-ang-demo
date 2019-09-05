@@ -1,0 +1,14 @@
+{
+  "demo": {
+    "alsoRow": "this is also a row",
+    "currentLocale": "Current locale",
+    "hello": "Hello World!",
+    "now": "Now",
+    "row": "row",
+    "yesButtonTitle": "This is YES button"
+  },
+  "global": {
+    "no": "No",
+    "yes": "Yes"
+  }
+}
