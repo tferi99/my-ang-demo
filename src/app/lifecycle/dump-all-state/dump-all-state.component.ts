@@ -34,6 +34,7 @@ export class DumpAllStateComponent implements OnChanges, OnInit, DoCheck, AfterC
   }
 
   ngOnInit() {
+    this.log.debug('=== ngOnInit');
   }
 
   ngDoCheck(): void {

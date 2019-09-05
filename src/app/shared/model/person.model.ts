@@ -18,6 +18,21 @@ export namespace Gender {
 }
 
 export class Person {
-  constructor(public name: string, public born: number, public gender: Gender) {}
+  private _name: string;
+
+  constructor(name: string, public born: number, public gender: Gender) {
+    this._name = name;
+  }
+
+  get name() {
+    // uncomment to see change detection in the debugger call stack
+    // debugger;
+
+    return this._name;
+  }
+
+  set name(name) {
+    this._name = name;
+  }
 }
 

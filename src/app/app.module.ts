@@ -29,6 +29,7 @@ import {I18nModule} from './i18n/i18n.module';
 import {I18n2Module} from './i18n2/i18n2.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {ChangeDetectionModule} from './change-detection/change-detection.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/translations_', '.json');
@@ -55,6 +56,7 @@ export function createTranslateLoader(http: HttpClient) {
     KeepaliveModule,
     I18nModule,
     I18n2Module,
+    ChangeDetectionModule,
     StoreModule.forRoot(reducers, { metaReducers, runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
