@@ -1,12 +1,26 @@
 <div class="container">
-  <h4>Lifecycle changes</h4>
-  <div class="my-3" style="font-style: italic">Open Console tab for monitoring</div>
+  <h2>Lifecycle changes</h2>
+  <div class="my-3" style="font-style: italic">Change parent data and watch lifecycle events iof child component.</div>
   <hr>
-  <h2>Parent</h2>
-  <input [(ngModel)]="person.name">
-  Name: {{person.name}}
+  <h4>Parent</h4>
+  <table>
+    <tr>
+      <td>Shared object</td>
+      <td><input [(ngModel)]="sharedPerson.name"></td>
+      <td>Name: {{sharedPerson.name}}</td>
+    </tr>
+    <tr>
+      <td>NON-Shared object</td>
+      <td><input [(ngModel)]="nonSharedPerson.name"></td>
+      <td>Name: {{nonSharedPerson.name}}</td>
+    </tr>
+  </table>
+  <hr class="mb-5">
 
-  <hr>
-  <h2>Child</h2>
-  <lc-dump-all-state [testText]="'cica'" [testNumber]="5" [testObject]="person"></lc-dump-all-state>
+  <h4>Child</h4>
+  <lc-child></lc-child>
+  <hr class="mb-5">
+
+  <h4>Another child - the monitor</h4>
+  <lc-dump-all-state [testText]="'cica'" [testNumber]="5" [testObject]="sharedPerson"></lc-dump-all-state>
 </div>
