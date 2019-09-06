@@ -7,7 +7,7 @@ export class Skill {
   }
 
   get name() {
-    //console.log('Checking name');
+    console.log('Checking name');
     return this._name;
   }
 }
