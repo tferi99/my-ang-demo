@@ -1,7 +1,17 @@
-<select class="mr-2" (change)="change()">
-  <option *ngFor="let option of options"
-          [value]="option.id">
-    {{option.name}}
-  </option>
-</select>
+<div class="m-3" style="border: solid 1px red; padding: 20px">
+  <h4>Change detection: {{type}}</h4>
+  <div>
+    <span class="mr-2">{{type}}</span>
+
+    <select class="mr-2" (change)="change()">
+      <option *ngFor="let option of options" [value]="option.id">{{option.name}}</option>
+    </select>
+
+  </div>
+  <div>
+    <span class="mr-2">Current value:</span>
+    {{getChdCurrentValue()}}
+  </div>
+  <button (click)="trigger()">Trigger change detection from component</button>
+</div>
 
