@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {interval, merge, noop, Observable, OperatorFunction, pipe, Subject, Subscription, throwError, timer} from 'rxjs';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {fromEvent, interval, merge, noop, Observable, OperatorFunction, pipe, Subject, Subscription, throwError, timer} from 'rxjs';
 import {getGroup, watch} from 'rxjs-watcher/dist';
-import {filter, map, switchMap, take, takeUntil, takeWhile, withLatestFrom} from 'rxjs/operators';
+import {debounceTime, filter, map, switchMap, take, takeUntil, takeWhile, throttle, throttleTime, withLatestFrom} from 'rxjs/operators';
 import {Form, FormBuilder, Validators} from '@angular/forms';
 import {CustomValidators} from '../../shared/util/custom-validators';
 import {NgxSpinnerService} from 'ngx-spinner';
@@ -17,7 +17,7 @@ type BehaviorImpl = () => OperatorFunction<any, any>;
   templateUrl: './snippets.component.html',
   styleUrls: ['./snippets.component.sass']
 })
-export class SnippetsComponent implements OnInit {
+export class SnippetsComponent implements OnInit, OnDestroy {
 /*  form = this.fb.group({
     withInterval: [],
     age: ['0', [CustomValidators.required, Validators.min(1), , Validators.max(150)]],
@@ -25,6 +25,9 @@ export class SnippetsComponent implements OnInit {
   });*/
 
   subscription: Subscription;
+  throttleSubscription: Subscription;
+  debounceSubscription: Subscription;
+
 /*  get running() {
     return (this.subscription !== undefined);
   }*/
@@ -33,11 +36,35 @@ export class SnippetsComponent implements OnInit {
   errorEmitter$: Subject<number>;
   spinnerType = SPINNER_TYPE;
 
+  @ViewChild('mouseMoveEventSource', {static: true})
+  mouseMoveEventSource: ElementRef;
+
   constructor(private fb: FormBuilder, private ngxSpinnerService: NgxSpinnerService) {
     this.errorEmitter$ = new Subject<number>();
   }
 
   ngOnInit() {
+    const mouseMoveEvents = fromEvent(this.mouseMoveEventSource.nativeElement, 'mousemove');
+    this.throttleSubscription = mouseMoveEvents.pipe(
+      throttleTime(500),
+      watch('Throttle', TEST_SECS),
+    ).subscribe();
+
+    this.debounceSubscription = mouseMoveEvents.pipe(
+      debounceTime(500),
+      watch('Debounce', TEST_SECS),
+    ).subscribe();
+
+  }
+
+
+  ngOnDestroy(): void {
+    if (this.throttleSubscription) {
+      this.throttleSubscription.unsubscribe();
+    }
+    if (this.debounceSubscription) {
+      this.debounceSubscription.unsubscribe();
+    }
   }
 
   count3() {
