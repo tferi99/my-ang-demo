@@ -12,6 +12,7 @@ import {MainComponent as I18nMain} from './i18n/main/main.component';
 import {MainComponent as I18n2Main} from './i18n2/main/main.component';
 import {MainComponent as KeepaliveMain} from './keepalive/main/main.component';
 import {MainComponent as ChdMain} from './change-detection/main/main.component';
+import {MainComponent as DatabindMain} from './databind/main/main.component';
 import {LoginComponent} from './ngrx/login/login.component';
 import {AuthGuard} from './core/guard/auth-guard';
 
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'i18n', component: I18nMain },
   { path: 'i18n2', component: I18n2Main },
   { path: 'chd', component: ChdMain },
+  { path: 'databind', component: DatabindMain },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },   // default
 ];
 

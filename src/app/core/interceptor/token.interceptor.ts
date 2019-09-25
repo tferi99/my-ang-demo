@@ -6,7 +6,7 @@ import {Observable, throwError} from 'rxjs';
 import {NGXLogger} from 'ngx-logger';
 
 /**
- * to put token into request header.
+ * to put token into request page-header.
  */
 /*
 @Injectable()

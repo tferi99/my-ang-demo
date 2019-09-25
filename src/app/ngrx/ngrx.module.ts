@@ -16,6 +16,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { SearchPanelComponent } from './search-panel/search-panel.component';
 import * as fromSpinner from './store/spinner/spinner.reducer';
 import { SpinnerEffects } from './store/spinner/spinner.effects';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { SpinnerEffects } from './store/spinner/spinner.effects';
     StoreModule.forFeature('courses', fromCourse.coursesReducer),
     StoreModule.forFeature('spinner', fromSpinner.reducer),
     EffectsModule.forFeature([AuthEffects, CourseEffects, SpinnerEffects]),
+    SharedModule
   ]
 })
 export class NgrxModule {

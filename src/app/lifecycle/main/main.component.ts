@@ -7,8 +7,8 @@ import {Gender, Person} from '../../shared/model/person.model';
   styleUrls: ['./main.component.sass']
 })
 export class MainComponent implements OnInit {
-  private sharedPerson: Person;         // shared with monitor (displed on monitor child component)
-  private nonSharedPerson: Person;      // not shared with monitor
+  sharedPerson: Person;         // shared with monitor (displed on monitor child component)
+  nonSharedPerson: Person;      // not shared with monitor
 
   constructor() {
     this.sharedPerson = new Person('John Smith', 1943, Gender.MALE);

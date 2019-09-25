@@ -1,21 +1,20 @@
 <div class="container mt-2">
-  <nav class="navbar navbar-dark bg-info">
-    <span class="navbar-brand">NgRx</span>
-  </nav>
+  <app-page-header title="NgRx"></app-page-header>
 
-    <div *ngIf="isLoggedIn$ | async">
-    <ngrx-logout></ngrx-logout>
+  <div *ngIf="isLoggedIn$ | async">
+  <ngrx-logout></ngrx-logout>
+  </div>
 
-    <ngrx-course-list></ngrx-course-list>
+  <ngrx-course-list></ngrx-course-list>
 
-    <div>
-      <div class="row">
-        <div class="col-4"><ngrx-search-panel [color]="'red'" [searchPattern]="'a'"></ngrx-search-panel></div>
-        <div class="col-4"><ngrx-search-panel [color]="'yellow'" [searchPattern]="'u'"></ngrx-search-panel></div>
-        <div class="col-4"><ngrx-search-panel [color]="'lightgreen'"  [searchPattern]="'1'"></ngrx-search-panel></div>
-      </div>
+  <div>
+    <div class="row">
+      <div class="col-4"><ngrx-search-panel [color]="'red'" [searchPattern]="'a'"></ngrx-search-panel></div>
+      <div class="col-4"><ngrx-search-panel [color]="'yellow'" [searchPattern]="'u'"></ngrx-search-panel></div>
+      <div class="col-4"><ngrx-search-panel [color]="'lightgreen'"  [searchPattern]="'1'"></ngrx-search-panel></div>
     </div>
   </div>
+
   <div *ngIf="(isLoggedIn$ | async) === false">
     <i>You are not logged in. Maybe user stuck into Local Storage.</i>
     <p>

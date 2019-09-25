@@ -9,6 +9,7 @@
     "i18n:extract": "ng xi18n --output-path locale --i18n-format=xlf2",
     "build": "ng build",
     "build:hu": "ng build --configuration=hu",
+    "build-prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
