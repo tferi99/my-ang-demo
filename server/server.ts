@@ -1,6 +1,6 @@
 import * as express from 'express';
 import {Application} from 'express';
-import {getAllCourses, getAllCoursesRandomErr, getAllCoursesSlowly, getCourseById, saveCourse} from './course.route';
+import {getAllCourses, getAllCoursesLimit, getAllCoursesRandomErr, getAllCoursesSlowly, getCourseById, saveCourse} from './course.route';
 import {searchLessons} from './search-lessons.route';
 import {loginUser, logoutUser} from './auth.route';
 import {AddressInfo} from 'net';
@@ -18,7 +18,8 @@ app.use(bodyParser.json());
 app.route('/api/login').post(loginUser);
 app.route('/api/logout').post(logoutUser);
 
-app.route('/api/courses').get(getAllCoursesSlowly);
+app.route('/api/courses').get(getAllCourses);
+app.route('/api/courses/limit/:limit').get(getAllCoursesLimit);
 
 app.route('/api/courses/randomerr').get(getAllCoursesRandomErr);
 app.route('/api/courses/slow').get(getAllCoursesSlowly);

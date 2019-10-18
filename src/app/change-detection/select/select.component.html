@@ -1,16 +1,50 @@
-<div class="m-3" style="border: solid 1px red; padding: 20px">
+<div class="m-3" style="border: solid 1px red; padding: 20px" [class.onPushPanel]="onPush">
   <h4>Change detection: {{type}}</h4>
+  <hr>
   <div>
-    <span class="mr-2">{{type}}</span>
-
+    <span class="mr-2">Choose</span>
     <select class="mr-2" (change)="change()">
       <option *ngFor="let option of options" [value]="option.id">{{option.name}}</option>
     </select>
 
-  </div>
-  <div>
     <span class="mr-2">Current value:</span>
     {{getChdCurrentValue()}}
+
+    <h4>courses from REST - with async</h4>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let c of (courses$ | async)">
+        <td>{{c.id}}</td>
+        <td>{{c.description}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h4>courses from REST - with subscribe</h4>
+    <button (click)="fetchRest()">Fetch REST</button>
+    <span *ngIf="!onPush" class="ml-2" style="background-color: lightgreen"><small><i>Always works.</i></small></span>
+    <span *ngIf="onPush" class="ml-2" style="background-color: lightcoral"><small><i>The 1st click won't work!</i></small></span>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let c of (courses)">
+        <td>{{c.id}}</td>
+        <td>{{c.description}}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
   <button (click)="trigger()">Trigger change detection from component</button>
 </div>

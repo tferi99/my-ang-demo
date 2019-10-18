@@ -8,19 +8,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let c of (courses$ | async)">
-      <td>{{c.id}}</td>
-      <td>{{c.description}}</td>
-    </tr>
-
-    <hr>
-
-    <tr *ngFor="let c of courses2">
-      <td>### {{c.id}}</td>
-      <td>{{c.description}}</td>
-    </tr>
-
-
+      <tr *ngFor="let c of (courses$ | async)">
+        <td>{{c.id}}</td>
+        <td>{{c.description}}</td>
+      </tr>
     </tbody>
   </table>
 </div>

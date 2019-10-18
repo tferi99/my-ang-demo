@@ -75,7 +75,7 @@ export class HotVsColdComponent implements OnInit {
   }
 
   private createCold(name: string, interval: number): Observable<string> {
-    return Observable.create((observer: any) => {
+    return new Observable((observer: any) => {
       // producer created here
       observer.next(name + ' is ALIVE: ' + Date.now());
       setInterval(() => observer.next(name + ' - ' + Date.now())

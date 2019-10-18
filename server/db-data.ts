@@ -406,14 +406,14 @@ export const GRIDSTER = {
       y: 0,
       rows: 1,
       cols: 4,
-      widgetType: 'grid-counter'
+      widgetType: 'grid-backgroundCounter'
     },
     {
       x: 0,
       y: 1,
       rows: 1,
       cols: 2,
-      widgetType: 'grid-counter'
+      widgetType: 'grid-backgroundCounter'
     },
     {
       x: 3,

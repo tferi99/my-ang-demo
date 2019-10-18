@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
     if (!this.localStorageService.getUser()) {
-      this.log.debug('\'' + LocalStorageService.USER_LOC_STORE_KEY + '\' cannot cannot found in local storage -> login')
+      this.log.debug('\'' + LocalStorageService.USER_LOC_STORE_KEY + '\' cannot cannot found in local storage -> login');
       this.router.navigateByUrl('/ngrx/login');
       return false;
     }

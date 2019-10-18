@@ -21,8 +21,6 @@ export function setRxJsLoggingLevel(level: RxJsLoggingLevel) {
  *
  * Put this operator into pipe(...) chain where you want to tap data flow.
  *
- * @param level
- * @param message
  */
 export const rxJsLog = (log: NGXLogger, level: RxJsLoggingLevel, message: string) =>
   (source: Observable<any>) => source.pipe(

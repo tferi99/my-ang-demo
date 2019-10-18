@@ -5,7 +5,7 @@ export enum Gender {
 }
 
 export namespace Gender {
-  export function asArray(): string[] {
+  function asArray(): string[] {
     const arr = [];
 
     for (const n in Gender) {

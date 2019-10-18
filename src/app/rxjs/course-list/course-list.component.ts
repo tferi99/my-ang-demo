@@ -12,12 +12,11 @@ import {map, share} from 'rxjs/operators';
 export class CourseListComponent implements OnInit {
   courses$: Observable<Course[]>;
   coursesCount$: Observable<number>;
-  courses2: Course[];
 
-  constructor(private store: ApiService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.courses$ = this.store.getCourses().pipe(
+    this.courses$ = this.apiService.getCourses().pipe(
       // It makes cold to hot.
       // If you don't share this stream this way, 2 HTTP (XHR) query will be performed
       share()
@@ -25,7 +24,5 @@ export class CourseListComponent implements OnInit {
     this.coursesCount$ = this.courses$.pipe(
       map(x => x.length)
     );
-
-    //setTimeout(() => this.store.getCourses().subscribe(x => this.courses2 = x), 1000);
   }
 }

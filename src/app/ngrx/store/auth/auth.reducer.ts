@@ -21,19 +21,19 @@ export function authReducer(state = initialState, action: AuthActions): AuthStat
         loggedIn: true,
         user: action.payload,
         errorMessage: undefined
-      }
+      };
     case AuthActionTypes.LoginFailedAction:
       return {
         loggedIn: false,
         user: undefined,
         errorMessage: action.payload.errorMessage
-      }
+      };
     case AuthActionTypes.LogoutAction:
       return {
         loggedIn: false,
         user: undefined,
         errorMessage: undefined
-      }
+      };
     default:
       return state;
   }

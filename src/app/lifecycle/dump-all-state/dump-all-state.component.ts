@@ -20,9 +20,9 @@ import {NGXLogger} from 'ngx-logger';
   styleUrls: ['./dump-all-state.component.sass']
 })
 export class DumpAllStateComponent implements OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
-  @Input() testText: string
-  @Input() testNumber: number
-  @Input() testObject: Person
+  @Input() testText: string;
+  @Input() testNumber: number;
+  @Input() testObject: Person;
 
   constructor(private log: NGXLogger) {
     this.log.debug('=== CONSTRUCTOR');

@@ -19,19 +19,23 @@ export class MainComponent implements OnInit, OnDestroy {
 
   onPush = false;
 
-  counter: Observable<number> = timer(0, 5000);
-  counterSubscription: Subscription;
+  backgroundCounter: Observable<number> = timer(0, 5000);
+  backgroundCounterSubscription: Subscription;
+  backgroundCounterValue: number;
 
   constructor(private chdService: ChdService) { }
 
   ngOnInit() {
-    this.counterSubscription = this.counter.subscribe(
-      () => this.chdService.incrementCurrentValue()
+    this.backgroundCounterSubscription = this.backgroundCounter.subscribe(
+      () => {
+        this.chdService.incrementCurrentValue();
+        this.backgroundCounterValue = this.chdService.getCurrentValue();
+      }
     );
   }
 
   ngOnDestroy(): void {
-    this.counterSubscription.unsubscribe();
+    this.backgroundCounterSubscription.unsubscribe();
   }
 
   trigger() {}
@@ -40,5 +44,3 @@ export class MainComponent implements OnInit, OnDestroy {
     console.log(event);
   }
 }
-
-

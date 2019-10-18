@@ -19,13 +19,13 @@ export class TypeAheadComponent implements OnInit, AfterViewInit {
 
   constructor(private api: ApiService, private log: NGXLogger) {
     this.currentCource = {
-      'id': 1,
-      'description': 'Angular for Beginners - DUMMY',
-      'iconUrl': 'https://angular-academy.s3.amazonaws.com/thumbnails/angular2-for-beginners-small-v2.png',
-      'courseListIcon': 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
-      'longDescription': 'Establish a solid layer of fundamentals, learn what\'s under the hood of Angular',
-      'category': 'BEGINNER',
-      'lessonsCount': 10
+      id: 1,
+      description: 'Angular for Beginners - DUMMY',
+      iconUrl: 'https://angular-academy.s3.amazonaws.com/thumbnails/angular2-for-beginners-small-v2.png',
+      courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
+      longDescription: 'Establish a solid layer of fundamentals, learn what\'s under the hood of Angular',
+      category: 'BEGINNER',
+      lessonsCount: 10
     };
   }
 

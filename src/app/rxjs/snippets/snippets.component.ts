@@ -56,7 +56,7 @@ export class SnippetsComponent implements OnInit {
   }
 
   withLatestFrom() {
-    const timer2 = interval(600).pipe(watch('counter-2', TEST_SECS));
+    const timer2 = interval(600).pipe(watch('backgroundCounter-2', TEST_SECS));
 
     const ops = pipe(
       take(14),

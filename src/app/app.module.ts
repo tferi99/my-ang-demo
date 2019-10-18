@@ -45,7 +45,7 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule.forRoot(),
+    NgbModule,
     FontAwesomeModule,
     EventBroadcastModule,
     LodashModule,

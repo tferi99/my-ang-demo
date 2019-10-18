@@ -38,7 +38,7 @@ export class TokenCleanInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error instanceof HttpErrorResponse && error.status === 401) {
-          this.log.warn('Auth error - token removed from Local Storage')
+          this.log.warn('Auth error - token removed from Local Storage');
           this.localStoreService.deleteUser();
         }
         return throwError(error);

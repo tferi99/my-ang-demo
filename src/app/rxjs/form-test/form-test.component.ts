@@ -19,10 +19,10 @@ export class FormTestComponent implements OnInit {
     gender: ['', Validators.required],
     birth: ['', Validators.required]
   });
-  name = this.form.controls['name'];
-  age = this.form.controls['age'];
-  gender = this.form.controls['gender'];
-  birth = this.form.controls['birth'];
+  name = this.form.controls.name;
+  age = this.form.controls.age;
+  gender = this.form.controls.gender;
+  birth = this.form.controls.birth;
 
   constructor(private fb: FormBuilder, private log: NGXLogger) {
     this.genders = stringEnumToKeyValuePairArray(Gender, true);

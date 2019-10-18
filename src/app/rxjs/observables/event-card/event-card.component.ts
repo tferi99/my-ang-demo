@@ -9,7 +9,7 @@ import {tap} from 'rxjs/operators';
   styleUrls: ['./event-card.component.sass']
 })
 export class EventCardComponent implements OnInit, AfterViewInit {
-  @Input() data: ObservabledDemoData
+  @Input() data: ObservabledDemoData;
   @ViewChild('card', {static: true}) clickTarget: ElementRef;
 
   x: number;

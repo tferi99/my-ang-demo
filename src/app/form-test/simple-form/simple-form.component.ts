@@ -11,13 +11,13 @@ import {NGXLogger} from 'ngx-logger';
 })
 export class SimpleFormComponent implements OnInit {
   @Input() title = 'Default';
-  @Output() onSubmitSend: EventEmitter<Person>;
+  @Output() submitSend: EventEmitter<Person>;
   result: string;
   genders: KeyValuePair<string, string>[];
 
   constructor(private log: NGXLogger) {
-    this.onSubmitSend = new EventEmitter<Person>();
-    this.onSubmitSend.subscribe((person: Person) => this.log.debug('SENT BACK: ' + JSON.stringify(person)));
+    this.submitSend = new EventEmitter<Person>();
+    this.submitSend.subscribe((person: Person) => this.log.debug('SENT BACK: ' + JSON.stringify(person)));
     this.genders = stringEnumToKeyValuePairArray(Gender, true);
   }
 
@@ -28,6 +28,6 @@ export class SimpleFormComponent implements OnInit {
     const p = new Person(name.value, parseInt(age.value, 10), gender.value as Gender);
     this.result = JSON.stringify(p);
 
-    this.onSubmitSend.emit(p);
+    this.submitSend.emit(p);
   }
 }

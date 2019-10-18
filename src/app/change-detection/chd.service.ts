@@ -12,6 +12,6 @@ export class ChdService {
 
   incrementCurrentValue() {
     this.currentValue++;
-    console.log('Current value in service has beemn incremented: ' + this.currentValue);
+    console.log('An external background Observable emitted a new value: ' + this.currentValue);
   }
 }

@@ -40,7 +40,7 @@ export class MainComponent implements OnInit {
   }
 
   changeIdleState(msg: string) {
-    console.log('>>>> ' + msg)
+    console.log('>>>> ' + msg);
     this.idleState = msg;
   }
 

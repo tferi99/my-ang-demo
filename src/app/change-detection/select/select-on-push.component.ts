@@ -1,7 +1,8 @@
 import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ChdService} from '../chd.service';
 import {Observable, Subscription} from 'rxjs';
-import {counter} from '@fortawesome/fontawesome-svg-core';
+import {Course} from '../../shared/model/course.model';
+import {ApiService} from '../../core/service/api.service';
 
 @Component({
   selector: 'chd-select-onpush',
@@ -10,27 +11,42 @@ import {counter} from '@fortawesome/fontawesome-svg-core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectOnPushComponent implements OnInit, OnDestroy {
-  type = 'onPush';
   @Input() options = [];
-  @Input() counter: Observable<number>;
-  counterSubscription: Subscription;
 
-  constructor(private chdService: ChdService) {}
+  type = 'Default';
+  onPush = true;
+  limit = 2;
 
-  change() {}
+  courses$: Observable<Course[]> = this.apiService.getCoursesLimit(this.limit);
+  courses: Course[];
+  coursesSubs: Subscription;
+
+  constructor(private chdService: ChdService, private apiService: ApiService) {}
+
+  ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.cleanup();
+  }
 
   getChdCurrentValue(): number {
     return this.chdService.getCurrentValue();
   }
 
+  change() {}
+
   trigger() {}
 
-  ngOnInit(): void {
-    if (this.counter) {
-      this.counterSubscription = this.counter.subscribe()
-    }
+  fetchRest() {
+    this.cleanup();
+    this.coursesSubs = this.apiService.getCoursesLimit(2).subscribe(
+      res => this.courses = res
+    );
   }
 
-  ngOnDestroy(): void {
+  cleanup() {
+    if (this.coursesSubs) {
+      this.coursesSubs.unsubscribe();
+    }
   }
 }

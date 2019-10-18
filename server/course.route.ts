@@ -1,11 +1,17 @@
 import {Request, Response} from 'express';
 import {COURSES} from './db-data';
-import {setTimeout} from "timers";
-
+import {setTimeout} from 'timers';
 
 export function getAllCourses(req: Request, res: Response) {
   setTimeout(() => {
     res.status(200).json({payload: Object.values(COURSES)});
+  }, 200);
+}
+
+export function getAllCoursesLimit(req: Request, res: Response) {
+  const limit = req.params['limit'];
+  setTimeout(() => {
+    res.status(200).json({payload: Object.values(COURSES).slice(0, limit)});
   }, 200);
 }
 
