@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --evalSourceMap=true",
+    "start:ssl": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --evalSourceMap=true --ssl",
     "start:hu": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --evalSourceMap=true --configuration=hu",
     "server-with-watch": "ts-node-dev --respawn --transpileOnly ./server/server.ts",
     "i18n:extract": "ng xi18n --output-path locale --i18n-format=xlf2",
