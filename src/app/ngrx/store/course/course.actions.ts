@@ -20,12 +20,12 @@ export class CourseLoaded implements Action {
   constructor(public payload: { course: Course }) {}
 }
 
-@ShowLoader()
+// @ShowLoader()
 export class AllCoursesRequested implements Action {
   readonly type = CourseActionTypes.AllCoursesRequested;
 }
 
-@HideLoader(CourseActionTypes.AllCoursesLoaded)
+// @HideLoader(CourseActionTypes.AllCoursesLoaded)
 export class AllCoursesLoaded implements Action {
   readonly type = CourseActionTypes.AllCoursesLoaded;
   constructor(public payload: { courses: Course[] }) {}

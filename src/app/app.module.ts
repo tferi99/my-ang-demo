@@ -31,6 +31,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ChangeDetectionModule} from './change-detection/change-detection.module';
 import {DatabindModule} from './databind/databind.module';
+import {CollapseModule} from 'ngx-bootstrap';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/translations_', '.json');
@@ -59,6 +60,7 @@ export function createTranslateLoader(http: HttpClient) {
     I18n2Module,
     ChangeDetectionModule,
     DatabindModule,
+    CollapseModule.forRoot(),
     StoreModule.forRoot(reducers, { metaReducers, runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),

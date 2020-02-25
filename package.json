@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --evalSourceMap=true",
+    "start": "./node_modules/.bin/ng serve --proxy-config ./proxy.json --evalSourceMap=true",
     "start:ssl": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --evalSourceMap=true --ssl",
     "start:hu": "./node_modules/.bin/ng serve  --proxy-config ./proxy.json --evalSourceMap=true --configuration=hu",
     "server-with-watch": "ts-node-dev --respawn --transpileOnly ./server/server.ts",

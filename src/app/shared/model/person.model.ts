@@ -4,6 +4,7 @@ export enum Gender {
   NA = 'N.A.'
 }
 
+/*
 export namespace Gender {
   function asArray(): string[] {
     const arr = [];
@@ -16,7 +17,7 @@ export namespace Gender {
     return arr;
   }
 }
-
+*/
 export class Person {
   private _name: string;
 
