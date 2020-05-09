@@ -1,0 +1,36 @@
+<div class="container mt-2">
+  <app-page-header title="Directive"></app-page-header>
+
+  <div class="mt-2">
+    <h5>Basic directive</h5>
+    <p appBasicHighlight>Set me with Basic directive</p>
+
+    <h5>Better directive</h5>
+    <div class="row">
+      <div class="col-6">
+        <h6>default:</h6>
+        <dev-color-selector [color]="colors.Yellow" (changed)="betterDefaultChanged($event)"></dev-color-selector>
+      </div>
+      <div class="col-6">
+        <h6>highlight:</h6>
+        <dev-color-selector [color]="colors.Blue" (changed)="betterHighlightChanged($event)"></dev-color-selector>
+      </div>
+    </div>
+
+    {{betterDefault}} / {{betterHighlight}}
+    <!--
+    <div class="row mt-2 mb-2">
+      <div class="col-2">
+        <div class="custom-control custom-radio" *ngFor="let c of colors">
+          <input type="radio" id="{{'color_' + c}}" class="custom-control-input" name="col" [value]="c" [(ngModel)]="color">
+          <label class="custom-control-label" for="{{'color_' + c}}">{{c}}</label>
+        </div>
+      </div>
+      <div class="col-1 colorOut" [ngStyle]="{'background-color': color, 'color': 'white'}"></div>
+    </div>
+    -->
+    <p appBetterHighlight [defaultColor]="betterDefault" [hightlightColor]="betterHighlight">Better directive (default: {{betterDefault}}, highlight: {{betterHighlight}})</p>
+  </div>
+
+
+</div>

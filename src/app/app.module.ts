@@ -7,7 +7,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {HomePageComponent} from './home-page/home-page.component';
 import {EventBroadcastModule} from './event-broadcast/event-broadcast.module';
-import {LodashModule} from './lodash/lodash.module';
 import {RxjsModule} from './rxjs/rxjs.module';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {LifecycleModule} from './lifecycle/lifecycle.module';
@@ -31,7 +30,15 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ChangeDetectionModule} from './change-detection/change-detection.module';
 import {DatabindModule} from './databind/databind.module';
-import {CollapseModule} from 'ngx-bootstrap';
+import {CollapseModule} from 'ngx-bootstrap/collapse';
+import {ContentModule} from './content/content.module';
+import {DirectiveModule} from './directive/directive.module';
+import {CComponent} from './router-direct/c/c.component';
+import {DComponent} from './router-direct/d/d.component';
+import {MainComponent} from './router-direct/main/main.component';
+import {SharedModule} from './shared/shared.module';
+import {Page404Component} from './page404/page404.component';
+import { DirectPage404Component } from './router-direct/direct-page404/direct-page404.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/translations_', '.json');
@@ -41,6 +48,11 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [
     AppComponent,
     HomePageComponent,
+    CComponent,
+    DComponent,
+    MainComponent,
+    Page404Component,
+    DirectPage404Component,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +61,6 @@ export function createTranslateLoader(http: HttpClient) {
     NgbModule,
     FontAwesomeModule,
     EventBroadcastModule,
-    LodashModule,
     RxjsModule,
     GridModule,
     LifecycleModule,
@@ -60,8 +71,11 @@ export function createTranslateLoader(http: HttpClient) {
     I18n2Module,
     ChangeDetectionModule,
     DatabindModule,
+    ContentModule,
+    DirectiveModule,
+
     CollapseModule.forRoot(),
-    StoreModule.forRoot(reducers, { metaReducers, runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
+    StoreModule.forRoot(reducers, {metaReducers, runtimeChecks: {strictStateImmutability: true, strictActionImmutability: true}}),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
     LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG}),
@@ -73,7 +87,8 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: (createTranslateLoader),
         deps: [HttpClient]
       }
-    })
+    }),
+    SharedModule
   ],
   exports: [
   ],

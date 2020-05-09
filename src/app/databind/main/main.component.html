@@ -1,9 +1,5 @@
 <div class="container mt-2">
-  <app-page-header title="2-way data bind"></app-page-header>
-
-  <div class="mb-2">
-    <small><i>Multiple implementations of the same 2-way data binding.</i></small>
-  </div>
+  <app-page-header title="2-way data bind" description="Multiple implementations of the same 2-way data binding."></app-page-header>
 
   <h3>[] ()</h3>
   <input [value]="username" (input)="username = $event.target.value">

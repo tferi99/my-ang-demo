@@ -9,12 +9,21 @@
         <span>
           <input type="text" class="form-control" id="name" name="name" placeholder="Name" [formControl]="name" #nameElem>
           <div *ngIf="name.touched && name.invalid">ERROR!!!</div>
-          <!--
-          <div *ngFor="let err of name.errors"># {{err}}</div>
-          -->
           <dev-control-status-debug [control]="name" [element]="nameElem"></dev-control-status-debug>
         </span>
       </div>
+
+      <div class="form-group col-md-3">
+        <label for="name">Name</label>
+        <span>
+          <input type="text" class="form-control" id="email" name="email" placeholder="Email" [formControl]="email" #emailElem>
+          <div *ngIf="email.touched && email.invalid">ERROR!!!
+            <span *ngIf="email.errors['required']">Empty!</span>
+            <span *ngIf="email.errors['email']">Bad email format!</span>
+          </div>
+          <dev-control-status-debug [control]="email" [element]="nameElem"></dev-control-status-debug>
+        </span>
+    </div>
 
       <div class="form-group col-md-3">
         <label for="age">Age</label>
@@ -30,7 +39,7 @@
         <dev-control-status-debug [control]="gender"></dev-control-status-debug>
       </div>
     </div>
-    <button type="submit" class="button" [disabled]="!form.valid">OK</button>
+    <button type="submit" class="button" [disabled]="false && !form.valid">OK</button>
   </form>
   <h5>Form status: {{form.status}}</h5>
   <h5>Form value: {{form.value | json}}</h5>

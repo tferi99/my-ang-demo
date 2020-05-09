@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import {ControlStatusDebugComponent} from './component/control-status-debug/control-status-debug.component';
 import {BooleanIconComponent} from './component/boolean-icon/boolean-icon.component';
 import { PageHeaderComponent } from './component/page-header/page-header.component';
+import { ColorSelectorComponent } from './component/color-selector/color-selector.component';
+import {FormsModule} from '@angular/forms';
+import { EnumToArrayPipe } from './pipe/enum-to-array.pipe';
 
 /**
  * Module for commonly used components/directives/pipes and
@@ -10,13 +13,14 @@ import { PageHeaderComponent } from './component/page-header/page-header.compone
  */
 @NgModule({
   declarations: [
-    ControlStatusDebugComponent, BooleanIconComponent, PageHeaderComponent
+    ControlStatusDebugComponent, BooleanIconComponent, PageHeaderComponent, ColorSelectorComponent, EnumToArrayPipe
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
-  exports: [
-    ControlStatusDebugComponent, PageHeaderComponent
-  ]
+    exports: [
+        ControlStatusDebugComponent, PageHeaderComponent, ColorSelectorComponent
+    ]
 })
 export class SharedModule { }

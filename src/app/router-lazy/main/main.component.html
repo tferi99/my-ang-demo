@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" style="cursor: pointer"  routerLinkActive="active" routerLink="a">A component</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  routerLinkActive="active" routerLink="b">B component</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  routerLinkActive="active" routerLink="cicamica">Not found</a>
+      </li>
+    </ul>
+  </div>
+  <button class="btn btn-primary mr-2" (click)="gotoA()">Goto A</button>
+  <button class="btn btn-success mr-2" (click)="gotoB()">Goto B</button>
+  <button class="btn btn-danger mr-2" (click)="gotoX()">Not Found</button>
+</nav>
+
+<div class="container mb-2">
+  <app-page-header title="Router lazy" description="Nested routing in a lazy loaded module"></app-page-header>
+  <router-outlet></router-outlet>
+</div>

@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {HomePageComponent} from './home-page/home-page.component';
 import {MainComponent as EventBroadcastMain} from './event-broadcast/main/main.component';
 import {MainComponent as RxjsMain} from './rxjs/main/main.component';
-import {LodashModule} from './lodash/lodash.module';
 import {MainComponent as LifecycleMain} from './lifecycle/main/main.component';
 import {MainComponent as FormTestMain} from './form-test/main/main.component';
 import {MainComponent as NgrxMain} from './ngrx/main/main.component';
@@ -13,8 +12,17 @@ import {MainComponent as I18n2Main} from './i18n2/main/main.component';
 import {MainComponent as KeepaliveMain} from './keepalive/main/main.component';
 import {MainComponent as ChdMain} from './change-detection/main/main.component';
 import {MainComponent as DatabindMain} from './databind/main/main.component';
+import {MainComponent as ContentMain} from './content/main/main.component';
+import {MainComponent as DirectiveMain} from './directive/main/main.component';
+import {MainComponent as RouterDirectMain} from './router-direct/main/main.component';
+
 import {LoginComponent} from './ngrx/login/login.component';
 import {AuthGuard} from './core/guard/auth-guard';
+import {CComponent} from './router-direct/c/c.component';
+import {DComponent} from './router-direct/d/d.component';
+import {LazyPage404Component} from './router-lazy/lazy-page404/lazy-page404.component';
+import {DirectPage404Component} from './router-direct/direct-page404/direct-page404.component';
+import {Page404Component} from './page404/page404.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -26,12 +34,21 @@ const routes: Routes = [
   { path: 'keepalive', component: KeepaliveMain },
   { path: 'lifecycle', component: LifecycleMain },
   { path: 'formtest', component: FormTestMain },
-  { path: 'lodash', component: LodashModule },
   { path: 'i18n', component: I18nMain },
   { path: 'i18n2', component: I18n2Main },
   { path: 'chd', component: ChdMain },
   { path: 'databind', component: DatabindMain },
+  { path: 'content', component: ContentMain },
+  { path: 'directive', component: DirectiveMain },
+  { path: 'router-direct', component: RouterDirectMain, children: [       // direct children
+      { path: 'c', component: CComponent},
+      { path: 'd', component: DComponent},
+      { path: '', redirectTo: 'c', pathMatch: 'full' },
+      { path: '**', component: DirectPage404Component },
+  ]},
+  { path: 'router-lazy', loadChildren: () => import('./router-lazy/router-lazy.module').then(m => m.RouterLazyModule) },     // lazy loading
   { path: '',   redirectTo: '/home', pathMatch: 'full' },   // default
+  { path: '**', component: Page404Component}
 ];
 
 @NgModule({

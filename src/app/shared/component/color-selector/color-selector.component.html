@@ -1,0 +1,8 @@
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" [ngStyle]="{'background-color': color}">Color</span>
+  </div>
+  <select class="custom-select" [(ngModel)]="color" (ngModelChange)="onColorChanged($event)">
+    <option *ngFor="let c of colors | keyvalue" [ngValue]="c.value" >{{c.key}}</option>
+  </select>
+</div>
