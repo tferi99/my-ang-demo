@@ -11,8 +11,8 @@ export class MainComponent implements OnInit {
   nonSharedPerson: Person;      // not shared with monitor
 
   constructor() {
-    this.sharedPerson = new Person('John Smith', 1943, Gender.MALE);
-    this.nonSharedPerson = new Person('Jane Doe', 1988, Gender.FEMALE);
+    this.sharedPerson = {id: 10, name: 'John Smith', email: 'js@abc.com', gender: Gender.MALE, birth: new Date('1975-03-24')};
+    this.nonSharedPerson = {id: 11, name: 'Jane Doe', email: 'js@abc.com', gender: Gender.FEMALE, birth: new Date('1981-11-22')};
   }
 
   ngOnInit() {

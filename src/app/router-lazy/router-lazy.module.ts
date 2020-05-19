@@ -7,6 +7,13 @@ import {BComponent} from './b/b.component';
 import { LazyPage404Component } from './lazy-page404/lazy-page404.component';
 import {MainComponent} from './main/main.component';
 import {SharedModule} from '../shared/shared.module';
+import { PersonsComponent } from './persons/persons.component';
+import { PersonDetailComponent } from './person-detail/person-detail.component';
+import { PersonEditComponent } from './person-edit/person-edit.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import { FormControlValidationMessageComponent } from './form-control-validation-message/form-control-validation-message.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -14,12 +21,18 @@ import {SharedModule} from '../shared/shared.module';
     MainComponent,
     AComponent,
     BComponent,
-    LazyPage404Component
+    LazyPage404Component,
+    PersonsComponent,
+    PersonDetailComponent,
+    PersonEditComponent,
+    FormControlValidationMessageComponent
   ],
   imports: [
     CommonModule,
     RouterLazyRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    BsDatepickerModule.forRoot(),
   ]
 })
 export class RouterLazyModule { }

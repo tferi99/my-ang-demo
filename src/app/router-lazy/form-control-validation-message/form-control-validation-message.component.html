@@ -1,0 +1,4 @@
+<span *ngIf="getMessage()" class="form-control-validation-message">{{getMessage()}}</span>
+<span *ngIf="errorMessage" class="errorMessage ml-2">{{errorMessage}}</span>
+<span *ngIf="debugMessage" class="debugMessage ml-2" [class.debugMessageInvalid]="control.invalid" [class.debugMessageValid]="control.valid">{{debugMessage}} </span>
+

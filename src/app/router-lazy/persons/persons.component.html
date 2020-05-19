@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">&nbsp;</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let p of persons">
+          <td>{{p.name}}</td>
+          <td>{{p.email}}</td>
+          <td><button class="btn btn-primary" routerLink="persons/{{p.id}}"><i class="fa fa-caret-right"></i></button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-8" style="background-color: beige; padding: 15px">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

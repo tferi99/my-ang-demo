@@ -8,6 +8,9 @@
         <a class="nav-link"  routerLinkActive="active" routerLink="b">B component</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link"  routerLinkActive="active" routerLink="persons">Persons</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link"  routerLinkActive="active" routerLink="cicamica">Not found</a>
       </li>
     </ul>
@@ -17,7 +20,7 @@
   <button class="btn btn-danger mr-2" (click)="gotoX()">Not Found</button>
 </nav>
 
-<div class="container mb-2">
+<div class="container-xl mb-2">
   <app-page-header title="Router lazy" description="Nested routing in a lazy loaded module"></app-page-header>
   <router-outlet></router-outlet>
 </div>

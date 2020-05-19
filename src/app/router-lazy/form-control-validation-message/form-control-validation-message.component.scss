@@ -1,0 +1,20 @@
+.form-control-validation-message {
+  color: red;
+  font-size: small;
+}
+
+.errorMessage {
+  color: red;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.debugMessageValid {
+  background-color: #73AD21;
+  color: white;
+}
+
+.debugMessageInvalid {
+  background-color: red;
+  color: white;
+}

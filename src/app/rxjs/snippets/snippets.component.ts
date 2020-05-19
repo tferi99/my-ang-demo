@@ -20,7 +20,7 @@ type BehaviorImpl = () => OperatorFunction<any, any>;
 export class SnippetsComponent implements OnInit, OnDestroy {
 /*  form = this.fb.group({
     withInterval: [],
-    age: ['0', [CustomValidators.required, Validators.min(1), , Validators.max(150)]],
+    weight: ['0', [CustomValidators.required, Validators.min(1), , Validators.max(150)]],
     gender: ['', CustomValidators.required]
   });*/
 

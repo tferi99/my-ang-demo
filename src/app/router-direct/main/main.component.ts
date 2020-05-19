@@ -8,23 +8,23 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class MainComponent implements OnInit {
 
-  constructor(private router: Router, private currentRoute: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
   gotoC() {
-    console.log('GOTO C - ' , this.currentRoute.toString());
-    this.router.navigate(['c'], {relativeTo: this.currentRoute});
+    console.log('GOTO C - ' , this.route.toString());
+    this.router.navigate(['c'], {relativeTo: this.route});
   }
 
   gotoD() {
-    console.log('GOTO D - ' , this.currentRoute.toString());
-    this.router.navigate(['d'], {relativeTo: this.currentRoute});
+    console.log('GOTO D - ' , this.route.toString());
+    this.router.navigate(['d'], {relativeTo: this.route});
   }
 
   gotoX() {
-    console.log('GOTO X - ' , this.currentRoute.toString());
-    this.router.navigate(['valami'], {relativeTo: this.currentRoute});
+    console.log('GOTO X - ' , this.route.toString());
+    this.router.navigate(['valami'], {relativeTo: this.route});
   }
 }

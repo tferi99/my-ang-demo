@@ -1,5 +1,6 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -19,7 +20,6 @@ import {environment} from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
 import {LoggerModule, NgxLoggerLevel} from 'ngx-logger';
 import {HttpErrorInterceptor} from './core/interceptor/http-error.interceptor';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {TokenCleanInterceptor} from './core/interceptor/token.interceptor';
 import {GridModule} from './grid/grid.module';
@@ -39,6 +39,7 @@ import {MainComponent} from './router-direct/main/main.component';
 import {SharedModule} from './shared/shared.module';
 import {Page404Component} from './page404/page404.component';
 import { DirectPage404Component } from './router-direct/direct-page404/direct-page404.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/translations_', '.json');
@@ -79,7 +80,7 @@ export function createTranslateLoader(http: HttpClient) {
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
     LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG}),
-    BrowserAnimationsModule,  // for Toastr
+    BrowserAnimationsModule,  // for Toastr, datepicker
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -88,6 +89,7 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    BsDatepickerModule.forRoot(),
     SharedModule
   ],
   exports: [

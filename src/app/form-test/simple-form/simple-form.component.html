@@ -9,8 +9,12 @@
         <input type="text" class="form-control" id="name" name="name" placeholder="Name" #name>
       </div>
       <div class="form-group col-md-3">
-        <label for="age">Age</label>
-        <input type="number" class="form-control" id="age" name="age" placeholder="Age" #age>
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email" #email>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="weight">Weight</label>
+        <input type="number" class="form-control" id="weight" name="weight" placeholder="Weight" #weight>
       </div>
       <div class="form-group col-md-3">
         <label for="gender">Gender</label>
@@ -20,7 +24,7 @@
       </div>
 
     </div>
-    <button (click)="addPerson(name, age, gender)" class="ui positive floated button">OK</button>
+    <button (click)="addPerson(name, email, weight, gender)" class="ui positive floated button">OK</button>
   </form>
   <h5>Result: {{result}}</h5>
 </div>

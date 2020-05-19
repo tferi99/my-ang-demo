@@ -4,36 +4,15 @@ export enum Gender {
   NA = 'N.A.'
 }
 
-/*
-export namespace Gender {
-  function asArray(): string[] {
-    const arr = [];
-
-    for (const n in Gender) {
-      if (typeof Gender[n] === 'string') {
-        arr.push(n);
-      }
-    }
-    return arr;
-  }
-}
-*/
 export class Person {
-  private _name: string;
+  id: number;
+  name: string;
+  email: string;
+  gender: Gender;
+  birth?: Date;
+  weight?: number;
 
-  constructor(name: string, public born: number, public gender: Gender) {
-    this._name = name;
-  }
-
-  get name() {
-    // uncomment to see change detection in the debugger call stack
-    // debugger;
-
-    return this._name;
-  }
-
-  set name(name) {
-    this._name = name;
-  }
+  constructor() {}
 }
+
 

@@ -35,6 +35,6 @@ export class FormTestComponent implements OnInit {
   onSubmit() {
     this.log.warn('SUBMITTED: ' + this.form.value);
 
-    const p = new Person(this.name.value, parseInt(this.age.value, 10), this.gender.value);
+    // const p = new Person(this.name.value, parseInt(this.weight.value, 10), this.gender.value, this.birth: new Date().toDateString());
   }
 }
