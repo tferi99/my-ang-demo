@@ -2,10 +2,10 @@
 <div *ngIf="coursesHere.length > 0">
   <h3>Immutability test</h3>
   <div class="m-2">
-    <button (click)="badChange()" class="mx-2">Bad change</button>{{coursesHere[0].description}}
+    <button class="btn btn-primary mx-2" (click)="badChange()">Bad change</button>{{coursesHere[0].description}}
   </div>
   <div class="m-2">
-    <button (click)="goodChange()" class="mx-2">Good change</button>{{coursesHereDeep[0].description}}
+    <button class="btn btn-primary mx-2" (click)="goodChange()">Good change</button>{{coursesHereDeep[0].description}}
   </div>
   <div class="m-2">
     <i>view console for results</i>

@@ -3,15 +3,15 @@
 
   From here: <a href="https://netbasal.com/optimizing-the-performance-of-your-angular-application-f222f1c16354">Article</a>
 
-  <div class="m-3">
-    <input type="checkbox" [checked]="onPush" (change)="onPush = !onPush" id="onPush">
-    <span class="ml-2"><label for="onPush">onPush change detection</label></span>
-  </div>
+    <div class="m-3 form-group form-check">
+      <input type="checkbox" class="form-check-input"  [checked]="onPush" (change)="onPush = !onPush" id="onPush">
+      <label class="form-check-label" for="onPush">onPush change detection</label>
+    </div>
 
   <div class="m-3">
     <chd-select [options]="skills" *ngIf="!onPush"></chd-select>
     <chd-select-onpush [options]="skills" *ngIf="onPush"></chd-select-onpush>
-    <button (click)="trigger()">Trigger change detection from parent</button>
+    <button class="btn btn-primary mr-2" (click)="trigger()">Trigger change detection from parent</button>
   </div>
 
   <pre><i><small>

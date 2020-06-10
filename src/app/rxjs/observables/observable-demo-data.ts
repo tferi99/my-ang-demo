@@ -2,7 +2,7 @@ import {Observable} from 'rxjs';
 import {CardType} from './card-type';
 
 export class ObservabledDemoData {
-  dataAsArray: Array<number> = [];
+  private dataAsArray: Array<number> = [];
   completed = false;
   errorFound = false;
   color = 'primary';

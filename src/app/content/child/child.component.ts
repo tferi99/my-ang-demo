@@ -6,8 +6,8 @@ import {Component, ContentChild, ElementRef, OnInit, ViewChild} from '@angular/c
   styleUrls: ['./child.component.sass']
 })
 export class ChildComponent implements OnInit {
-  @ViewChild('panel', {static: true}) panel: ElementRef;
-  @ContentChild('pushedContent', {static: true}) pushedContent: ElementRef;
+  @ViewChild('panel', {static: true}) panel: ElementRef;                            // reference to an element on THIS component template
+  @ContentChild('pushedContentRef', {static: true}) pushedContentRef: ElementRef;   // reference to an element on CONTENT projected here
 
   desc: string;
 
@@ -15,5 +15,9 @@ export class ChildComponent implements OnInit {
 
   ngOnInit(): void {
     this.desc = this.panel.nativeElement.textContent;
+
+    if (this.pushedContentRef) {
+      this.pushedContentRef.nativeElement.style.backgroundColor = 'yellow';     // set background color of referenced pushed content
+    }
   }
 }

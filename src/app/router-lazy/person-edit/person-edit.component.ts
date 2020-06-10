@@ -39,13 +39,11 @@ export class PersonEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id = +this.route.snapshot.params['id'];
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          const id = +params['id'];
-        }
-      );
+    this.id = +this.route.snapshot.params['id'];            // + is to convert 'id' to number
+    this.route.params.subscribe(
+      (params: Params) => {
+        const id = +params['id'];
+    });
   }
 
   submit(): void {

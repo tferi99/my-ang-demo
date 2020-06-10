@@ -10,7 +10,7 @@ if (environment.production) {
 
 // use the require method provided by webpack
 declare const require;
-// we use the webpack raw-loader to return the content as a string
+// we use the webpack handmade-loader to return the content as a string
 const translationsHu = require(`raw-loader!./locale/messages.hu.xlf`);
 const translationsDe = require(`raw-loader!./locale/messages.de.xlf`);
 

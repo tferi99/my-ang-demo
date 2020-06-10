@@ -20,14 +20,39 @@ import {LoginComponent} from './ngrx/login/login.component';
 import {AuthGuard} from './core/guard/auth-guard';
 import {CComponent} from './router-direct/c/c.component';
 import {DComponent} from './router-direct/d/d.component';
-import {LazyPage404Component} from './router-lazy/lazy-page404/lazy-page404.component';
 import {DirectPage404Component} from './router-direct/direct-page404/direct-page404.component';
 import {Page404Component} from './page404/page404.component';
+import {ObservablesComponent} from './rxjs/observables/observables.component';
+import {CourseListComponent} from './rxjs/course-list/course-list.component';
+import {ImperativeFilterComponent} from './rxjs/imperative-filter/imperative-filter.component';
+import {FlatteningComponent} from './rxjs/flattening/flattening.component';
+import {FormTestComponent} from './rxjs/form-test/form-test.component';
+import {TypeAheadComponent} from './rxjs/type-ahead/type-ahead.component';
+import {ErrorTestComponent} from './rxjs/error-test/error-test.component';
+import {ReactiveFilterComponent} from './rxjs/reactive-filter/reactive-filter.component';
+import {LogTestComponent} from './rxjs/log-test/log-test.component';
+import {HotVsColdComponent} from './rxjs/hot-vs-cold/hot-vs-cold.component';
+import {SnippetsComponent} from './rxjs/snippets/snippets.component';
+import {SandboxComponent} from './rxjs/sandbox/sandbox.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'broadcast', component: EventBroadcastMain },
-  { path: 'rxjs', component: RxjsMain },
+  { path: 'rxjs', component: RxjsMain, children: [
+      { path: '', redirectTo: 'observables', pathMatch: 'full'},
+      { path: 'observables', component: ObservablesComponent},
+      { path: 'simplelist', component: CourseListComponent},
+      { path: 'imperativefilter', component: ImperativeFilterComponent},
+      { path: 'reactivefilter', component: ReactiveFilterComponent},
+      { path: 'flattening', component: FlatteningComponent},
+      { path: 'form', component: FormTestComponent},
+      { path: 'typeahead', component: TypeAheadComponent},
+      { path: 'errorhandling', component: ErrorTestComponent},
+      { path: 'custompipe', component: LogTestComponent},
+      { path: 'hotcold', component: HotVsColdComponent},
+      { path: 'snippets', component: SnippetsComponent},
+      { path: 'sandbox', component: SandboxComponent},
+  ]},
   { path: 'ngrx', component: NgrxMain, canActivate: [AuthGuard]},
   { path: 'ngrx/login', component: LoginComponent },
   { path: 'gridster', component: GridMain},

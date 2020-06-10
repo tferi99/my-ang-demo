@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {EMPTY, from, generate, interval, NEVER, observable, Observable, of, range, throwError, timer} from 'rxjs';
+import {EMPTY, from, generate, interval, NEVER, observable, Observable, of, range, throwError, timer, zip} from 'rxjs';
 import {ObservabledDemoData} from './observable-demo-data';
 import {CardType} from './card-type';
 import {webSocket} from 'rxjs/webSocket';
+import {fromArray} from 'rxjs/internal/observable/fromArray';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'rxj-observers',
@@ -25,6 +27,7 @@ export class ObservablesComponent implements OnInit {
       new ObservabledDemoData(CardType.ARRAY, 'generate', 'generates from op(initial, condition, iteration-step)',
         generate(10, x => x < 200, x => x * 2)
       ),
+      new ObservabledDemoData(CardType.ARRAY, 'zip', 'data from array with timer', this.createZipObs()),
 
       new ObservabledDemoData(CardType.ARRAY, 'empty', 'emits no items and immediately completed', EMPTY),
       new ObservabledDemoData(CardType.ARRAY, 'never', 'never emits and never completed', NEVER),
@@ -37,5 +40,13 @@ export class ObservablesComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  createZipObs(): Observable<number> {
+    const tm = interval(1000);
+    const arr = fromArray([1, 20, 4, 3456, 124, 33, 2]);
+    return zip(tm, arr).pipe(
+      map((data: Array<number>) => {return data[1]})
+    );
   }
 }

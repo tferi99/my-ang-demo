@@ -24,6 +24,7 @@ import { AvoidMemLeakComponent } from './avoid-mem-leak/avoid-mem-leak.component
 import { SnippetsComponent } from './snippets/snippets.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {NgxLoadingModule} from 'ngx-loading';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {NgxLoadingModule} from 'ngx-loading';
     ReactiveFormsModule,
     SharedModule,
     NgxSpinnerModule,
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    RouterModule
   ],
   exports: [
     MainComponent

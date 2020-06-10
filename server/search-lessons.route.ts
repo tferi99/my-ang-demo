@@ -11,14 +11,14 @@ export function searchLessons(req: Request, res: Response) {
     const courseId = queryParams.courseId;
     const filter = queryParams.filter || '';
     const sortOrder = queryParams.sortOrder || 'asc';
-    const pageNumber = parseInt(queryParams.pageNumber, 10) || 0;
-    const pageSize = parseInt(queryParams.pageSize, 10) || 1000;
+    const pageNumber = parseInt(queryParams.pageNumber.toString(), 10) || 0;
+    const pageSize = parseInt(queryParams.pageSize.toString(), 10) || 1000;
 
-    let lessons = Object.values(LESSONS).filter(lesson => lesson.courseId == courseId).sort((l1, l2) => l1.id - l2.id);
+    let lessons = Object.values(LESSONS).filter(lesson => lesson.courseId.toString() === courseId).sort((l1, l2) => l1.id - l2.id);
     if (filter) {
-       lessons = lessons.filter(lesson => lesson.description.trim().toLowerCase().search(filter.toLowerCase()) >= 0);
+       lessons = lessons.filter(lesson => lesson.description.trim().toLowerCase().search(filter.toString().toLowerCase()) >= 0);
     }
-    if (sortOrder == 'desc') {
+    if (sortOrder === 'desc') {
         lessons = lessons.reverse();
     }
 

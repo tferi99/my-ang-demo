@@ -22,7 +22,7 @@ export class ReactiveFilterComponent implements OnInit {
     this.courses$ = this.service.getCourses().pipe(shareReplay());
     this.filterByDescription('');
 
-    // we have here 1 HTTP request, even with multiple subscriptions
+    // we have here 1 HTTP request, even with multiSubs subscriptions
     this.courses$.subscribe();
     this.courses$.subscribe();
     this.courses$.subscribe();

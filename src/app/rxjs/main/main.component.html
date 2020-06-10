@@ -1,28 +1,16 @@
 <div class="m-2">
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs mb-3">
     <li>
       <span class="navbar navbar-dark bg-info">
         <span class="navbar-brand">RxJs</span>
       </span>
-
     </li>
     <li class="nav-item" *ngFor="let t of tabData; index as idx">
-      <a class="nav-link" [class.active]="idx == activeTab" (click)="setActiveTab(idx)">{{t.name}}</a>
+      <ng-container *ngIf="t.route">
+        <a class="nav-link" [routerLink]="[t.route]" routerLinkActive="active">{{t.name}}</a>
+      </ng-container>
     </li>
   </ul>
 
-  <div [ngSwitch]="activeTab" class="mt-2">
-    <rxj-observers *ngSwitchCase="'0'"></rxj-observers>
-    <rxj-course-list *ngSwitchCase="'1'"></rxj-course-list>
-    <rxj-imperative-filter *ngSwitchCase="'2'"></rxj-imperative-filter>
-    <rxj-reactive-filter *ngSwitchCase="'3'"></rxj-reactive-filter>
-    <rxj-flattening *ngSwitchCase="'4'"></rxj-flattening>
-    <rxj-form-test *ngSwitchCase="'5'"></rxj-form-test>
-    <rxj-type-ahead *ngSwitchCase="'6'"></rxj-type-ahead>
-    <rxj-error-test *ngSwitchCase="'7'"></rxj-error-test>
-    <rxj-log-test *ngSwitchCase="'8'"></rxj-log-test>
-    <rxj-hot-vs-cold *ngSwitchCase="'9'"></rxj-hot-vs-cold>
-    <rxj-snippets *ngSwitchCase="'10'"></rxj-snippets>
-    <rxj-sandbox *ngSwitchCase="'11'"></rxj-sandbox>
-  </div>
+  <router-outlet></router-outlet>
 </div>

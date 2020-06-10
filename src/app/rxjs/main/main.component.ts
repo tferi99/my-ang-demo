@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 interface TabData {
   name: string;
   active: boolean;
+  route?: string
 }
 
 @Component({
@@ -12,18 +13,18 @@ interface TabData {
 })
 export class MainComponent implements OnInit {
   tabData: TabData[] = [
-    {name: 'Observables', active: false},         // 0
-    {name: 'Simple list', active: false},         // 1
-    {name: 'Imperative filter', active: false},   // 2
-    {name: 'Reactive filter', active: false},     // 3
-    {name: 'Flattening', active: false},          // 4
-    {name: 'Form changes', active: false},        // 5
-    {name: 'Type-ahead', active: false},          // 6
-    {name: 'Error handling', active: false},      // 7
-    {name: 'Custom piped operator', active: false},         // 8
-    {name: 'Hot vs Cold', active: false},         // 9
-    {name: 'Snippets', active: false},            // 10
-    {name: 'Sandbox', active: false}              // 11
+    {name: 'Observables', active: false, route: 'observables'},
+    {name: 'Simple list', active: false, route: 'simplelist'},
+    {name: 'Imperative filter', active: false, route: 'imperativefilter'},
+    {name: 'Reactive filter', active: false, route: 'reactivefilter'},
+    {name: 'Flattening', active: false, route: 'flattening'},
+    {name: 'Form changes', active: false, route: 'form'},
+    {name: 'Type-ahead', active: false, route: 'typeahead'},
+    {name: 'Error handling', active: false, route: 'errorhandling'},
+    {name: 'Custom piped operator', active: false, route: 'custompipe'},
+    {name: 'Hot vs Cold', active: false, route: 'hotcold'},
+    {name: 'Snippets', active: false, route: 'snippets'},
+    {name: 'Sandbox', active: false, route: 'sandbox'}
   ];
 
   activeTab = 10;

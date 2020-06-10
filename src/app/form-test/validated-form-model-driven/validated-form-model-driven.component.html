@@ -39,7 +39,7 @@
         <dev-control-status-debug [control]="gender"></dev-control-status-debug>
       </div>
     </div>
-    <button type="submit" class="button" [disabled]="false && !form.valid">OK</button>
+    <button type="submit" class="btn btn-primary" [disabled]="false && !form.valid">OK</button>
   </form>
   <h5>Form status: {{form.status}}</h5>
   <h5>Form value: {{form.value | json}}</h5>
