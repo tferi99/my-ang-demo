@@ -34,6 +34,7 @@ import {LogTestComponent} from './rxjs/log-test/log-test.component';
 import {HotVsColdComponent} from './rxjs/hot-vs-cold/hot-vs-cold.component';
 import {SnippetsComponent} from './rxjs/snippets/snippets.component';
 import {SandboxComponent} from './rxjs/sandbox/sandbox.component';
+import {ModuleTestComponent} from './module-test/module-test.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -72,6 +73,7 @@ const routes: Routes = [
       { path: '**', component: DirectPage404Component },
   ]},
   { path: 'router-lazy', loadChildren: () => import('./router-lazy/router-lazy.module').then(m => m.RouterLazyModule) },     // lazy loading
+  { path: 'moduletest', component: ModuleTestComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },   // default
   { path: '**', component: Page404Component}
 ];

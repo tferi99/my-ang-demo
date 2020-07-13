@@ -6,6 +6,7 @@ import {catchError, delayWhen, finalize, mergeMap, retry, retryWhen, tap} from '
 import {rxJsLog, RxJsLoggingLevel} from '../../shared/util/rxJsLog';
 import {NGXLogger} from 'ngx-logger';
 import {getGroup, watch} from 'rxjs-watcher/dist';
+import {genericRetryStrategy} from './generic-retry-strategy';
 
 @Component({
   selector: 'rxj-error-test',
@@ -94,19 +95,19 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
   }
 
   // ------------------------- Retry -----------------------------
-  loadCoursesWithDelayRetrySimple(): void {
+  loadCoursesWithDelayRetryInterval(): void {
     const innerWatch = getGroup('Inner');
 
     interval(500).pipe(
       watch('input', 15),
-      mergeMap(val => {
+      mergeMap(val => {                      // on vaklue 6 original observable will be replaced with an error observable
         if (val >= 5) {
-          return throwError('Error!');
+          return throwError('Error!');         // it's an error observable (never emits - only throws)
         }
         return of(val);
       }),
-      // retry 2 times on error
-      retry(2),
+      // on error it retries twice IMMEDIATELY (re-subscribe source observable 2x)
+      retry(2),                               // Returns an Observable that mirrors the source Observable with the exception of an `error`.
       watch('output', 15),
     ).subscribe(
       val => {},
@@ -124,6 +125,18 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
       retryWhen(errors => errors.pipe(
         tap(err => this.log.debug(`Error found -> retry in ${retryInterval} msecs`, err)),      // rxJsLog error errorMessage
         delayWhen((val, index) => timer(val * retryInterval))   // restart in 2 seconds
+      ))
+    );
+  }
+
+  loadCoursesWithRetryStrategy(): void {
+    const retryInterval = 2000;
+    this.courses$ = this.api.getCoursesWithRandomErr().pipe(
+      watch('error 0', this.WATCH_SECS),
+      rxJsLog(this.log, RxJsLoggingLevel.DEBUG, 'loadCoursesWithRetryStrategy'),
+      retryWhen(errors => errors.pipe(
+        genericRetryStrategy({retryInterval, maxRetryAttempts: 4}),
+        catchError(error => of(error))
       ))
     );
   }

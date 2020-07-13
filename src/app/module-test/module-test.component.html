@@ -1,0 +1,22 @@
+<div class="container mt-2">
+  <app-page-header title="Modules" description="Demonstrate import/export in module hierarchy"></app-page-header>
+
+  <hr>
+  <i>This component declared by AppModule</i>
+  <hr>
+
+  <p>
+    <small><i>If you need a component (C0) from another module then you need to import that module (M0) into this module. Used component should be exported from that module.</i></small>
+    <app-c0></app-c0>
+  </p>
+
+  <p>
+    <small><i>This is a component imported directly from declarating module</i></small>
+    <app-c12></app-c12>
+  </p>
+
+  <p>
+    <small><i>This is a component imported not directly from declarating module but through module hierarchy</i></small>
+    <app-c111-a></app-c111-a>
+  </p>
+</div>

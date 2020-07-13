@@ -19,11 +19,15 @@
     <span class="ml-2 mt-2">returning Error Observable, but closed with cleanup</span>
   </div>
   <div class="row mb-2">
-    <button class="btn btn-primary" (click)="loadCoursesWithDelayRetrySimple()">Error handling 4 - Retry simple</button>
+    <button class="btn btn-primary" (click)="loadCoursesWithDelayRetryInterval()">Error handling 4 - Retry with interval</button>
     <span class="ml-2 mt-2">on error retrying using Observable again</span>
   </div>
   <div class="row mb-2">
-    <button class="btn btn-primary" (click)="loadCoursesWithDelayRetry()">Error handling 4 - Retry - HTTP</button>
+    <button class="btn btn-primary" (click)="loadCoursesWithDelayRetry()">Error handling 5 - Retry with HTTP</button>
+    <span class="ml-2 mt-2">on error retrying using Observable again</span>
+  </div>
+  <div class="row mb-2">
+    <button class="btn btn-primary" (click)="loadCoursesWithRetryStrategy()">Error handling 6 - Retry with HTTP (retry strategy)</button>
     <span class="ml-2 mt-2">on error retrying using Observable again</span>
   </div>
 

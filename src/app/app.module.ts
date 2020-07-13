@@ -40,6 +40,9 @@ import {SharedModule} from './shared/shared.module';
 import {Page404Component} from './page404/page404.component';
 import { DirectPage404Component } from './router-direct/direct-page404/direct-page404.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ModuleTestComponent } from './module-test/module-test.component';
+import {M0Module} from './m0/m0.module';
+import {M12Module} from './m0/m12/m12.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/translations_', '.json');
@@ -54,6 +57,7 @@ export function createTranslateLoader(http: HttpClient) {
     MainComponent,
     Page404Component,
     DirectPage404Component,
+    ModuleTestComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +78,8 @@ export function createTranslateLoader(http: HttpClient) {
     DatabindModule,
     ContentModule,
     DirectiveModule,
+    M0Module,
+    M12Module,
 
     CollapseModule.forRoot(),
     StoreModule.forRoot(reducers, {metaReducers, runtimeChecks: {strictStateImmutability: true, strictActionImmutability: true}}),
