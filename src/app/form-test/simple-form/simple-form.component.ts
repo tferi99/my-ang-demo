@@ -24,8 +24,8 @@ export class SimpleFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  addPerson(name: HTMLInputElement, email: HTMLInputElement, weight: HTMLInputElement, gender: HTMLSelectElement) {
-    const p = {id: 0, name: name.value, email: email.value, weight: parseInt(weight.value, 10), gender: gender.value as Gender};
+  addPerson(name: HTMLInputElement, email: HTMLInputElement, rank: HTMLInputElement, gender: HTMLSelectElement) {
+    const p: Person = {id: 0, name: name.value, email: email.value, rank: parseInt(rank.value, 10), gender: gender.value as Gender, active: true};
     this.result = JSON.stringify(p);
 
     this.submitSend.emit(p);

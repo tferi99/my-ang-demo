@@ -16,15 +16,14 @@ export class ValidatedFormModelDrivenComponent implements OnInit {
 
   form = this.fb.group({
     name: ['', CustomValidators.required],
-    // weight: [3, [CustomValidators.required, Validators.min(1), Validators.max(200)]],
-    weight: ['0', [CustomValidators.required, Validators.min(1), Validators.max(150)]],
+    rank: ['0', [CustomValidators.required, Validators.min(1), Validators.max(10)]],
     email: ['', [Validators.required, Validators.email]],
     gender: ['', CustomValidators.required]
   });
 
   // form controls (used in template here)
   name = this.form.controls.name;
-  weight = this.form.controls.weight;
+  rank = this.form.controls.rank;
   email = this.form.controls.email;
   gender = this.form.controls.gender;
 
@@ -38,10 +37,10 @@ export class ValidatedFormModelDrivenComponent implements OnInit {
   }
 
   onSubmit() {
-    const {name, email, weight, gender} = this.form.controls;             // you can access form controls also this way
+    const {name, email, rank: rank, gender} = this.form.controls;             // you can access form controls also this way
     this.log.warn('SUBMITTED: ', this.form);
 
-    const p = {id: 0, name: name.value, email: email.value,  weight: parseInt(weight.value, 10), gender: gender.value};
+    const p: Person = {id: 0, name: name.value, email: email.value,  rank: parseInt(rank.value, 10), gender: gender.value, active: true};
     this.submitSend.emit(p);
   }
 

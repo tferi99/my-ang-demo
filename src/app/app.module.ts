@@ -38,9 +38,9 @@ import {DComponent} from './router-direct/d/d.component';
 import {MainComponent} from './router-direct/main/main.component';
 import {SharedModule} from './shared/shared.module';
 import {Page404Component} from './page404/page404.component';
-import { DirectPage404Component } from './router-direct/direct-page404/direct-page404.component';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { ModuleTestComponent } from './module-test/module-test.component';
+import {DirectPage404Component} from './router-direct/direct-page404/direct-page404.component';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import {ModuleTestComponent} from './module-test/module-test.component';
 import {M0Module} from './m0/m0.module';
 import {M12Module} from './m0/m12/m12.module';
 

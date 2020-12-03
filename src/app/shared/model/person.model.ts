@@ -9,8 +9,9 @@ export class Person {
   name: string;
   email: string;
   gender: Gender;
+  active: boolean;
   birth?: Date;
-  weight?: number;
+  rank?: number;
 
   constructor() {}
 }

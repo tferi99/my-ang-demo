@@ -72,7 +72,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'c', pathMatch: 'full' },
       { path: '**', component: DirectPage404Component },
   ]},
-  { path: 'router-lazy', loadChildren: () => import('./router-lazy/router-lazy.module').then(m => m.RouterLazyModule) },     // lazy loading
+  { path: 'router-lazy', loadChildren: () => import('./router-lazy/router-lazy.module').then(m => m.RouterLazyModule) },     // lazy loading (import(...))
   { path: 'moduletest', component: ModuleTestComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },   // default
   { path: '**', component: Page404Component}

@@ -32,5 +32,19 @@
     <p appBetterHighlight [defaultColor]="betterDefault" [hightlightColor]="betterHighlight">Better directive (default: {{betterDefault}}, highlight: {{betterHighlight}})</p>
   </div>
 
+  <h5>Structural directive</h5>
+  <div class="row">
+    <ul>
+      <li *appObjectDump="let propertyName from obj; let index=index">
+        [{{index}}] {{propertyName}}: {{obj[propertyName]}}
+      </li>
+    </ul>
+  </div>
 
+  <h5>My if</h5>
+  <button class="btn-primary" (click)="displayed = !displayed">Toggle</button>
+  <div *appMyIf="displayed">this content is controlled</div>
+
+  <h5>ngLoop</h5>
+  <div *appNgLoop="let item of arr; index as i" style="padding: 10px; background-color: yellow">Foo: {{item}} / {{i}}</div>
 </div>

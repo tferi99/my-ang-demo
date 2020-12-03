@@ -10,7 +10,7 @@ export class ChildComponent implements OnInit {
   childPerson: Person;
 
   constructor() {
-    this.childPerson ={id: 42, name: 'Ford Prefect', email: 'fp@universe.org', weight: 83 , gender: Gender.NA};
+    this.childPerson ={id: 42, name: 'Ford Prefect', email: 'fp@universe.org', rank: 83 , gender: Gender.NA, active: true};
   }
 
   ngOnInit() {

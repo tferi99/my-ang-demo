@@ -16,7 +16,7 @@ import {C111AComponent} from './m11/m111/c111-a/c111-a.component';
   ],
   exports: [
     C0Component,
-    C111AComponent
+    C111AComponent        // this component exported from lower level module (M11)
   ],
 })
 export class M0Module { }

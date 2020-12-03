@@ -6,8 +6,8 @@ import {CustomValidators} from '../../shared/util/custom-validators';
 import {KeyValuePair, stringEnumToKeyValuePairArray} from '../../shared/util/component-helper';
 import {Gender} from '../../shared/model/person.model';
 
-const MIN_WEIGTH = 1;
-const MAX_WEIGTH = 150;
+const MIN_RANK = 1;
+const MAX_RANK = 10;
 
 @Component({
   selector: 'rtr-person-edit',
@@ -19,7 +19,7 @@ export class PersonEditComponent implements OnInit {
   form: FormGroup;
   genders: KeyValuePair<string, string>[];
   debugValidation = false;
-  weightValidationMessageOptions = {min: MIN_WEIGTH, max: MAX_WEIGTH};
+  rankValidationMessageOptions = {min: MIN_RANK, max: MAX_RANK};
 
   constructor(
     private personService: PersonService,
@@ -34,7 +34,7 @@ export class PersonEditComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       gender: ['', Validators.required],
       birth: ['', Validators.required],
-      weight: ['0', [Validators.required, Validators.min(MIN_WEIGTH), Validators.max(MAX_WEIGTH)]],
+      rank: ['0', [Validators.required, Validators.min(MIN_RANK), Validators.max(MAX_RANK)]],
     })
   }
 

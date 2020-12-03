@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.sass']
 })
 export class MainComponent implements OnInit {
-  who: 'World';
+  who = 'World';
 
   constructor() {}
 

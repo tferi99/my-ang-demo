@@ -3,8 +3,8 @@ import {Gender, Person} from '../model/person.model';
 import * as _ from 'lodash';
 
 const data: Person[] = [
-  {id: 1, name: 'John Smith', email: 'js@abc.com', gender: Gender.MALE, birth: new Date('1976-03-12'), weight: 78},
-  {id: 2, name: 'Jane Doe', email: 'jd@home.org', gender: Gender.FEMALE, birth: new Date('1988-09-21')},
+  {id: 1, name: 'John Smith', email: 'js@abc.com', gender: Gender.MALE, birth: new Date('1976-03-12'), rank: 78, active: true},
+  {id: 2, name: 'Jane Doe', email: 'jd@home.org', gender: Gender.FEMALE, birth: new Date('1988-09-21'), active: true},
 ];
 
 @Injectable({

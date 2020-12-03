@@ -1,25 +1,21 @@
 <div class="panel">
+  <small><i>You can pass dynamic content from parent to child component</i></small>
   <con-child>1st injected content</con-child>
 
-    <con-child>2nd injected content <span style="padding: 3px" #pushedContentRef>PUSHED</span></con-child>
+  <small><i>You can access elements in dynamic content which passed from parent to child component</i></small>
+  <con-child2>2nd injected content <span style="padding: 3px" #pushedContentRef>PUSHED</span></con-child2>
 
   <con-child>
     <h5>3rd injected content</h5>
     <ul>
       <li>Lorem ipsum dolor sit amet</li>
-      <li>Consectetur adipiscing elit</li>
-      <li>Integer molestie lorem at massa</li>
-      <li>Facilisis in pretium nisl aliquet</li>
       <li>Nulla volutpat aliquam velit
         <ul>
           <li>Phasellus iaculis neque</li>
-          <li>Purus sodales ultricies</li>
-          <li>Vestibulum laoreet porttitor sem</li>
           <li>Ac tristique libero volutpat at</li>
         </ul>
       </li>
       <li>Faucibus porta lacus fringilla vel</li>
-      <li>Aenean sit amet erat nunc</li>
       <li>Eget porttitor lorem</li>
     </ul>
   </con-child>

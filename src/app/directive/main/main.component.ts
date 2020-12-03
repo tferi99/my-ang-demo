@@ -10,6 +10,16 @@ export class MainComponent implements OnInit {
   colors = SelectableColors;
   betterDefault = SelectableColors.Gray.valueOf();
   betterHighlight= SelectableColors.Green.valueOf();
+  displayed = true;
+
+  obj = {
+    a: 'one',
+    b: 'two',
+    c: 'three',
+    d: 'four'
+  };
+
+  arr = [1, 3, 6, 8, 67];
 
   constructor() { }
 

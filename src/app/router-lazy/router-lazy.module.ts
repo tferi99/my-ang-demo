@@ -14,8 +14,6 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { FormControlValidationMessageComponent } from './form-control-validation-message/form-control-validation-message.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
-
-
 @NgModule({
   declarations: [
     MainComponent,

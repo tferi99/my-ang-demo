@@ -1,0 +1,55 @@
+<div class="container">
+  <h3 class="mb-2">Model Driven Form (Reactive) with Bootstrap</h3>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" [formControl]="name" [ngClass]="{'is-invalid' : name.invalid}" placeholder="Name">
+        <div class="invalid-feedback" *ngIf="name.invalid">{{getFormControlErrorMessage(name)}}</div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" [formControl]="email" [ngClass]="{'is-invalid' : email.invalid}" placeholder="Email" >
+        <div class="invalid-feedback" *ngIf="email.errors">{{getFormControlErrorMessage(email)}}</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="gender">Gender</label>
+        <select class="custom-select" id="gender" [formControl]="gender" [ngClass]="{'is-invalid' : gender.invalid}" placeholder="Gender">
+          <option *ngFor="let g of genders" [value]="g.value">{{g.key}}</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="true && gender.invalid">{{getFormControlErrorMessage(gender)}}</div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="email">Birth</label>
+        <input type="text" class="form-control" id="birth" [formControl]="birth" [ngClass]="{'is-invalid' : birth.invalid}" placeholder="Birth" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
+        <div class="invalid-feedback" *ngIf="birth.errors">{{getFormControlErrorMessage(birth)}}</div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="rank">Rank</label>
+        <input type="number" class="form-control" id="rank" [formControl]="rank" [ngClass]="{'is-invalid' : rank.invalid}" placeholder="Rank">
+        <div class="invalid-feedback" *ngIf="rank.errors">{{getFormControlErrorMessage(rank)}}</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" [formControl]="active" id="invalidCheck3">
+          <label class="form-check-label" for="invalidCheck3">Active</label>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary mr-2" type="submit" [disabled]="!form.valid">OK</button>
+    <app-form-error-dump-button additionalClass="mr-2"></app-form-error-dump-button>
+    <app-form-group-dump-button></app-form-group-dump-button>
+
+  </form>
+  {{form.errors}}
+</div>
+
+

@@ -1,6 +1,6 @@
 <div class="container mb-2 ml-5 mr-5">
   <app-page-header title="Forms"></app-page-header>
-
+<!--
   <app-simple-form [title] = "'Simple Form (view-local variables)'" (submitSend)="onSimpleFormSubmitted($event)"></app-simple-form>
   <h5>Result sent back to parent: {{simpleFormResult}}</h5>
   <hr>
@@ -8,10 +8,15 @@
   <app-validated-form-model-driven (submitSend)="onValidatedFormMDSubmitted($event)"></app-validated-form-model-driven>
   <h5>Result sent back to parent: {{mdFormResult}}</h5>
   <hr>
-
+-->
+  <!--
   <app-validated-form-temp-driven (onSubmitSend)="onValidatedFormTDSubmitted($event)"></app-validated-form-temp-driven>
   <h5>Result sent back to parent: {{tdFormResult}}</h5>
   <hr>
+  -->
+
+  <app-validated-form-model-driven-with-dir [in]="initial"></app-validated-form-model-driven-with-dir>
+
 </div>
 
 
