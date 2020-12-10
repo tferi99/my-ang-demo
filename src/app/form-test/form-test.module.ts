@@ -13,7 +13,11 @@ import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
-    MainComponent, SimpleFormComponent, ValidatedFormModelDrivenComponent, ValidatedFormTempDrivenComponent, ValidatedFormModelDrivenWithDirComponent
+    MainComponent,
+    SimpleFormComponent,
+    ValidatedFormModelDrivenComponent,
+    ValidatedFormTempDrivenComponent,
+    ValidatedFormModelDrivenWithDirComponent
   ],
   imports: [
     CommonModule,
