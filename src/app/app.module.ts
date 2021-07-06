@@ -43,6 +43,7 @@ import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {ModuleTestComponent} from './module-test/module-test.component';
 import {M0Module} from './m0/m0.module';
 import {M12Module} from './m0/m12/m12.module';
+import {DragDropModule} from './drag-drop/drag-drop.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/translations_', '.json');
@@ -78,6 +79,7 @@ export function createTranslateLoader(http: HttpClient) {
     DatabindModule,
     ContentModule,
     DirectiveModule,
+    DragDropModule,
     M0Module,
     M12Module,
 

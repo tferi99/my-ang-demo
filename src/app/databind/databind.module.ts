@@ -9,7 +9,7 @@ import {SharedModule} from '../shared/shared.module';
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class DatabindModule { }

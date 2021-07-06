@@ -14,6 +14,7 @@ import {MainComponent as ChdMain} from './change-detection/main/main.component';
 import {MainComponent as DatabindMain} from './databind/main/main.component';
 import {MainComponent as ContentMain} from './content/main/main.component';
 import {MainComponent as DirectiveMain} from './directive/main/main.component';
+import {MainComponent as DragDropMain} from './drag-drop/main/main.component';
 import {MainComponent as RouterDirectMain} from './router-direct/main/main.component';
 
 import {LoginComponent} from './ngrx/login/login.component';
@@ -66,6 +67,7 @@ const routes: Routes = [
   { path: 'databind', component: DatabindMain },
   { path: 'content', component: ContentMain },
   { path: 'directive', component: DirectiveMain },
+  { path: 'dragdrop', component: DragDropMain },
   { path: 'router-direct', component: RouterDirectMain, children: [       // direct children
       { path: 'c', component: CComponent},
       { path: 'd', component: DComponent},
