@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-8">
+    <div *ngFor="let draggable of draggables"
+         class="alert alert-primary draggable" role="alert"
+         [dndDraggable]="draggable.content"
+         [dndEffectAllowed]="draggable.effectAllowed"
+         [dndDisableIf]="draggable.disable"
+         (dndStart)="onDragStart($event)"
+         (dndCopied)="onDragged($event, 'copy')"
+         (dndLinked)="onDragged($event, 'link')"
+         (dndMoved)="onDragged($event, 'move')"
+         (dndCanceled)="onDragged($event, 'none')"
+         (dndEnd)="onDragEnd($event)">
+      {{draggable.content}}
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="dropzoneEnabled">
+      <label class="form-check-label" for="exampleCheck1">Drop enabled</label>
+    </div>
+    <div
+      class="my-dropzone scrollable"
+      dndDropzone
+      dndDragoverClass="custom-drag-over"
+      [dndDisableIf]="!dropzoneEnabled"
+      (dndDrop)="onDrop($event)">
+      <span>D R O P Z O N E</span>
+      <pre *ngIf="lastDropEvent">{{ lastDropEvent | json }}</pre>
+    </div>
+  </div>
+</div>

@@ -1,38 +1,13 @@
 <div class="container mt-2">
   <app-page-header title="2-way data bind" description="Drag&amp;Drop demo"></app-page-header>
 
-  <div class="row">
-    <div class="col-8">
-      <div *ngFor="let draggable of draggables"
-           class="alert alert-primary draggable" role="alert"
-           [dndDraggable]="draggable.content"
-           [dndEffectAllowed]="draggable.effectAllowed"
-           [dndDisableIf]="draggable.disable"
-           (dndStart)="onDragStart($event)"
-           (dndCopied)="onDragged($event, 'copy')"
-           (dndLinked)="onDragged($event, 'link')"
-           (dndMoved)="onDragged($event, 'move')"
-           (dndCanceled)="onDragged($event, 'none')"
-           (dndEnd)="onDragEnd($event)">
-        {{draggable.content}}
-      </div>
-    </div>
-    <div class="col-4">
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1" [(ngModel)]="dropzoneEnabled">Drop enabled</label>
-      </div>
-      <div
-         class="my-dropzone scrollable"
-         dndDropzone
-         dndDragoverClass="custom-drag-over"
-         [dndDisableIf]="!dropzoneEnabled"
-         (dndDrop)="onDrop($event)">
-        <span>D R O P Z O N E</span>
-        <pre *ngIf="lastDropEvent">{{ lastDropEvent | json }}</pre>
-      </div>
-    </div>
+  <fieldset>
+    <legend>Simple</legend>
+    <dd-drag-drop-simple></dd-drag-drop-simple>
+  </fieldset>
 
-  </div>
-
+  <fieldset>
+    <legend>List</legend>
+    <app-drag-drop-list></app-drag-drop-list>
+  </fieldset>
 </div>
