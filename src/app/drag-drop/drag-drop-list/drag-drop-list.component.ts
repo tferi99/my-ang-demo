@@ -47,8 +47,7 @@ export class DragDropListComponent implements OnInit {
     }
   ];
 
-  constructor(private toastr: ToastrService) {
-  }
+  constructor(private toastr: ToastrService) {}
 
   ngOnInit(): void {
   }

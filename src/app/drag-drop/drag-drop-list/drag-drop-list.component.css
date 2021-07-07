@@ -15,3 +15,17 @@
 .draggable {
   cursor: grab;
 }
+
+.dndDragging {
+  border: 10px solid red;
+}
+
+.dndDraggingSource {
+  display: none;
+}
+
+.dndPlaceholder {
+  min-height: 72px;
+  border: 1px dashed green;
+  background-color: rgba(0, 0, 0, 0.1);
+}
