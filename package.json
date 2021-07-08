@@ -43,7 +43,7 @@
     "@types/atmosphere.js": "^2.1.2",
     "angular-gridster2": "^9.1.0",
     "atmosphere.js": "^3.0.6",
-    "bootstrap": "4.1.1",
+    "bootstrap": "4.3.1",
     "core-js": "^3.8.0",
     "express": "^4.17.1",
     "install": "^0.13.0",
