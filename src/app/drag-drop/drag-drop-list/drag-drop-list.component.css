@@ -17,7 +17,7 @@
 }
 
 .dndDragging {
-  border: 10px solid red;
+  border: 1px solid blue;
 }
 
 .dndDraggingSource {

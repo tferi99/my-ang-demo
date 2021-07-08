@@ -21,7 +21,7 @@
   <div class="col-4 drag-list-container">
     <h3>Zone: {{draggableListRight.id}}</h3>
     <div class="drag-list" dndDropzone dndEffectAllowed="copyMove" (dndDrop)="onDrop($event, draggableListRight.items)">
-      <div *ngFor="let item of draggableListRight"
+      <div *ngFor="let item of draggableListRight.items"
            class="alert alert-primary draggable" role="alert"
            [dndDraggable]="item"
            [dndEffectAllowed]="item.effectAllowed"
@@ -38,6 +38,8 @@
   </div>
 
   <div class="col-4 drag-list-container">
+    <h3>Zone: Rabbish</h3>
+
     <div class="drag-list"
          dndDropzone
          dndEffectAllowed="move"
