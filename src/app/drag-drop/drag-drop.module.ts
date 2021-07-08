@@ -6,12 +6,14 @@ import {DndModule} from 'ngx-drag-drop';
 import {FormsModule} from '@angular/forms';
 import { DragDropSimpleComponent } from './drag-drop-simple/drag-drop-simple.component';
 import { DragDropListComponent } from './drag-drop-list/drag-drop-list.component';
+import { DragDropListDynamicComponent } from './drag-drop-list-dynamic/drag-drop-list-dynamic.component';
 
 @NgModule({
   declarations: [
     MainComponent,
     DragDropSimpleComponent,
     DragDropListComponent,
+    DragDropListDynamicComponent,
   ],
   imports: [
     CommonModule,

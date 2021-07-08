@@ -1,16 +1,17 @@
 <div class="row">
   <div class="col-4 drag-list-container">
-    <div class="drag-list" dndDropzone dndEffectAllowed="copyMove" (dndDrop)="onDrop($event, draggableListLeft)">
-      <div *ngFor="let item of draggableListLeft"
+    <h3>Zone: {{draggableListLeft.id}}</h3>
+    <div class="drag-list" dndDropzone dndEffectAllowed="copyMove" (dndDrop)="onDrop($event, draggableListLeft.items)">
+      <div *ngFor="let item of draggableListLeft.items"
          class="alert alert-primary draggable" role="alert"
          [dndDraggable]="item"
          [dndEffectAllowed]="item.effectAllowed"
          [dndDisableIf]="item.disable"
          (dndStart)="onDragStart($event)"
-         (dndCopied)="onDragged(item, draggableListLeft, 'copy')"
-         (dndLinked)="onDragged(item, draggableListLeft, 'link')"
-         (dndMoved)="onDragged(item, draggableListLeft, 'move')"
-         (dndCanceled)="onDragged(item, draggableListLeft, 'none')"
+         (dndCopied)="onDragged(item, draggableListLeft.items, 'copy')"
+         (dndLinked)="onDragged(item, draggableListLeft.items, 'link')"
+         (dndMoved)="onDragged(item, draggableListLeft.items, 'move')"
+         (dndCanceled)="onDragged(item, draggableListLeft.items, 'none')"
          (dndEnd)="onDragEnd($event)">
         {{item.content}}
       </div>
@@ -18,23 +19,19 @@
   </div>
 
   <div class="col-4 drag-list-container">
-    <div class="drag-list"
-         dndDropzone
-         dndEffectAllowed="copyMove"
-         (dndDrop)="onDrop($event, draggableListRight)"
-      >
+    <h3>Zone: {{draggableListRight.id}}</h3>
+    <div class="drag-list" dndDropzone dndEffectAllowed="copyMove" (dndDrop)="onDrop($event, draggableListRight.items)">
       <div *ngFor="let item of draggableListRight"
            class="alert alert-primary draggable" role="alert"
            [dndDraggable]="item"
            [dndEffectAllowed]="item.effectAllowed"
            [dndDisableIf]="item.disable"
            (dndStart)="onDragStart($event)"
-           (dndCopied)="onDragged(item, draggableListRight, 'copy')"
-           (dndLinked)="onDragged(item, draggableListRight, 'link')"
-           (dndMoved)="onDragged(item, draggableListRight, 'move')"
-           (dndCanceled)="onDragged(item, draggableListRight, 'none')"
-           (dndEnd)="onDragEnd($event)"
-      >
+           (dndCopied)="onDragged(item, draggableListRight.items, 'copy')"
+           (dndLinked)="onDragged(item, draggableListRight.items, 'link')"
+           (dndMoved)="onDragged(item, draggableListRight.items, 'move')"
+           (dndCanceled)="onDragged(item, draggableListRight.items, 'none')"
+           (dndEnd)="onDragEnd($event)">
         {{item.content}}
       </div>
     </div>

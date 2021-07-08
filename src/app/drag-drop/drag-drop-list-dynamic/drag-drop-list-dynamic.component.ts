@@ -1,60 +1,54 @@
 import { Component, OnInit } from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
-import {DragDropZone} from '../drag-drop.model';
 
 @Component({
-  selector: 'app-drag-drop-list',
-  templateUrl: './drag-drop-list.component.html',
-  styleUrls: ['./drag-drop-list.component.css']
+  selector: 'dd-drag-drop-list-dynamic',
+  templateUrl: './drag-drop-list-dynamic.component.html',
+  styleUrls: ['./drag-drop-list-dynamic.component.css']
 })
-export class DragDropListComponent implements OnInit {
-  draggableListLeft: DragDropZone = {
-    id: 'LEFT',
-    items: [
-      {
-        content: 'Left',
-        effectAllowed: 'move',
-        disable: false,
-        handle: false,
-      },
-      {
-        content: 'Lefter',
-        effectAllowed: 'move',
-        disable: false,
-        handle: false,
-      },
-      {
-        content: 'Leftest',
-        effectAllowed: 'copyMove',
-        disable: false,
-        handle: false
-      },
-      {
-        content: 'Lefty',
-        effectAllowed: 'move',
-        disable: false,
-        handle: true,
-      }
-    ]
-  };
+export class DragDropListDynamicComponent implements OnInit {
+  draggableListLeft = [
+    {
+      content: 'Left',
+      effectAllowed: 'move',
+      disable: false,
+      handle: false,
+    },
+    {
+      content: 'Lefter',
+      effectAllowed: 'move',
+      disable: false,
+      handle: false,
+    },
+    {
+      content: 'Leftest',
+      effectAllowed: 'copyMove',
+      disable: false,
+      handle: false
+    },
+    {
+      content: 'Lefty',
+      effectAllowed: 'move',
+      disable: false,
+      handle: true,
+    }
+  ];
 
   private currentDraggableEvent: DragEvent;
   private currentDragEffectMsg: string;
 
-  draggableListRight: DragDropZone = {
-    id: 'RIGHT',
-    items: [
-      {
-        content: 'I was originally right',
-        effectAllowed: 'move',
-        disable: false,
-        handle: false,
-      }
-    ]
-  };
+  draggableListRight = [
+    {
+      content: 'I was originally right',
+      effectAllowed: 'move',
+      disable: false,
+      handle: false,
+    }
+  ];
 
-  constructor(private toastr: ToastrService) {}
+  constructor(private toastr: ToastrService) {
+  }
 
   ngOnInit(): void {
   }
