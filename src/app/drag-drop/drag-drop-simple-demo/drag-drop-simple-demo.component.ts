@@ -3,11 +3,11 @@ import {DndDropEvent} from 'ngx-drag-drop';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({
-  selector: 'dd-drag-drop-simple',
-  templateUrl: './drag-drop-simple.component.html',
-  styleUrls: ['./drag-drop-simple.component.css']
+  selector: 'dd-drag-drop-simple-demo',
+  templateUrl: './drag-drop-simple-demo.component.html',
+  styleUrls: ['./drag-drop-simple-demo.component.css']
 })
-export class DragDropSimpleComponent implements OnInit {
+export class DragDropSimpleDemoComponent implements OnInit {
 
   public dropzoneEnabled = true;
   public lastDropEvent: DndDropEvent | null = null;

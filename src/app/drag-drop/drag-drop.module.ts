@@ -1,19 +1,25 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {MainComponent} from './main/main.component';
 import {SharedModule} from '../shared/shared.module';
 import {DndModule} from 'ngx-drag-drop';
 import {FormsModule} from '@angular/forms';
-import { DragDropSimpleComponent } from './drag-drop-simple/drag-drop-simple.component';
-import { DragDropListComponent } from './drag-drop-list/drag-drop-list.component';
-import { DragDropListDynamicComponent } from './drag-drop-list-dynamic/drag-drop-list-dynamic.component';
+import {DragDropSimpleDemoComponent} from './drag-drop-simple-demo/drag-drop-simple-demo.component';
+import {DragDropListDemoOrigComponent} from './drag-drop-list-demo-orig/drag-drop-list-demo-orig.component';
+import {DragDropListDynamicDemoComponent} from './drag-drop-list-dynamic-demo/drag-drop-list-dynamic-demo.component';
+import {DragDropListDemoComponent} from './drag-drop-list-demo/drag-drop-list-demo.component';
+import {DragDropListComponent} from './drag-drop-list/drag-drop-list.component';
+import { DragDropRubbishComponent } from './drag-drop-rubbish/drag-drop-rubbish.component';
 
 @NgModule({
   declarations: [
     MainComponent,
-    DragDropSimpleComponent,
+    DragDropSimpleDemoComponent,
+    DragDropListDemoOrigComponent,
+    DragDropListDynamicDemoComponent,
+    DragDropListDemoComponent,
     DragDropListComponent,
-    DragDropListDynamicComponent,
+    DragDropRubbishComponent,
   ],
   imports: [
     CommonModule,

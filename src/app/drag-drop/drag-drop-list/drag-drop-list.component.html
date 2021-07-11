@@ -1,53 +1,21 @@
-<div class="row">
-  <div class="col-4 drag-list-container">
-    <h3>Zone: {{draggableListLeft.id}}</h3>
-    <div class="drag-list" dndDropzone dndEffectAllowed="copyMove" (dndDrop)="onDrop($event, draggableListLeft.items)">
-      <div *ngFor="let item of draggableListLeft.items"
-         class="alert alert-primary draggable" role="alert"
-         [dndDraggable]="item"
-         [dndEffectAllowed]="item.effectAllowed"
-         [dndDisableIf]="item.disable"
-         (dndStart)="onDragStart($event)"
-         (dndCopied)="onDragged(item, draggableListLeft.items, 'copy')"
-         (dndLinked)="onDragged(item, draggableListLeft.items, 'link')"
-         (dndMoved)="onDragged(item, draggableListLeft.items, 'move')"
-         (dndCanceled)="onDragged(item, draggableListLeft.items, 'none')"
-         (dndEnd)="onDragEnd($event)">
-        {{item.content}}
-      </div>
-    </div>
-  </div>
+<h3>Zone: {{data.id}}</h3>
+<div class="drag-list" dndDropzone dndEffectAllowed="copyMove" (dndDrop)="onDrop($event, data.items)">
 
-  <div class="col-4 drag-list-container">
-    <h3>Zone: {{draggableListRight.id}}</h3>
-    <div class="drag-list" dndDropzone dndEffectAllowed="copyMove" (dndDrop)="onDrop($event, draggableListRight.items)">
-      <div *ngFor="let item of draggableListRight.items"
-           class="alert alert-primary draggable" role="alert"
-           [dndDraggable]="item"
-           [dndEffectAllowed]="item.effectAllowed"
-           [dndDisableIf]="item.disable"
-           (dndStart)="onDragStart($event)"
-           (dndCopied)="onDragged(item, draggableListRight.items, 'copy')"
-           (dndLinked)="onDragged(item, draggableListRight.items, 'link')"
-           (dndMoved)="onDragged(item, draggableListRight.items, 'move')"
-           (dndCanceled)="onDragged(item, draggableListRight.items, 'none')"
-           (dndEnd)="onDragEnd($event)">
-        {{item.content}}
-      </div>
-    </div>
-  </div>
+  <div dndPlaceholderRef class="drag-list-item dndPlaceholder"></div>
 
-  <div class="col-4 drag-list-container">
-    <h3>Zone: Rabbish</h3>
-
-    <div class="drag-list"
-         dndDropzone
-         dndEffectAllowed="move"
-         (dndDrop)="onDrop($event)"
-         style="vertical-align: middle; text-align: center; line-height: 100%"
-      >
-      <i class="fas fa-trash fa-5x"></i>
-    </div>
+  <div *ngFor="let item of data.items"
+       class="alert alert-primary draggable" role="alert"
+       [dndDraggable]="item"
+       [dndEffectAllowed]="item.effectAllowed"
+       [dndDisableIf]="item.disable"
+       (dndStart)="onDragStart($event)"
+       (dndCopied)="onDragged(item, data.items, 'copy')"
+       (dndLinked)="onDragged(item, data.items, 'link')"
+       (dndMoved)="onDragged(item, data.items, 'move')"
+       (dndCanceled)="onDragged(item, data.items, 'none')"
+       (dndEnd)="onDragEnd($event)">
+    {{item.content}} [{{item.effectAllowed}}]
   </div>
 </div>
+
 

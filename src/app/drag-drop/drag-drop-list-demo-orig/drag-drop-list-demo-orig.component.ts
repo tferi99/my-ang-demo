@@ -1,19 +1,58 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {DragDropZone} from '../drag-drop.model';
+import { Component, OnInit } from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
+import {DragDropZone} from '../drag-drop.model';
 
 @Component({
-  selector: 'dd-drag-drop-list',
-  templateUrl: './drag-drop-list.component.html',
-  styleUrls: ['./drag-drop-list.component.css']
+  selector: 'dd-drag-drop-list-demo-orig',
+  templateUrl: './drag-drop-list-demo-orig.component.html',
+  styleUrls: ['./drag-drop-list-demo-orig.component.css']
 })
-export class DragDropListComponent implements OnInit {
-  @Input()
-  data: DragDropZone;
-
+export class DragDropListDemoOrigComponent implements OnInit {
   private currentDraggableEvent: DragEvent;
   private currentDragEffectMsg: string;
+
+  draggableListLeft: DragDropZone = {
+    id: 'LEFT',
+    items: [
+      {
+        content: 'Left',
+        effectAllowed: 'move',
+        disable: false,
+        handle: false,
+      },
+      {
+        content: 'Lefter',
+        effectAllowed: 'move',
+        disable: false,
+        handle: false,
+      },
+      {
+        content: 'Leftest',
+        effectAllowed: 'copyMove',
+        disable: false,
+        handle: false
+      },
+      {
+        content: 'Lefty',
+        effectAllowed: 'move',
+        disable: false,
+        handle: true,
+      }
+    ]
+  };
+
+  draggableListRight: DragDropZone = {
+    id: 'RIGHT',
+    items: [
+      {
+        content: 'I was originally right',
+        effectAllowed: 'move',
+        disable: false,
+        handle: false,
+      }
+    ]
+  };
 
   constructor(private toastr: ToastrService) {}
 
