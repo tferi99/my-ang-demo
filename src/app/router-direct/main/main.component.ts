@@ -13,9 +13,13 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  gotoC() {
-    console.log('GOTO C - ' , this.route.toString());
-    this.router.navigate(['c'], {relativeTo: this.route});
+  gotoC(param?: string) {
+    console.log('GOTO C - param:' + param, this.route.toString());
+    if (param) {
+      this.router.navigate(['c'], {relativeTo: this.route, queryParams: {cica: param}});
+    } else {
+      this.router.navigate(['c'], {relativeTo: this.route});
+    }
   }
 
   gotoD() {
