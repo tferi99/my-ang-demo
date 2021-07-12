@@ -87,7 +87,7 @@ export function createTranslateLoader(http: HttpClient) {
     StoreModule.forRoot(reducers, {metaReducers, runtimeChecks: {strictStateImmutability: true, strictActionImmutability: true}}),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
-    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG}),
+    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG, enableSourceMaps: true}),
     BrowserAnimationsModule,  // for Toastr, datepicker
     ToastrModule.forRoot(),
     TranslateModule.forRoot({

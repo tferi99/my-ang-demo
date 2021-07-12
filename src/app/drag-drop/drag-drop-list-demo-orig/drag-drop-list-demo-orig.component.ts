@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
 import {DragDropZone} from '../drag-drop.model';
+import {NGXLogger} from 'ngx-logger';
 
 @Component({
   selector: 'dd-drag-drop-list-demo-orig',
@@ -54,13 +55,13 @@ export class DragDropListDemoOrigComponent implements OnInit {
     ]
   };
 
-  constructor(private toastr: ToastrService) {}
+  constructor(private toastr: ToastrService, private log: NGXLogger) {}
 
   ngOnInit(): void {
   }
 
   onDragStart(event: DragEvent) {
-    console.log('onDragStart', event);
+    this.log.info('onDragStart', event);
 
     this.currentDragEffectMsg = '';
     this.currentDraggableEvent = event;
@@ -69,7 +70,7 @@ export class DragDropListDemoOrigComponent implements OnInit {
   }
 
   onDragged(item: any, list: any[], effect: DropEffect) {
-    console.log('onDragged', item, list, effect);
+    this.log.info('onDragged', item, list, effect);
 
     this.currentDragEffectMsg = `Drag ended with effect "${effect}"!`;
 
@@ -80,14 +81,14 @@ export class DragDropListDemoOrigComponent implements OnInit {
   }
 
   onDragEnd(event: DragEvent) {
-    console.log('onDragEnd', event);
+    this.log.info('onDragEnd', event);
 
     this.currentDraggableEvent = event;
     this.toastr.info(this.currentDragEffectMsg || `Drag ended!`);
   }
 
   onDrop(event: DndDropEvent, list?: any[]) {
-    console.log('onDrop', event, list);
+    this.log.info('onDrop', event, list);
 
     if (list && (event.dropEffect === 'copy' || event.dropEffect === 'move')) {
       let index = event.index;
