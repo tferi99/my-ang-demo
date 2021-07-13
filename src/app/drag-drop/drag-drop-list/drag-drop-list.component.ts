@@ -54,19 +54,18 @@ export class DragDropListComponent implements OnInit, DragDropComponentBase {
   onDragged(item: any, list: any[], effect: DropEffect) {
     this.log.info(`[${this.getId()}] onDragged`, item, list, effect);
 
-    this.currentDragEffectMsg = `Drag ended with effect "${effect}"!`;
-
     if (effect === 'move') {
       const index = list.indexOf(item);
       list.splice(index, 1);
     }
-    this.dragDropService.onDragged(event, this, list);
+    this.dragDropService.onDragged(item, effect);
   }
 
   onDragEnd(event: DragEvent) {
     this.log.info(`[${this.getId()}] onDragEnd`, event);
 
     this.currentDraggableEvent = event;
+    this.dragDropService.onDragEnd(event);
     this.toastr.info(this.currentDragEffectMsg || `Drag ended!`);
   }
 

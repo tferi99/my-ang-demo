@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {DragDropComponentBase, DragDropAction} from './drag-drop.model';
-import {DndDropEvent} from 'ngx-drag-drop';
+import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
 import {NGXLogger} from 'ngx-logger';
 
 @Injectable({
@@ -24,11 +24,31 @@ export class DragDropService {
     this.log.info(`[${destination.getId()}] onDrop`, event, destinationData);
 
     if (!this.action) {
-      this.log.error('No action found for Drop event');
+      this.log.error('No action found for onDrop()');
       return;
     }
     this.action.dropEvent = event;
     this.action.destination = destination;
     this.action.destinationData = destinationData;
+  }
+
+  onDragged(data: any, effect: DropEffect) {
+    this.log.info(`onDragged with ${effect}`, data);
+
+    if (!this.action) {
+      this.log.error('No action found for onDragged()');
+      return;
+    }
+    this.action.draggedData = data;
+    this.action.effect = effect;
+  }
+
+  onDragEnd(event: DragEvent) {
+    this.log.info(`onDragEnd`, event);
+
+    if (!this.action) {
+      this.log.error('No action found for onDragEnd()');
+      return;
+    }
   }
 }
