@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
-import {DragDropZone} from '../drag-drop.model';
+import {DragDropItem, DragDropListZone} from '../drag-drop.model';
 import {NGXLogger} from 'ngx-logger';
 
 @Component({
@@ -13,7 +13,7 @@ export class DragDropListDemoOrigComponent implements OnInit {
   private currentDraggableEvent: DragEvent;
   private currentDragEffectMsg: string;
 
-  draggableListLeft: DragDropZone = {
+  draggableListLeft: DragDropListZone<DragDropItem> = {
     id: 'LEFT',
     items: [
       {
@@ -43,7 +43,7 @@ export class DragDropListDemoOrigComponent implements OnInit {
     ]
   };
 
-  draggableListRight: DragDropZone = {
+  draggableListRight: DragDropListZone<DragDropItem> = {
     id: 'RIGHT',
     items: [
       {

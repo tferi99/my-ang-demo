@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
-import {DragDropZone} from '../drag-drop.model';
+import {DragDropItem, DragDropListZone} from '../drag-drop.model';
 
 @Component({
   selector: 'dd-drag-drop-list-dynamic-demo',
@@ -9,7 +9,7 @@ import {DragDropZone} from '../drag-drop.model';
   styleUrls: ['./drag-drop-list-dynamic-demo.component.css']
 })
 export class DragDropListDynamicDemoComponent implements OnInit {
-  zones: DragDropZone[] = [
+  zones: DragDropListZone<DragDropItem>[] = [
     {
       id: 'LEFT (dyn)',
       items: [

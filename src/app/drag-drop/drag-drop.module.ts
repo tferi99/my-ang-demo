@@ -10,7 +10,8 @@ import {DragDropListDynamicDemoComponent} from './drag-drop-list-dynamic-demo/dr
 import {DragDropListDemoComponent} from './drag-drop-list-demo/drag-drop-list-demo.component';
 import {DragDropListComponent} from './drag-drop-list/drag-drop-list.component';
 import { DragDropRubbishComponent } from './drag-drop-rubbish/drag-drop-rubbish.component';
-import {DragDropService} from './drag-drop.service';
+import {DragDropListService} from './drag-drop-list.service';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import {DragDropService} from './drag-drop.service';
     FormsModule,
   ],
   exports: [
-    DragDropService
+    DragDropListService
   ]
 })
 export class DragDropModule { }

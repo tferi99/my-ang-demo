@@ -3,6 +3,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
+import {AppInjector} from './app/core/service/app-injector';
 
 if (environment.production) {
   enableProdMode();
@@ -19,7 +20,9 @@ platformBrowserDynamic().bootstrapModule(AppModule, {
     {provide: TRANSLATIONS, useValue: translationsDe},
     {provide: TRANSLATIONS_FORMAT, useValue: 'xlf2'}
   ]*/
-}).catch(err => console.error(err));
+})
+  .then((moduleRef) => AppInjector.setInjector(moduleRef.injector))
+  .catch(err => console.error(err));
 
 /*
 platformBrowserDynamic().bootstrapModule(AppModule).catch(err => console.error(err));

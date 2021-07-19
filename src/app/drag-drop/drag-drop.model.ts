@@ -7,22 +7,27 @@ export interface DragDropItem {
   handle: boolean;
 };
 
-export interface DragDropZone {
+export interface DragDropListZone<T> {
   id: string;
-  items: DragDropItem[];
+  items: T[];
 }
 
 export interface DragDropComponentBase {
   getId(): string;
 }
 
-export interface DragDropAction {
+export interface DragDropAction<Z, D> {
   dragEvent: DragEvent;
   dropEvent: DndDropEvent;
-  source: DragDropComponentBase;
-  sourceData: any;
-  destination: DragDropComponentBase;
-  destinationData: any;
+  sourceData: Z;
+  destinationData: Z;
   effect: DropEffect;
-  draggedData: any;
+  draggedData: D;
+  state: DragDropState;
+}
+
+export enum DragDropState {
+  Started = 'Started',
+  Dropped = 'Dropped',
+  DroppedToRubbish = 'DroppedToRubbish'
 }

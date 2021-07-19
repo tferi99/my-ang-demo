@@ -1,10 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DragDropComponentBase, DragDropZone} from '../drag-drop.model';
+import {DragDropComponentBase, DragDropItem, DragDropListZone} from '../drag-drop.model';
 import {ToastrService} from 'ngx-toastr';
 import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
 import {EventBroadcasterLocatorService} from '../../core/service/event-broadcaster-locator.service';
 import {NGXLogger} from 'ngx-logger';
-import {DragDropService} from '../drag-drop.service';
+import {DragDropListService} from '../drag-drop-list.service';
+import {DragDropEventConsumerService} from '../drag-drop-event-consumer.service';
 
 @Component({
   selector: 'dd-drag-drop-list',
@@ -16,57 +17,34 @@ export class DragDropListComponent implements OnInit, DragDropComponentBase {
   id: string;
 
   @Input()
-  data: DragDropZone;
-
-  private currentDraggableEvent: DragEvent;
-  private currentDragEffectMsg: string;
+  data: DragDropListZone<DragDropItem>;
 
   constructor(
     private toastr: ToastrService,
     private log: NGXLogger,
-    private dragDropService: DragDropService
+    private dragDropService: DragDropListService,
+    private dragDropEventConsumerService: DragDropEventConsumerService    // to force instantiation
   ) {}
 
   ngOnInit(): void {
   }
 
   onDragStart(event: DragEvent) {
-    this.currentDragEffectMsg = '';
-    this.currentDraggableEvent = event;
-
-    this.dragDropService.onDragStart(event, this);
-
+    this.dragDropService.onDragStart(this.data, event);
     this.toastr.info('Drag started!');
   }
 
-  onDrop(event: DndDropEvent, list?: any[]) {
-    if (list && (event.dropEffect === 'copy' || event.dropEffect === 'move')) {
-      let index = event.index;
-
-      if (typeof index === 'undefined') {
-        index = list.length;
-      }
-      list.splice(index, 0, event.data);
-    }
-    this.dragDropService.onDrop(event, this, list);
+  onDrop(event: DndDropEvent) {
+    this.dragDropService.onDrop(this.data, event);
   }
 
-  onDragged(item: any, list: any[], effect: DropEffect) {
-    this.log.info(`[${this.getId()}] onDragged`, item, list, effect);
-
-    if (effect === 'move') {
-      const index = list.indexOf(item);
-      list.splice(index, 1);
-    }
-    this.dragDropService.onDragged(item, effect);
+  onDragged(item: any, effect: DropEffect) {
+    this.dragDropService.onDragged(this.data, item, effect);
   }
 
   onDragEnd(event: DragEvent) {
-    this.log.info(`[${this.getId()}] onDragEnd`, event);
-
-    this.currentDraggableEvent = event;
-    this.dragDropService.onDragEnd(event);
-    this.toastr.info(this.currentDragEffectMsg || `Drag ended!`);
+    this.dragDropService.onDragEnd(this.data, event);
+    this.toastr.info('Drag ended!');
   }
 
   getId(): string {
