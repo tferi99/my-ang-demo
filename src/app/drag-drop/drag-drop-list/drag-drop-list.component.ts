@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {DragDropComponentBase, DragDropItem, DragDropListZone} from '../drag-drop.model';
 import {ToastrService} from 'ngx-toastr';
 import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
-import {EventBroadcasterLocatorService} from '../../core/service/event-broadcaster-locator.service';
 import {NGXLogger} from 'ngx-logger';
 import {DragDropListService} from '../drag-drop-list.service';
 import {DragDropEventConsumerService} from '../drag-drop-event-consumer.service';
