@@ -8,21 +8,24 @@ export class FormValidatorService {
   constructor() { }
 
   getFormControlErrorMessage(c: AbstractControl): string {
+    if (c == null) {
+      return '?';
+    }
     if (!(c instanceof FormControl) || !c.errors) {
       return '';
     }
     const ctrl = c as FormControl;
-    if (ctrl.errors.required) {
+    if (ctrl.errors?.required) {
       return 'Required';
-    } else if (ctrl.errors.email) {
+    } else if (ctrl.errors?.email) {
       return 'Bad email format';
-    } else if (ctrl.errors.minlength) {
+    } else if (ctrl.errors?.minlength) {
       return 'Minimal length is: ' + ctrl.errors.minlength.requiredLength;
-    } else if (ctrl.errors.maxlength) {
+    } else if (ctrl.errors?.maxlength) {
       return 'Maximal length is: ' + ctrl.errors.maxlength.requiredLength;
-    } else if (ctrl.errors.min) {
+    } else if (ctrl.errors?.min) {
       return 'Minimal value is: ' + ctrl.errors.min.min;
-    } else if (ctrl.errors.max) {
+    } else if (ctrl.errors?.max) {
       return 'Maximal value is: ' + ctrl.errors.max.max;
     } else {
       return 'Unknown error';

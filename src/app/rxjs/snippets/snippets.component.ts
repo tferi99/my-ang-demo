@@ -24,20 +24,20 @@ export class SnippetsComponent implements OnInit, OnDestroy {
     gender: ['', CustomValidators.required]
   });*/
 
-  subscription: Subscription;
-  throttleSubscription: Subscription;
-  debounceSubscription: Subscription;
+  subscription?: Subscription;
+  throttleSubscription!: Subscription;
+  debounceSubscription!: Subscription
 
 /*  get running() {
     return (this.subscription !== undefined);
   }*/
   running = false;
-  stopSignal$: Subject<boolean>;
+  stopSignal$!: Subject<boolean>;
   errorEmitter$: Subject<number>;
   spinnerType = SPINNER_TYPE;
 
   @ViewChild('mouseMoveEventSource', {static: true})
-  mouseMoveEventSource: ElementRef;
+  mouseMoveEventSource!: ElementRef;
 
   constructor(private fb: FormBuilder, private ngxSpinnerService: NgxSpinnerService) {
     this.errorEmitter$ = new Subject<number>();
@@ -77,7 +77,7 @@ export class SnippetsComponent implements OnInit, OnDestroy {
   count3_filter() {
     const ops = pipe(
       take(5),
-      filter(x => x < 3),
+      filter<number>(x => x < 3),
     );
     this.runInterval(ops, TEST_SECS);
   }

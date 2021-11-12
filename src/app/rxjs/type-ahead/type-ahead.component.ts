@@ -14,8 +14,8 @@ import {NGXLogger} from 'ngx-logger';
 })
 export class TypeAheadComponent implements OnInit, AfterViewInit {
   currentCource: Course;
-  lessons$: Observable<Lesson[]>;
-  @ViewChild('lessonSearchInput', {static: true}) lessonSearchInput: ElementRef;
+  lessons$!: Observable<Lesson[]>;
+  @ViewChild('lessonSearchInput', {static: true}) lessonSearchInput!: ElementRef;
 
   constructor(private api: ApiService, private log: NGXLogger) {
     this.currentCource = {

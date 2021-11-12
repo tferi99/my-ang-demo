@@ -10,8 +10,8 @@ import {rxJsLog, RxJsLoggingLevel} from '../../shared/util/rxJsLog';
   styleUrls: ['./sandbox.component.sass']
 })
 export class SandboxComponent implements OnInit {
-  obs$: Observable<number>;
-  subscription: Subscription;
+/*  obs$: Observable<number>;
+  subscription: Subscription;*/
 
   constructor(private log: NGXLogger) {}
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DndDropEvent} from 'ngx-drag-drop';
 import {ToastrService} from 'ngx-toastr';
+import {Draggable} from "../drag-drop-types";
 
 @Component({
   selector: 'dd-drag-drop-simple-demo',
@@ -12,10 +13,12 @@ export class DragDropSimpleDemoComponent implements OnInit {
   public dropzoneEnabled = true;
   public lastDropEvent: DndDropEvent | null = null;
 
-  private currentDraggableEvent: DragEvent;
-  private currentDragEffectMsg: string;
+  private currentDraggableEvent?: DragEvent;
+  private currentDragEffectMsg?: string;
 
-  draggables = [
+  dropZoneDummyVal: string[] = [];
+
+  draggables: Draggable[] = [
     {
       content: 'testdata',
       effectAllowed: 'copy',

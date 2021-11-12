@@ -18,8 +18,8 @@
         <span>
           <input type="text" class="form-control" id="email" name="email" placeholder="Email" [formControl]="email" #emailElem>
           <div *ngIf="email.touched && email.invalid">ERROR!!!
-            <span *ngIf="email.errors['required']">Empty!</span>
-            <span *ngIf="email.errors['email']">Bad email format!</span>
+            <span *ngIf="email!.errors!['required']">Empty!</span>
+            <span *ngIf="email!.errors!['email']">Bad email format!</span>
           </div>
           <dev-control-status-debug [control]="email" [element]="nameElem"></dev-control-status-debug>
         </span>

@@ -11,7 +11,7 @@ const data: Person[] = [
   providedIn: 'root'
 })
 export class PersonService {
-  data = data;
+  data: Person[] = data;
   constructor() { }
 
   getAll(): Person[] {
@@ -19,7 +19,7 @@ export class PersonService {
   }
 
   get(id: number): Person {
-    const found = _.find(this.data, ['id', id]);
+    const found = _.find(this.data, ['id', id]) as Person;
     const ret = {...found};
     console.log(`Person retrieved by id[${id}]`, ret);
     return ret;
@@ -36,6 +36,10 @@ export class PersonService {
   }
 
   private getNewId(): number {
-    return _.maxBy(this.data, 'id').id;
+    const newNum = _.maxBy(this.data, 'id')?.id;
+    if (!newNum) {
+      return 1000000;
+    }
+    return newNum;
   }
 }

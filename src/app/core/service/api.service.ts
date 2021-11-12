@@ -7,7 +7,6 @@ import {map, take, tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {rxJsLog, RxJsLoggingLevel} from '../../shared/util/rxJsLog';
 import {NGXLogger} from 'ngx-logger';
-import {logger} from 'codelyzer/util/logger';
 import {RestResource} from './rest-resource';
 
 @Injectable({providedIn: 'root'})
@@ -17,7 +16,7 @@ export class ApiService {
 
   getCourses(): Observable<Course[]> {
     return this.http.get<Course[]>(SERVER_API_CONTEXT_PATH + '/courses').pipe(
-      tap(() => logger.debug('Courses - HTTP request executed')),
+      tap(() => this.log.debug('Courses - HTTP request executed')),
       // @ts-ignore
       map(res => (res as RestResource).payload)
     );
@@ -26,7 +25,7 @@ export class ApiService {
   getCoursesLimit(limit: number): Observable<Course[]> {
     return this.http.get<Course[]>(SERVER_API_CONTEXT_PATH + '/courses/limit/' + limit).pipe(
       take(limit),
-      tap(() => logger.debug('Courses - HTTP request executed')),
+      tap(() => this.log.debug('Courses - HTTP request executed')),
       // @ts-ignore
       map(res => (res as RestResource).payload)
     );
@@ -34,7 +33,7 @@ export class ApiService {
 
   getCoursesSlow(): Observable<Course[]> {
     return this.http.get<Course[]>(SERVER_API_CONTEXT_PATH + '/courses/slow').pipe(
-        tap(() => logger.debug('Courses - HTTP request executed')),
+        tap(() => this.log.debug('Courses - HTTP request executed')),
       // @ts-ignore
       map(res => Object.values((res as RestResource).payload))
     );

@@ -8,7 +8,7 @@ import {ObservabledDemoData} from '../observable-demo-data';
   styleUrls: ['./observable-card.component.sass']
 })
 export class ObservableCardComponent implements OnInit {
-  @Input() data: ObservabledDemoData;
+  @Input() data!: ObservabledDemoData;
 
   constructor() { }
 

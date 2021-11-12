@@ -9,8 +9,8 @@ import {WacGridsterItem, WidgetTypeEnum} from '../grid-api.service';
 export class WidgetWrapperComponent implements OnInit {
   WidgetTypeEnum = WidgetTypeEnum;  // this way we can reference this from the template
 
-  @Input() gridsterItem: WacGridsterItem;
-  @Input() editable: boolean;
+  @Input() gridsterItem!: WacGridsterItem;
+  @Input() editable: boolean = false;
 
   @Output() delete: EventEmitter<WacGridsterItem> = new EventEmitter<WacGridsterItem>();
   @Output() changeType: EventEmitter<WacGridsterItem> = new EventEmitter<WacGridsterItem>();

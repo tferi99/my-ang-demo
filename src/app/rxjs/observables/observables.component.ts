@@ -3,8 +3,9 @@ import {EMPTY, from, generate, interval, NEVER, observable, Observable, of, rang
 import {ObservabledDemoData} from './observable-demo-data';
 import {CardType} from './card-type';
 import {webSocket} from 'rxjs/webSocket';
-import {fromArray} from 'rxjs/internal/observable/fromArray';
+//import {fromArray} from 'rxjs/internal/observable/fromArray';
 import {map} from 'rxjs/operators';
+import {fromArray} from "rxjs/internal/observable/fromArray";
 
 @Component({
   selector: 'rxj-observers',

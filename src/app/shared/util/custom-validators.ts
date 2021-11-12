@@ -1,12 +1,11 @@
-import {FormControl, ValidatorFn, Validators} from '@angular/forms';
-import {StringBooleanMap} from './maps';
-import * as _ from 'lodash';
+import {FormControl, Validators} from '@angular/forms';
 
 export class CustomValidators extends Validators {
   static skuValidator(control: FormControl): { [s: string]: boolean } {
     if (!control.value.match(/^123/)) {
       return {invalidSku: true};
     }
+    return {invalidSku: false};
   }
 
   /*

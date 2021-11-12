@@ -21,7 +21,7 @@ export class FormGroupDumpButtonComponent implements OnInit {
   @Input() additionalClass: string;
 
   constructor(
-    private controlContainer: ControlContainer,
+    public controlContainer: ControlContainer,
     private formValidatorService: FormValidatorService
   ) {}
 

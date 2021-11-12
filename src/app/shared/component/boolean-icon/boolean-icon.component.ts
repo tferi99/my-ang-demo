@@ -6,7 +6,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./boolean-icon.component.css']
 })
 export class BooleanIconComponent implements OnInit {
-  @Input() value: boolean;
+  @Input() value!: boolean;
 
   constructor() {}
 

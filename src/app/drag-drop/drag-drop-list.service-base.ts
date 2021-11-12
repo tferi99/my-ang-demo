@@ -5,17 +5,21 @@ import {Subject} from 'rxjs';
 import {AppInjector} from '../core/service/app-injector';
 
 export class DragDropListServiceBase<T> {
-  action: Partial<DragDropAction<DragDropListZone<T>, T>>;
+  action?: Partial<DragDropAction<DragDropListZone<T>, T>>;
   emitter: Subject<DragDropAction<DragDropListZone<T>, T>> = new Subject<DragDropAction<DragDropListZone<T>, T>>();
   log: NGXLogger;
 
   constructor() {
     const injector = AppInjector.getInjector()
+    console.log('INJECTOR:', injector);
     this.log = injector.get(NGXLogger);
   }
 
-  onDragStart(sourceZone: DragDropListZone<T>, event: DragEvent) {
-    this.log.info(`onDragStart - Source[${sourceZone.id}]`, event);
+  onDragStart(sourceZone: DragDropListZone<T> | undefined, event: DragEvent) {
+    this.log.info(`onDragStart - SourceZone[${sourceZone?.id}]`, event);
+    if (!sourceZone) {
+      return;
+    }
 
     // emitted action
     this.action = {
@@ -25,7 +29,12 @@ export class DragDropListServiceBase<T> {
     }
   }
 
-  onDrop(destinationZone: DragDropListZone<T>, event: DndDropEvent) {
+  onDrop(destinationZone: DragDropListZone<T> | undefined, event: DndDropEvent) {
+    this.log.info(`onDrop - DestinationZone[${destinationZone?.id}]`, event);
+    if (!destinationZone) {
+      return;
+    }
+
     // checking emitted action
     if (!this.action) {
       this.log.error('No action found for onDrop()');
@@ -51,13 +60,21 @@ export class DragDropListServiceBase<T> {
   }
 
   onDropRubbish(event: DndDropEvent) {
+    this.log.info(`onDrop to rubbish`, event, this.action);
+    if (!this.action) {
+      return;
+    }
     this.action.dropEvent = event;
     this.action.state = DragDropState.DroppedToRubbish;
 
-    this.log.info(`onDrop to rubbish`, event);
   }
 
-  onDragged(zone: DragDropListZone<T>, data: T, effect: DropEffect) {
+  onDragged(zone: DragDropListZone<T> | undefined, data: T, effect: DropEffect) {
+    this.log.info(`onDragged - Zone[${zone?.id}]`, event);
+    if (!zone) {
+      return;
+    }
+
     // checking emitted action
     if (!this.action) {
       this.log.error('No action found for onDragged()');
@@ -77,8 +94,11 @@ export class DragDropListServiceBase<T> {
     this.log.info(`[${zone.id}] onDragged with ${effect}`, data);
   }
 
-  onDragEnd(zone: DragDropListZone<T>, event: DragEvent) {
-    this.log.info(`[${zone.id}] onDragEnd`, event);
+  onDragEnd(zone: DragDropListZone<T> | undefined, event: DragEvent) {
+    this.log.info(`[${zone?.id}] onDragEnd`, event);
+    if (!zone) {
+      return;
+    }
 
     if (!this.action) {
       this.log.error('No action found for onDragEnd()');

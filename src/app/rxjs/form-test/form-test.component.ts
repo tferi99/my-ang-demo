@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {KeyValuePair, stringEnumToKeyValuePairArray} from '../../shared/util/key-value-pair';
-import {Gender, Person} from '../../shared/model/person.model';
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {Gender} from '../../shared/model/person.model';
 import {NGXLogger} from 'ngx-logger';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'rxj-form-test',
@@ -19,12 +19,12 @@ export class FormTestComponent implements OnInit {
     gender: ['', Validators.required],
     birth: ['', Validators.required]
   });
-  name = this.form.controls.name;
-  age = this.form.controls.age;
-  gender = this.form.controls.gender;
-  birth = this.form.controls.birth;
+  name = this.form.controls.name as FormControl;
+  age = this.form.controls.age as FormControl;
+  gender = this.form.controls.gender as FormControl;
+  birth = this.form.controls.birth as FormControl;
 
-  constructor(private fb: FormBuilder, private log: NGXLogger) {
+  constructor(private fb: FormBuilder, private log: NGXLogger, private toastr: ToastrService) {
     this.genders = stringEnumToKeyValuePairArray(Gender, true);
   }
 
@@ -33,8 +33,7 @@ export class FormTestComponent implements OnInit {
   }
 
   onSubmit() {
-    this.log.warn('SUBMITTED: ' + this.form.value);
-
-    // const p = new Person(this.name.value, parseInt(this.rank.value, 10), this.gender.value, this.birth: new Date().toDateString());
+    this.log.warn('SUBMITTED: ', this.form.value);
+    this.toastr.success('Form submitted (see console)');
   }
 }

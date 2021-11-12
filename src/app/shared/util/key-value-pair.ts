@@ -25,11 +25,11 @@ export function stringEnumToKeyValuePairArray(enumObject: any, withEmpty: boolea
   return arr;
 }
 
-export function numberEnumToKeyValuePairArray(enumObject: any, withEmpty: boolean = false): KeyValuePair<string, number>[] {
-  const arr: KeyValuePair<string, number>[] = [];
+export function numberEnumToKeyValuePairArray(enumObject: any, withEmpty: boolean = false): KeyValuePair<string, number|null>[] {
+  const arr: KeyValuePair<string, number|null>[] = [];
 
   if (withEmpty) {
-    arr.push(new KeyValuePair<string, number>('', null));
+    arr.push(new KeyValuePair<string, number|null>('', null));
   }
 
   for (const n in enumObject) {

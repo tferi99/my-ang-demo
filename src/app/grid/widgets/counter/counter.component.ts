@@ -13,8 +13,8 @@ import {selectCounterById} from '../../store/counter/counter.selector';
   styleUrls: ['./counter.component.sass']
 })
 export class CounterComponent implements OnInit, OnDestroy {
-  id: string;
-  counter$: Observable<Counter>;
+  id!: string;
+  counter$!: Observable<Counter | undefined>;
 
   constructor(private store: Store<AppState>) { }
 

@@ -10,7 +10,7 @@ import {DEFAULT_INTERRUPTSOURCES, Idle} from '@ng-idle/core';
 export class MainComponent implements OnInit {
   idleState = 'Not started.';
   timedOut = false;
-  lastPing?: Date = null;
+  lastPing?: Date = undefined;
   idleTime = 3;
   idleTimeout = 5;
 

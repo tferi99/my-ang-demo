@@ -7,10 +7,10 @@ import {AbstractControl} from '@angular/forms';
   styleUrls: ['./control-status-debug.component.css']
 })
 export class ControlStatusDebugComponent implements OnInit {
-  @Input() control: AbstractControl;
-  @Input() element: HTMLInputElement;
-  id: string;
-  errorMsg: string;
+  @Input() control!: AbstractControl;
+  @Input() element!: HTMLInputElement;
+  id!: string;
+  errorMsg!: string;
 
   constructor() {
   }

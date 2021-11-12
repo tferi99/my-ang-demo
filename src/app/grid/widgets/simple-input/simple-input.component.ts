@@ -10,8 +10,8 @@ import {NGXLogger} from 'ngx-logger';
   styleUrls: ['./simple-input.component.sass']
 })
 export class SimpleInputComponent implements OnInit, AfterViewInit {
-  @ViewChild('search', {static: true}) searchInput: ElementRef;
-  typedCharacter$: Observable<string>;
+  @ViewChild('search', {static: true}) searchInput!: ElementRef;
+  typedCharacter$!: Observable<string>;
 
   constructor(private log: NGXLogger) { }
 
@@ -28,7 +28,7 @@ export class SimpleInputComponent implements OnInit, AfterViewInit {
     );
   }
 
-  changed(e) {
+  changed(e: any) {
     console.log('Changed: ', e);
   }
 }

@@ -22,10 +22,10 @@ export class ValidatedFormModelDrivenComponent implements OnInit {
   });
 
   // form controls (used in template here)
-  name = this.form.controls.name;
-  rank = this.form.controls.rank;
-  email = this.form.controls.email;
-  gender = this.form.controls.gender;
+  name = this.form.controls.name as FormControl;
+  rank = this.form.controls.rank as FormControl;
+  email = this.form.controls.email as FormControl;
+  gender = this.form.controls.gender as FormControl;
 
   constructor(private fb: FormBuilder, private log: NGXLogger) {
     this.submitSend = new EventEmitter<Person>();
@@ -45,11 +45,12 @@ export class ValidatedFormModelDrivenComponent implements OnInit {
   }
 
   // -------------------- validators --------------------
-  skuValidator(control: FormControl): { [s: string]: boolean } {
+  skuValidator(control: FormControl): { [s: string]: boolean } | undefined {
     const s = control.value;
     if (!s.match(/^123/)) {
       return {invalidSku: true};
     }
+    return undefined;
   }
 
 }

@@ -21,7 +21,7 @@
     </div>
     <div
       class="my-dropzone scrollable"
-      dndDropzone
+      [dndDropzone]="dropZoneDummyVal"
       dndDragoverClass="custom-drag-over"
       [dndDisableIf]="!dropzoneEnabled"
       (dndDrop)="onDrop($event)">

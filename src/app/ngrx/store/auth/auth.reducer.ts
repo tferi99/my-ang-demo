@@ -4,8 +4,8 @@ import {User} from '../../../shared/model/user.model';
 
 export interface AuthState {
   loggedIn: boolean;
-  user: User;
-  errorMessage: string;
+  user?: User;
+  errorMessage?: string;
 }
 
 export const initialState: AuthState = {

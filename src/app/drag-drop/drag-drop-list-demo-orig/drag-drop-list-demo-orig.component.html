@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-4 drag-list-container">
     <h3>Zone: {{draggableListLeft.id}}</h3>
-    <div class="drag-list" dndDropzone dndEffectAllowed="copyMove" (dndDrop)="onDrop($event, draggableListLeft.items)">
+    <div class="drag-list" [dndDropzone]="dropZoneDummyVal" dndEffectAllowed="copyMove" (dndDrop)="onDrop($event, draggableListLeft.items)">
 
       <div dndPlaceholderRef class="drag-list-item dndPlaceholder"></div>
 
@@ -23,7 +23,7 @@
 
   <div class="col-4 drag-list-container">
     <h3>Zone: {{draggableListRight.id}}</h3>
-    <div class="drag-list" dndDropzone dndEffectAllowed="copyMove" (dndDrop)="onDrop($event, draggableListRight.items)">
+    <div class="drag-list" [dndDropzone]="dropZoneDummyVal" dndEffectAllowed="copyMove" (dndDrop)="onDrop($event, draggableListRight.items)">
 
       <div dndPlaceholderRef class="drag-list-item dndPlaceholder"></div>
 
@@ -47,7 +47,7 @@
     <h3>Zone: Rabbish</h3>
 
     <div class="drag-list"
-         dndDropzone
+         [dndDropzone]="dropZoneDummyVal"
          dndEffectAllowed="move"
          (dndDrop)="onDrop($event)"
          style="vertical-align: middle; text-align: center; line-height: 100%"

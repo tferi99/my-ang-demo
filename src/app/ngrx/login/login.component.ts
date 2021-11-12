@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {LoginService} from '../../core/service/login.service';
 import {LoginAction} from '../store/auth/auth.actions';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthState} from '../store/auth/auth.reducer';
 import {NGXLogger} from 'ngx-logger';
 import {Observable, Subscription} from 'rxjs';
@@ -15,9 +15,9 @@ import {selectAuthState} from '../store/auth/auth.selectors';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private errorFound = false;
-  form = null;
-  auth: Observable<AuthState>;
-  private authSub: Subscription;
+  form!: FormGroup;
+  auth$!: Observable<AuthState>;
+  private authSub!: Subscription;
 
   constructor(private store: Store<AuthState>, private service: LoginService, private fb: FormBuilder, private log: NGXLogger) {
     this.form = this.fb.group({
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.auth = this.store.pipe(
+    this.auth$ = this.store.pipe(
       select(selectAuthState)
     );
 /*    this.authSub = this.store.pipe(

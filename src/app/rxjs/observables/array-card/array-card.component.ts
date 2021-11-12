@@ -8,7 +8,7 @@ import {ObservabledDemoData} from '../observable-demo-data';
   styleUrls: ['./array-card.component.sass']
 })
 export class ArrayCardComponent implements OnInit {
-  @Input() data: ObservabledDemoData;
+  @Input() data!: ObservabledDemoData;
 
   constructor() {}
 

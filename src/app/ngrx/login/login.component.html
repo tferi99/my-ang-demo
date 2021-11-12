@@ -18,7 +18,7 @@
       <label for="password" class="col-sm-2 col-form-label">&nbsp;</label>
       <div class="col-sm-10">
         <button (click)="onLogin()" class="btn btn-primary" [disabled]="!form.valid" >OK</button>
-        <span class="text-danger ml-2" *ngIf="(auth | async).errorMessage">Login error<i class="fa fa-exclamation-circle text-danger ml-2"></i></span>
+        <span class="text-danger ml-2" *ngIf="(auth$ | async)?.errorMessage">Login error<i class="fa fa-exclamation-circle text-danger ml-2"></i></span>
       </div>
     </div>
   </form>

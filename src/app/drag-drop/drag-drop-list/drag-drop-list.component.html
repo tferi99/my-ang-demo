@@ -1,9 +1,9 @@
-<h3>Zone: {{data.id}}</h3>
-<div class="drag-list" dndDropzone dndEffectAllowed="copyMove" (dndDrop)="onDrop($event)">
+<h3>Zone: {{data?.id}}</h3>
+<div class="drag-list" [dndDropzone]="dropZoneDummyVal" dndEffectAllowed="copyMove" (dndDrop)="onDrop($event)">
 
   <div dndPlaceholderRef class="drag-list-item dndPlaceholder"></div>
 
-  <div *ngFor="let item of data.items"
+  <div *ngFor="let item of data?.items"
        class="alert alert-primary draggable" role="alert"
        [dndDraggable]="item"
        [dndEffectAllowed]="item.effectAllowed"

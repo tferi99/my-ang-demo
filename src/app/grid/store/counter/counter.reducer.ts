@@ -1,6 +1,6 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { Counter } from './counter.model';
 import { CounterActions, CounterActionTypes } from './counter.actions';
+import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
 
 export interface CountersState extends EntityState<Counter> {
   // additional entities state properties
@@ -51,7 +51,7 @@ export function reducer(
     }
 
     case CounterActionTypes.LoadCounters: {
-      return adapter.addAll(action.payload.counters, state);
+      return adapter.setAll(action.payload.counters, state);
     }
 
     case CounterActionTypes.ClearCounters: {
@@ -60,12 +60,18 @@ export function reducer(
 
     case CounterActionTypes.IncrementAction: {
       const c = state.entities[action.payload];
-      return adapter.updateOne({id: action.payload, changes: {value: c.value + 1}}, state);
+      if (c) {
+        return adapter.updateOne({id: action.payload, changes: {value: c.value + 1}}, state);
+      }
+      return state;
     }
 
     case CounterActionTypes.DecrementAction: {
       const c = state.entities[action.payload];
-      return adapter.updateOne({id: action.payload, changes: {value: c.value - 1}}, state);
+      if (c) {
+        return adapter.updateOne({id: action.payload, changes: {value: c.value - 1}}, state);
+      }
+      return state;
     }
 
     default: {

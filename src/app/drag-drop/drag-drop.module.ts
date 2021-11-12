@@ -30,7 +30,7 @@ import {DragDropListService} from './drag-drop-list.service';
     FormsModule,
   ],
   exports: [
-    DragDropListService
+    //DragDropListService
   ]
 })
 export class DragDropModule { }

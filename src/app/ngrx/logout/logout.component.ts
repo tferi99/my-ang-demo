@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./logout.component.sass']
 })
 export class LogoutComponent implements OnInit {
-  user$: Observable<User>;
+  user$!: Observable<User | undefined>;
 
   constructor(private store: Store<AppState>, private router: Router) { }
 

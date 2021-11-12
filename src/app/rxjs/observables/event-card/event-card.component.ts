@@ -9,30 +9,30 @@ import {tap} from 'rxjs/operators';
   styleUrls: ['./event-card.component.sass']
 })
 export class EventCardComponent implements OnInit, AfterViewInit {
-  @Input() data: ObservabledDemoData;
-  @ViewChild('card', {static: true}) clickTarget: ElementRef;
+  @Input() data!: ObservabledDemoData;
+  @ViewChild('card', {static: true}) clickTarget!: ElementRef;
 
-  x: number;
-  y: number;
+  x!: number;
+  y!: number;
   mouseDown = false;
   ctrlKey = false;
   altKey = false;
-  buttons: number;
-  leftButton: boolean;
-  rightButton: boolean;
+  buttons!: number;
+  leftButton!: boolean;
+  rightButton!: boolean;
 
   constructor() { }
 
   ngOnInit() {
     this.data.color = 'warning';
 
-    fromEvent(this.clickTarget.nativeElement, 'mousemove').subscribe(
+    fromEvent<MouseEvent>(this.clickTarget.nativeElement, 'mousemove').subscribe(
       (event: MouseEvent) => this.renderMouseEventProperties(event));
 
-    fromEvent(this.clickTarget.nativeElement, 'mousedown').subscribe(
+    fromEvent<MouseEvent>(this.clickTarget.nativeElement, 'mousedown').subscribe(
       (event: MouseEvent) => this.renderMouseEventProperties(event));
 
-    fromEvent(this.clickTarget.nativeElement, 'mouseup').subscribe(
+    fromEvent<MouseEvent>(this.clickTarget.nativeElement, 'mouseup').subscribe(
       (event: MouseEvent) => this.renderMouseEventProperties(event));
   }
 

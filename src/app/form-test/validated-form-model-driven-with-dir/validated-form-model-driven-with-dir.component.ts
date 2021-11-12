@@ -11,7 +11,7 @@ import {FormValidatorService} from '../../core/service/form-validator.service';
   styleUrls: ['./validated-form-model-driven-with-dir.component.scss']
 })
 export class ValidatedFormModelDrivenWithDirComponent implements OnInit {
-  @Input() in: Person;
+  @Input() in!: Person;
   genders: KeyValuePair<string, string>[];
 
   form = this.fb.group({
@@ -25,12 +25,12 @@ export class ValidatedFormModelDrivenWithDirComponent implements OnInit {
   });
 
   // form controls (used in template here)
-  name = this.form.controls.name;
-  rank = this.form.controls.rank;
-  email = this.form.controls.email;
-  gender = this.form.controls.gender;
-  birth = this.form.controls.birth;
-  active = this.form.controls.active;
+  name = this.form.controls.name as FormControl;
+  rank = this.form.controls.rank as FormControl;
+  email = this.form.controls.email as FormControl;
+  gender = this.form.controls.gender as FormControl;
+  birth = this.form.controls.birth as FormControl;
+  active = this.form.controls.active as FormControl;
 
 /*  get fc() {
     return this.form.controls;

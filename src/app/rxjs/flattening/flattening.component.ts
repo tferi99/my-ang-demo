@@ -22,19 +22,19 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
   flatteningTypeEnum = FlatteningStrategy;
   concatenateObserversActive = false;
   flatteningStrategy = FlatteningStrategy.CONCAT;
-  subscription: Subscription;
-  currentSubscriptionType: string;
+  subscription!: Subscription;
+  currentSubscriptionType!: string;
   networkMode = false;
 
   @ViewChild('clickTarget', {static: true})
-  clickTarget: ElementRef;
+  clickTarget!: ElementRef;
 
   clickTargetVisible = 'hidden';
 
   @ViewChild('clickTarget2', {static: true})
-  clickTarget2: ElementRef;
+  clickTarget2!: ElementRef;
 
-  @ViewChild('startBtn', {static: true}) startBtn: ElementRef;
+  @ViewChild('startBtn', {static: true}) startBtn!: ElementRef;
   startBtnVisible = 'hidden';
 
   constructor(private api: ApiService, private log: NGXLogger) {
@@ -54,7 +54,7 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
 
     setTimeout(() => {
       const mapOp: OperatorFunction<any, any> = this.getMapOp(this.flatteningStrategy);
-      let o: Observable<any> = null;
+      let o: Observable<any> | null = null;
 
       this.log.debug('>>>>>>> ' + this.clickTargetVisible + ', ' + this.startBtnVisible);
       if (!this.networkMode) {
@@ -88,7 +88,7 @@ export class FlatteningComponent implements OnInit, AfterViewInit {
 
   getMapOp(fs: FlatteningStrategy): OperatorFunction<any, any> {
     const id = 0;
-    let mapOp: OperatorFunction<any, any> = null;
+    let mapOp: OperatorFunction<any, any> = null!;
     switch (this.flatteningStrategy) {
       case FlatteningStrategy.MERGE:
         if (this.networkMode) {

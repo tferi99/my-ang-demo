@@ -9,7 +9,8 @@ import {selectGrids} from '../store/gridster/gridster.selector';
 import {selectGridEditable} from '../store/config/config.selector';
 import {GridsterChangedAction} from '../store/gridster/gridster.actions';
 import {WacGridsterItem, WidgetTypeEnum} from '../grid-api.service';
-import {AppState} from '../../reducers';
+import {AppState} from "../../reducers";
+import {GridsterItem, GridsterItemComponentInterface} from "angular-gridster2/lib/gridsterItem.interface";
 
 @Component({
   selector: 'grid-gridster-container',
@@ -45,12 +46,12 @@ export class GridsterContainerComponent implements OnInit, OnDestroy {
   dashboard: Array<WacGridsterItem> = [];
 
   // subscriptions
-  editableSubscription: Subscription;
-  gridSubscription: Subscription;
+  editableSubscription!: Subscription;
+  gridSubscription!: Subscription;
 //  changeDetectorSubscription: Subscription;
 
 
-  static itemChange(item, itemComponent) {
+  static itemChange(item: GridsterItem, itemComponent: GridsterItemComponentInterface) {
 /*    if (!GridsterContainerComponent.inited) {
       console.log('GRIDSTER itemChange - IGNORED:', item, itemComponent);
     } else {
@@ -58,7 +59,7 @@ export class GridsterContainerComponent implements OnInit, OnDestroy {
       GridsterContainerComponent.changeDetector.next(GridsterContainerComponent.inited);
     }*/
   }
-  static itemResize(item, itemComponent) {
+  static itemResize(item: GridsterItem, itemComponent: GridsterItemComponentInterface) {
 /*    if (!GridsterContainerComponent.inited) {
       console.log('GRIDSTER itemResize - IGNORED:', item, itemComponent);
     } else {
@@ -109,7 +110,7 @@ export class GridsterContainerComponent implements OnInit, OnDestroy {
     this.dashboard.push(newWidget);
   }
 
-  removeWidget(event, item) {
+  removeWidget(event: any, item: WacGridsterItem) {
     this.dashboard.splice(this.dashboard.indexOf(item), 1);
   }
 
@@ -119,15 +120,19 @@ export class GridsterContainerComponent implements OnInit, OnDestroy {
 
       this.log.debug('Grid Editable changed:', editable);
       this.editable = editable;
-      this.options.draggable.enabled = editable;
-      this.options.resizable.enabled = editable;
+      if (this.options.draggable) {
+        this.options.draggable.enabled = editable;
+      }
+      if (this.options.resizable) {
+        this.options.resizable.enabled = editable;
+      }
       if (!editable) {
         this.options.displayGrid = 'none';
       } else {
         this.options.displayGrid = 'always';
       }
 
-      if (this.options.api) {               // options.api is undefined first (why?)
+      if (this.options.api && this.options.api.optionsChanged) {               // options.api is undefined first (why?)
         this.options.api.optionsChanged();
       }
       if (!editable && prevEditable) {

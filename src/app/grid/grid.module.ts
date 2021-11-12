@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MainComponent } from './main/main.component';
 import {GridsterModule} from 'angular-gridster2';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {WidgetWrapperComponent} from './widget-wrapper/widget-wrapper.component';
 import {SampleNavComponent} from './sample-nav/sample-nav.component';
 import { StoreModule } from '@ngrx/store';
@@ -17,6 +16,7 @@ import {ConfigEffects} from './store/config/config.effects';
 import { CounterComponent } from './widgets/counter/counter.component';
 import * as fromCounter from './store/counter/counter.reducer';
 import { SimpleInputComponent } from './widgets/simple-input/simple-input.component';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -30,7 +30,6 @@ import { SimpleInputComponent } from './widgets/simple-input/simple-input.compon
   imports: [
     CommonModule,
     GridsterModule,
-    NgbModule,
     StoreModule.forFeature('config', fromConfig.reducer),
     StoreModule.forFeature('gridster', fromGridster.reducer),
     EffectsModule.forFeature([GridsterEffects, ConfigEffects]),

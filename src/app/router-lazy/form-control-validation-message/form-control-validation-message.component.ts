@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {AbstractControl, FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-form-control-validation-message',
@@ -7,20 +7,20 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./form-control-validation-message.component.scss']
 })
 export class FormControlValidationMessageComponent implements OnInit {
-  @Input() control: FormControl;
+  @Input() control!: AbstractControl;
   @Input() debug = false;
   @Input() onlyIfTouched = true;
-  @Input() options = {};
+  @Input() options: any = {};
 
-  errorMessage: string;
-  debugMessage: string;
+  errorMessage!: string;
+  debugMessage!: string;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  getMessage(): string {
+  getMessage(): string | null {
     if (!this.control) {
       this.errorMessage = '[control] not specified';
     } else {

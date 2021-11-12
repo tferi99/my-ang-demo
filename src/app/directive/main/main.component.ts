@@ -12,7 +12,7 @@ export class MainComponent implements OnInit {
   betterHighlight= SelectableColors.Green.valueOf();
   displayed = true;
 
-  obj = {
+  obj:any = {
     a: 'one',
     b: 'two',
     c: 'three',

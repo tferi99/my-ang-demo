@@ -10,8 +10,8 @@ import {map, share} from 'rxjs/operators';
   styleUrls: ['./course-list.component.sass']
 })
 export class CourseListComponent implements OnInit {
-  courses$: Observable<Course[]>;
-  coursesCount$: Observable<number>;
+  courses$!: Observable<Course[]>;
+  coursesCount$!: Observable<number>;
 
   constructor(private apiService: ApiService) {}
 

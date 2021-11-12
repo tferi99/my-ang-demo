@@ -29,10 +29,7 @@
       <div class="form-group col-md-2">
         <label for="gender">Birth</label>
         <div class="input-group">
-          <input type="text" ngbDatepicker #d="ngbDatepicker" class="form-control" formControlName="birth" #birthElem/>
-          <div class="input-group-append">
-            <button (click)="d.toggle()"><i class="fa fa-calendar text-success" ></i></button>
-          </div>
+          <input type="text" class="form-control" id="birth" formControlName="birth" [ngClass]="{'is-invalid' : birth.invalid}" placeholder="Birth" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" #birthElem>
         </div>
         <dev-control-status-debug [control]="birth" [element]="birthElem"></dev-control-status-debug>
       </div>

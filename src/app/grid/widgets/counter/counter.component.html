@@ -1,6 +1,6 @@
 <div>
-  <h4>{{(counter$ | async).id}}</h4>
+  <h4>{{(counter$ | async)?.id}}</h4>
   <button (click)="decrement()"><i class="fa fa-minus"></i></button>
-  <span class="ml-2 mr-2">{{(counter$ | async).value}}</span>
+  <span class="ml-2 mr-2">{{(counter$ | async)?.value}}</span>
   <button (click)="increment()"><i class="fa fa-plus"></i></button>
 </div>

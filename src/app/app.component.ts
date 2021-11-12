@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Inject, LOCALE_ID} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
@@ -9,7 +9,13 @@ import {TranslateService} from '@ngx-translate/core';
 export class AppComponent {
   title = 'My Angular Demo';
 
-  constructor(translate: TranslateService) {
+  languageList = [
+    { code: 'en-US', label: 'English' },
+    { code: 'de', label: 'Deutch' },
+    { code: 'hu', label: 'Magyar' },
+    { code: 'ru', label: 'Russzkij' },
+  ];
+  constructor(translate: TranslateService, @Inject(LOCALE_ID) protected localeId: string) {
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.addLangs(['en']);
     translate.setDefaultLang('en');

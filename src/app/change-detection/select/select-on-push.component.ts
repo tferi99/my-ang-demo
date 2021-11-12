@@ -3,6 +3,7 @@ import {ChdService} from '../chd.service';
 import {Observable, Subscription} from 'rxjs';
 import {Course} from '../../shared/model/course.model';
 import {ApiService} from '../../core/service/api.service';
+import {Skill} from "../skill.model";
 
 @Component({
   selector: 'chd-select-onpush',
@@ -11,15 +12,15 @@ import {ApiService} from '../../core/service/api.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectOnPushComponent implements OnInit, OnDestroy {
-  @Input() options = [];
+  @Input() options: Skill[] = [];
 
   type = 'Default';
   onPush = true;
   limit = 2;
 
   courses$: Observable<Course[]> = this.apiService.getCoursesLimit(this.limit);
-  courses: Course[];
-  coursesSubs: Subscription;
+  courses?: Course[];
+  coursesSubs?: Subscription;
 
   constructor(private chdService: ChdService, private apiService: ApiService) {}
 

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ControlContainer, FormControl, FormGroup} from '@angular/forms';
 import {FormValidatorService} from '../../../core/service/form-validator.service';
 
@@ -18,12 +18,13 @@ import {FormValidatorService} from '../../../core/service/form-validator.service
 })
 export class FormErrorDumpButtonComponent implements OnInit {
   @Input() showAlways = false;
-  @Input() additionalClass: string;
+  @Input() additionalClass!: string;
 
   constructor(
-    private controlContainer: ControlContainer,
+    public controlContainer: ControlContainer,
     private formValidatorService: FormValidatorService
-  ) {}
+  ) {
+  }
 
   onClick() {
     if (!this.controlContainer || !this.controlContainer.control) {

@@ -10,8 +10,10 @@ import {NGXLogger} from 'ngx-logger';
   styleUrls: ['./drag-drop-list-demo-orig.component.css']
 })
 export class DragDropListDemoOrigComponent implements OnInit {
-  private currentDraggableEvent: DragEvent;
-  private currentDragEffectMsg: string;
+  private currentDraggableEvent?: DragEvent;
+  private currentDragEffectMsg?: string;
+
+  dropZoneDummyVal: string[] = [];
 
   draggableListLeft: DragDropListZone<DragDropItem> = {
     id: 'LEFT',

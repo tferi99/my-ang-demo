@@ -15,11 +15,10 @@
   <div ngbDropdown class="d-inline-block">
     <button ngbDropdownToggle class="btn btn-secondary btn-sm dropdown-toggle-nocaret" id="dropdownBasic"><i class="fas fa-caret-down"></i></button>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic">
-      <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.CALL)">Call</button>
-      <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.CALLCENTER)">Call Center</button>
-      <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.CALLLIST)">Call List</button>
-      <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.DIRECTORY)">Directory</button>
       <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.EMPTY)">Empty</button>
+      <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.PLACEHOLDER)">Placeholder</button>
+      <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.INPUT)">Input</button>
+      <button ngbDropdownItem (click)="changeWidgetType(WidgetTypeEnum.COUNTER)">Counter</button>
     </div>
   </div>
 

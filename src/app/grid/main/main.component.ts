@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../reducers';
-import {LoginSuccessAction} from '../../ngrx/store/auth/auth.actions';
 import {GridsterLoadRequestedAction} from '../store/gridster/gridster.actions';
 
 @Component({

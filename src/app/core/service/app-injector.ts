@@ -12,6 +12,9 @@ export class AppInjector {
   }
 
   static getInjector(): Injector {
+    if (!AppInjector.injector) {
+      throw new Error('AppInjector not initialized. Call AppInjector.setInjector in main.ts');
+    }
     return AppInjector.injector;
   }
 }

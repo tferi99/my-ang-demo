@@ -15,7 +15,7 @@ export class LocalStorageService {
     localStorage.removeItem(LocalStorageService.USER_LOC_STORE_KEY);
   }
 
-  getUser(): User {
+  getUser(): User | undefined {
     const u = localStorage.getItem(LocalStorageService.USER_LOC_STORE_KEY);
     if (u) {
       let user: User;

@@ -11,7 +11,7 @@ import {ToggleGridEditableAction} from '../store/config/config.actions';
   styleUrls: ['./sample-nav.component.scss']
 })
 export class SampleNavComponent implements OnInit {
-  editable$: Observable<boolean>;
+  editable$!: Observable<boolean>;
 
   constructor(private store: Store<AppState>) {}
 

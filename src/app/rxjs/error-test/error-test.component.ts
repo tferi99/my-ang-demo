@@ -14,7 +14,7 @@ import {genericRetryStrategy} from './generic-retry-strategy';
   styleUrls: ['./error-test.component.scss']
 })
 export class ErrorTestComponent implements OnInit, AfterViewInit {
-  courses$: Observable<Course[]>;
+  courses$!: Observable<Course[]>;
   errorFound = false;
   alternativeCourse: Course = {id: -1, description: 'Error on server. Till problem solved read this:', alternativeCourseTitle: 'Index', alternativeCourseUrl: 'https://index.hu'};
 
@@ -141,7 +141,7 @@ export class ErrorTestComponent implements OnInit, AfterViewInit {
     );
   }
 
-  showError(msg, err) {
+  showError(msg: string, err: string) {
     this.errorFound = true;
     this.log.error(`Error occured - ${msg}:`, err);
   }

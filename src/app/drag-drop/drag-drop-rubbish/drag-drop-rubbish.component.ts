@@ -11,7 +11,9 @@ import {DragDropListService} from '../drag-drop-list.service';
 })
 export class DragDropRubbishComponent implements OnInit, DragDropComponentBase {
   @Input()
-  id: string;
+  id!: string;
+
+  dropZoneDummyVal: string[] = [];
 
   constructor(
     private log: NGXLogger,

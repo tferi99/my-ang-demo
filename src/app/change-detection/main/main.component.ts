@@ -20,8 +20,8 @@ export class MainComponent implements OnInit, OnDestroy {
   onPush = false;
 
   backgroundCounter: Observable<number> = timer(0, 5000);
-  backgroundCounterSubscription: Subscription;
-  backgroundCounterValue: number;
+  backgroundCounterSubscription!: Subscription;
+  backgroundCounterValue!: number;
 
   constructor(private chdService: ChdService) { }
 
