@@ -7,16 +7,11 @@ import {AppInjector} from '../core/service/app-injector';
 export class DragDropListServiceBase<T> {
   action?: Partial<DragDropAction<DragDropListZone<T>, T>>;
   emitter: Subject<DragDropAction<DragDropListZone<T>, T>> = new Subject<DragDropAction<DragDropListZone<T>, T>>();
-  log: NGXLogger;
 
-  constructor() {
-    const injector = AppInjector.getInjector()
-    console.log('INJECTOR:', injector);
-    this.log = injector.get(NGXLogger);
-  }
+  constructor(private _logger: NGXLogger) {}
 
   onDragStart(sourceZone: DragDropListZone<T> | undefined, event: DragEvent) {
-    this.log.info(`onDragStart - SourceZone[${sourceZone?.id}]`, event);
+    this._logger.info(`onDragStart - SourceZone[${sourceZone?.id}]`, event);
     if (!sourceZone) {
       return;
     }
@@ -30,14 +25,14 @@ export class DragDropListServiceBase<T> {
   }
 
   onDrop(destinationZone: DragDropListZone<T> | undefined, event: DndDropEvent) {
-    this.log.info(`onDrop - DestinationZone[${destinationZone?.id}]`, event);
+    this._logger.info(`onDrop - DestinationZone[${destinationZone?.id}]`, event);
     if (!destinationZone) {
       return;
     }
 
     // checking emitted action
     if (!this.action) {
-      this.log.error('No action found for onDrop()');
+      this._logger.error('No action found for onDrop()');
       return;
     }
 
@@ -56,11 +51,11 @@ export class DragDropListServiceBase<T> {
     this.action.dropEvent = event;
     this.action.state = DragDropState.Dropped;
 
-    this.log.info(`onDrop - Destination[${destinationZone.id}]`, event, destinationZone);
+    this._logger.info(`onDrop - Destination[${destinationZone.id}]`, event, destinationZone);
   }
 
   onDropRubbish(event: DndDropEvent) {
-    this.log.info(`onDrop to rubbish`, event, this.action);
+    this._logger.info(`onDrop to rubbish`, event, this.action);
     if (!this.action) {
       return;
     }
@@ -70,14 +65,14 @@ export class DragDropListServiceBase<T> {
   }
 
   onDragged(zone: DragDropListZone<T> | undefined, data: T, effect: DropEffect) {
-    this.log.info(`onDragged - Zone[${zone?.id}]`, event);
+    this._logger.info(`onDragged - Zone[${zone?.id}]`, event);
     if (!zone) {
       return;
     }
 
     // checking emitted action
     if (!this.action) {
-      this.log.error('No action found for onDragged()');
+      this._logger.error('No action found for onDragged()');
       return;
     }
 
@@ -91,17 +86,17 @@ export class DragDropListServiceBase<T> {
     this.action.draggedData = data;
     this.action.effect = effect;
 
-    this.log.info(`[${zone.id}] onDragged with ${effect}`, data);
+    this._logger.info(`[${zone.id}] onDragged with ${effect}`, data);
   }
 
   onDragEnd(zone: DragDropListZone<T> | undefined, event: DragEvent) {
-    this.log.info(`[${zone?.id}] onDragEnd`, event);
+    this._logger.info(`[${zone?.id}] onDragEnd`, event);
     if (!zone) {
       return;
     }
 
     if (!this.action) {
-      this.log.error('No action found for onDragEnd()');
+      this._logger.error('No action found for onDragEnd()');
       return;
     }
 
