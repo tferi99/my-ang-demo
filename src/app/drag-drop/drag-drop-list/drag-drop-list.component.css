@@ -32,7 +32,7 @@
 }
 
 .dndPlaceholder {
-  min-height: 72px;
+  min-height: 48px;
   border: 1px dashed green;
   background-color: rgba(0, 0, 0, 0.1);
 }
