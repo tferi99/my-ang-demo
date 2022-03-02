@@ -3,14 +3,54 @@ import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
 import {NGXLogger} from 'ngx-logger';
 import {Subject} from 'rxjs';
 import {AppInjector} from '../core/service/app-injector';
+import {DragDropServiceBase} from './drag-drop-service-base';
 
-export class DragDropListServiceBase<T> {
-  action?: Partial<DragDropAction<DragDropListZone<T>, T>>;
-  emitter: Subject<DragDropAction<DragDropListZone<T>, T>> = new Subject<DragDropAction<DragDropListZone<T>, T>>();
+export class DragDropListServiceBase<D> extends DragDropServiceBase<DragDropListZone<D>, D> {
+
+  protected zoneToDisplay(zone: DragDropListZone<D> | undefined): string {
+    if (!zone) {
+      return 'null';
+    }
+    return zone.id;
+  }
+
+  protected processOnDrop(destinationZone: DragDropListZone<D> | undefined, event: DndDropEvent): void {
+    if (!destinationZone) {
+      return;
+    }
+
+    const list = destinationZone.items;
+    if (list && (event.dropEffect === 'copy' || event.dropEffect === 'move')) {
+      let index = event.index;
+
+      if (typeof index === 'undefined') {
+        index = list.length;
+      }
+      list.splice(index, 0, event.data);
+    }
+  }
+  protected processOnDragged(zone: DragDropListZone<D> | undefined, data: D, effect: DropEffect): void {
+    if (!zone) {
+      return;
+    }
+
+    const list = zone.items;
+    if (effect === 'move') {
+      const index = list.indexOf(data);
+      list.splice(index, 1);
+    }
+  }
+  constructor(logger: NGXLogger) {
+    super(logger);
+    this.tracing = true;
+  }
+
+/*  action?: Partial<DragDropAction<DragDropListZone<D>, D>>;
+  emitter: Subject<DragDropAction<DragDropListZone<D>, D>> = new Subject<DragDropAction<DragDropListZone<D>, D>>();
 
   constructor(private _logger: NGXLogger) {}
 
-  onDragStart(sourceZone: DragDropListZone<T> | undefined, event: DragEvent) {
+  onDragStart(sourceZone: DragDropListZone<D> | undefined, event: DragEvent) {
     this._logger.info(`onDragStart - SourceZone[${sourceZone?.id}]`, event);
     if (!sourceZone) {
       return;
@@ -24,7 +64,7 @@ export class DragDropListServiceBase<T> {
     }
   }
 
-  onDrop(destinationZone: DragDropListZone<T> | undefined, event: DndDropEvent) {
+  onDrop(destinationZone: DragDropListZone<D> | undefined, event: DndDropEvent) {
     this._logger.info(`onDrop - DestinationZone[${destinationZone?.id}]`, event);
     if (!destinationZone) {
       return;
@@ -64,8 +104,8 @@ export class DragDropListServiceBase<T> {
 
   }
 
-  onDragged(zone: DragDropListZone<T> | undefined, data: T, effect: DropEffect) {
-    this._logger.info(`onDragged - Zone[${zone?.id}]`, event);
+  onDragged(zone: DragDropListZone<D> | undefined, data: D, effect: DropEffect) {
+    this._logger.info(`onDragged - Zone[${zone?.id}]: ${effect}`);
     if (!zone) {
       return;
     }
@@ -89,7 +129,7 @@ export class DragDropListServiceBase<T> {
     this._logger.info(`[${zone.id}] onDragged with ${effect}`, data);
   }
 
-  onDragEnd(zone: DragDropListZone<T> | undefined, event: DragEvent) {
+  onDragEnd(zone: DragDropListZone<D> | undefined, event: DragEvent) {
     this._logger.info(`[${zone?.id}] onDragEnd`, event);
     if (!zone) {
       return;
@@ -101,6 +141,6 @@ export class DragDropListServiceBase<T> {
     }
 
     // emit
-    this.emitter.next(this.action as DragDropAction<DragDropListZone<T>, T>);
-  }
+    this.emitter.next(this.action as DragDropAction<DragDropListZone<D>, D>);
+  }*/
 }

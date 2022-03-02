@@ -3,6 +3,9 @@ import {DndDropEvent} from 'ngx-drag-drop';
 import {ToastrService} from 'ngx-toastr';
 import {DragDropItem} from '../drag-drop.model';
 
+/**
+ * Simple drag-drop without service.
+ */
 @Component({
   selector: 'dd-drag-drop-simple-demo',
   templateUrl: './drag-drop-simple-demo.component.html',

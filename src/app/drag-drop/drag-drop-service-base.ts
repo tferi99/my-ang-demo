@@ -4,103 +4,118 @@ import {NGXLogger} from 'ngx-logger';
 import {Subject} from 'rxjs';
 import {AppInjector} from '../core/service/app-injector';
 
-export class DragDropServiceBase<Z, ZID extends keyof Z, D> {
+export abstract class DragDropServiceBase<Z, D> {
   action?: Partial<DragDropAction<Z, D>>;
   emitter: Subject<DragDropAction<Z, D>> = new Subject<DragDropAction<Z, D>>();
+  protected tracing = false;
 
-  constructor(private _logger: NGXLogger) {}
+  constructor(protected _logger: NGXLogger) {}
 
-  onDragStart(sourceData: Z | undefined, event: DragEvent) {
-    this._logger.info(`onDragStart - SourceZone[${sourceZone?.id}]`, event);
-    if (!sourceData) {
+  protected abstract zoneToDisplay(zone: Z | undefined): string;
+  protected abstract processOnDrop(destinationZone: Z | undefined, event: DndDropEvent): void;
+  protected abstract processOnDragged(zone: Z | undefined, data: D, effect: DropEffect): void;
+
+  onDragStart(sourceZone: Z | undefined, event: DragEvent) {
+    if (this.tracing) {
+      this._logger.info(`onDragStart - SourceZone[${this.zoneToDisplay(sourceZone)}]`, event);
+    }
+
+    if (!sourceZone) {
       return;
     }
 
     // emitted action
     this.action = {
       dragEvent: event,
-      sourceData,
+      sourceData: sourceZone,
       state: DragDropState.Started
     }
   }
 
   onDrop(destinationZone: Z | undefined, event: DndDropEvent) {
-    this._logger.info(`onDrop - DestinationZone[${destinationZone?k}]`, event);
+    if (this.tracing) {
+      this._logger.info(`onDrop - DestinationZone[${this.zoneToDisplay(destinationZone)}]`, event);
+    }
+
     if (!destinationZone) {
       return;
     }
 
     // checking emitted action
     if (!this.action) {
-      this._logger.error('No action found for onDrop()');
+      if (this.tracing) {
+        this._logger.error('No action found for onDrop()');
+      }
       return;
     }
 
-    const list = destinationZone.items;
-    if (list && (event.dropEffect === 'copy' || event.dropEffect === 'move')) {
-      let index = event.index;
-
-      if (typeof index === 'undefined') {
-        index = list.length;
-      }
-      list.splice(index, 0, event.data);
-    }
+    this.processOnDrop(destinationZone, event);
 
     // emitted action
     this.action.destinationData = destinationZone;
     this.action.dropEvent = event;
     this.action.state = DragDropState.Dropped;
 
-    this._logger.info(`onDrop - Destination[${destinationZone.id}]`, event, destinationZone);
+    if (this.tracing) {
+      this._logger.info(`onDrop - Destination[${this.zoneToDisplay(destinationZone)}]`, event, destinationZone);
+    }
   }
 
   onDropRubbish(event: DndDropEvent) {
-    this._logger.info(`onDrop to rubbish`, event, this.action);
+    if (this.tracing) {
+      this._logger.info(`onDrop to rubbish`, event, this.action);
+    }
     if (!this.action) {
       return;
     }
     this.action.dropEvent = event;
     this.action.state = DragDropState.DroppedToRubbish;
-
   }
 
-  onDragged(zone: Z | undefined, data: T, effect: DropEffect) {
-    this._logger.info(`onDragged - Zone[${zone?.id}]`, event);
+  onDragged(zone: Z | undefined, data: D, effect: DropEffect) {
+    if (this.tracing) {
+      this._logger.info(`onDragged - Zone[${this.zoneToDisplay(zone)}]: ${effect}`);
+    }
     if (!zone) {
       return;
     }
 
     // checking emitted action
     if (!this.action) {
-      this._logger.error('No action found for onDragged()');
+      if (this.tracing) {
+        this._logger.error('No action found for onDragged()');
+      }
       return;
     }
 
-    const list = zone.items;
-    if (effect === 'move') {
-      const index = list.indexOf(data);
-      list.splice(index, 1);
-    }
+    this.processOnDragged(zone, data, effect);
 
     // emitted action
     this.action.draggedData = data;
     this.action.effect = effect;
 
-    this._logger.info(`[${zone.id}] onDragged with ${effect}`, data);
+    if (this.tracing) {
+      this._logger.info(`[${this.zoneToDisplay(zone)}] onDragged with ${effect}`, data);
+    }
   }
 
   onDragEnd(zone: Z | undefined, event: DragEvent) {
-    this._logger.info(`[${zone?.id}] onDragEnd`, event);
+    if (this.tracing) {
+      this._logger.info(`[${this.zoneToDisplay(zone)}] onDragEnd`, event);
+    }
+
     if (!zone) {
       return;
     }
 
     if (!this.action) {
-      this._logger.error('No action found for onDragEnd()');
+      if (this.tracing) {
+        this._logger.error('No action found for onDragEnd()');
+      }
       return;
     }
 
     // emit
-    this.emitter.next(this.action as DragDropAction<Z, T>);
+    this.emitter.next(this.action as DragDropAction<Z, D>);
   }
 }
