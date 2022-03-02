@@ -38,6 +38,7 @@ import {DComponent} from "./router-direct/d/d.component";
 import {DirectPage404Component} from "./router-direct/direct-page404/direct-page404.component";
 import {AuthGuard} from "./core/guard/auth-guard";
 import {LoginComponent} from "./ngrx/login/login.component";
+import {ModuleTestComponent} from './module-test/module-test.component';
 
 
 const routes: Routes = [
@@ -78,6 +79,7 @@ const routes: Routes = [
   { path: 'router-lazy', loadChildren: () => import('./router-lazy/router-lazy.module').then(m => m.RouterLazyModule) },     // lazy loading (import(...))
   { path: 'ngrx', component: NgrxMain, canActivate: [AuthGuard]},
   { path: 'ngrx/login', component: LoginComponent },
+  { path: 'moduletest', component: ModuleTestComponent },
 
   { path: '',   redirectTo: '/home', pathMatch: 'full' },   // default
   { path: '**', component: Page404Component}

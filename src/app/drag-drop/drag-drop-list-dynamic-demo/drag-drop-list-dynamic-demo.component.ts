@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {ToastrService} from 'ngx-toastr';
-import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
+import {Component, OnInit} from '@angular/core';
 import {DragDropItem, DragDropListZone} from '../drag-drop.model';
 
 @Component({

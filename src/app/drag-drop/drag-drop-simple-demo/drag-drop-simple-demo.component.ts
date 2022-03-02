@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DndDropEvent} from 'ngx-drag-drop';
 import {ToastrService} from 'ngx-toastr';
-import {Draggable} from "../drag-drop-types";
+import {DragDropItem} from '../drag-drop.model';
 
 @Component({
   selector: 'dd-drag-drop-simple-demo',
@@ -18,7 +18,7 @@ export class DragDropSimpleDemoComponent implements OnInit {
 
   dropZoneDummyVal: string[] = [];
 
-  draggables: Draggable[] = [
+  draggables: DragDropItem[] = [
     {
       content: 'testdata',
       effectAllowed: 'copy',
@@ -58,13 +58,15 @@ export class DragDropSimpleDemoComponent implements OnInit {
     handle: true
   };
 
-  constructor(private toastr: ToastrService) {}
+  constructor(
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
   }
 
   onDragStart(event: DragEvent) {
-
+//    this.dragDropSimpleService.onDragStart(this.data, event);
     this.lastDropEvent = null;
 
     this.currentDragEffectMsg = '';

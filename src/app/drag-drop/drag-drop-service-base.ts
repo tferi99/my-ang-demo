@@ -4,28 +4,28 @@ import {NGXLogger} from 'ngx-logger';
 import {Subject} from 'rxjs';
 import {AppInjector} from '../core/service/app-injector';
 
-export class DragDropListServiceBase<T> {
-  action?: Partial<DragDropAction<DragDropListZone<T>, T>>;
-  emitter: Subject<DragDropAction<DragDropListZone<T>, T>> = new Subject<DragDropAction<DragDropListZone<T>, T>>();
+export class DragDropServiceBase<Z, ZID extends keyof Z, D> {
+  action?: Partial<DragDropAction<Z, D>>;
+  emitter: Subject<DragDropAction<Z, D>> = new Subject<DragDropAction<Z, D>>();
 
   constructor(private _logger: NGXLogger) {}
 
-  onDragStart(sourceZone: DragDropListZone<T> | undefined, event: DragEvent) {
+  onDragStart(sourceData: Z | undefined, event: DragEvent) {
     this._logger.info(`onDragStart - SourceZone[${sourceZone?.id}]`, event);
-    if (!sourceZone) {
+    if (!sourceData) {
       return;
     }
 
     // emitted action
     this.action = {
       dragEvent: event,
-      sourceData: sourceZone,
+      sourceData,
       state: DragDropState.Started
     }
   }
 
-  onDrop(destinationZone: DragDropListZone<T> | undefined, event: DndDropEvent) {
-    this._logger.info(`onDrop - DestinationZone[${destinationZone?.id}]`, event);
+  onDrop(destinationZone: Z | undefined, event: DndDropEvent) {
+    this._logger.info(`onDrop - DestinationZone[${destinationZone?k}]`, event);
     if (!destinationZone) {
       return;
     }
@@ -64,7 +64,7 @@ export class DragDropListServiceBase<T> {
 
   }
 
-  onDragged(zone: DragDropListZone<T> | undefined, data: T, effect: DropEffect) {
+  onDragged(zone: Z | undefined, data: T, effect: DropEffect) {
     this._logger.info(`onDragged - Zone[${zone?.id}]`, event);
     if (!zone) {
       return;
@@ -89,7 +89,7 @@ export class DragDropListServiceBase<T> {
     this._logger.info(`[${zone.id}] onDragged with ${effect}`, data);
   }
 
-  onDragEnd(zone: DragDropListZone<T> | undefined, event: DragEvent) {
+  onDragEnd(zone: Z | undefined, event: DragEvent) {
     this._logger.info(`[${zone?.id}] onDragEnd`, event);
     if (!zone) {
       return;
@@ -101,6 +101,6 @@ export class DragDropListServiceBase<T> {
     }
 
     // emit
-    this.emitter.next(this.action as DragDropAction<DragDropListZone<T>, T>);
+    this.emitter.next(this.action as DragDropAction<Z, T>);
   }
 }

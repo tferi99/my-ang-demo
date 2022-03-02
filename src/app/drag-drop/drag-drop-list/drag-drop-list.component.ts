@@ -3,7 +3,7 @@ import {DragDropComponentBase, DragDropItem, DragDropListZone} from '../drag-dro
 import {ToastrService} from 'ngx-toastr';
 import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
 import {NGXLogger} from 'ngx-logger';
-import {DragDropListService} from '../drag-drop-list.service';
+import {DragDropListService} from '../drag-drop-list-demo/drag-drop-list.service';
 import {DragDropEventConsumerService} from '../drag-drop-event-consumer.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class DragDropListComponent implements OnInit, DragDropComponentBase {
   constructor(
     private toastr: ToastrService,
     private log: NGXLogger,
-    private dragDropService: DragDropListService,
+    private dragDropListService: DragDropListService,
     private dragDropEventConsumerService: DragDropEventConsumerService    // to force instantiation
   ) {}
 
@@ -31,20 +31,20 @@ export class DragDropListComponent implements OnInit, DragDropComponentBase {
   }
 
   onDragStart(event: DragEvent) {
-    this.dragDropService.onDragStart(this.data, event);
+    this.dragDropListService.onDragStart(this.data, event);
     this.toastr.info('Drag started!');
   }
 
   onDrop(event: DndDropEvent) {
-    this.dragDropService.onDrop(this.data, event);
+    this.dragDropListService.onDrop(this.data, event);
   }
 
   onDragged(item: any, effect: DropEffect) {
-    this.dragDropService.onDragged(this.data, item, effect);
+    this.dragDropListService.onDragged(this.data, item, effect);
   }
 
   onDragEnd(event: DragEvent) {
-    this.dragDropService.onDragEnd(this.data, event);
+    this.dragDropListService.onDragEnd(this.data, event);
     this.toastr.info('Drag ended!');
   }
 

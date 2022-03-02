@@ -14,3 +14,17 @@
 .draggable {
   cursor: grab;
 }
+
+.dndDragging {
+  border: 1px solid blue;
+}
+
+.dndDraggingSource {
+  background-color: transparent;
+}
+
+.dndDraggableDisabled {
+  /*backdrop-filter: blur(5px);*/
+  background-color: beige;
+  cursor: not-allowed;
+}
