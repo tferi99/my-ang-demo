@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DragDropComponentBase, DragDropItem, DragDropListZone} from '../drag-drop.model';
+import {DragDropComponentBase, DragDropItem, DragDropListZone} from '../../core/drag-drop/drag-drop.model';
 import {ToastrService} from 'ngx-toastr';
 import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
 import {NGXLogger} from 'ngx-logger';
-import {DragDropListService} from '../drag-drop-list-demo/drag-drop-list.service';
+import {DragDropListService} from './drag-drop-list.service';
 import {DragDropEventConsumerService} from '../drag-drop-event-consumer.service';
 
 @Component({
@@ -21,31 +21,11 @@ export class DragDropListComponent implements OnInit, DragDropComponentBase {
   dropZoneDummyVal: string[] = [];
 
   constructor(
-    private toastr: ToastrService,
-    private log: NGXLogger,
-    private dragDropListService: DragDropListService,
+    public handler: DragDropListService,
     private dragDropEventConsumerService: DragDropEventConsumerService    // to force instantiation
   ) {}
 
   ngOnInit(): void {
-  }
-
-  onDragStart(event: DragEvent) {
-    this.dragDropListService.onDragStart(this.data, event);
-    this.toastr.info('Drag started!');
-  }
-
-  onDrop(event: DndDropEvent) {
-    this.dragDropListService.onDrop(this.data, event);
-  }
-
-  onDragged(item: any, effect: DropEffect) {
-    this.dragDropListService.onDragged(this.data, item, effect);
-  }
-
-  onDragEnd(event: DragEvent) {
-    this.dragDropListService.onDragEnd(this.data, event);
-    this.toastr.info('Drag ended!');
   }
 
   getId(): string {

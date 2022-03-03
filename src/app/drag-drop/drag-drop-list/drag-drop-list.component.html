@@ -1,5 +1,5 @@
 <h3>Zone: {{data?.id}}</h3>
-<div class="drag-list" [dndDropzone]="dropZoneDummyVal" dndEffectAllowed="copyMove" (dndDrop)="onDrop($event)">
+<div class="drag-list" [dndDropzone]="dropZoneDummyVal" dndEffectAllowed="copyMove" (dndDrop)="handler.onDrop(data, $event)">
 
   <div dndPlaceholderRef class="drag-list-item dndPlaceholder"></div>
 
@@ -8,12 +8,12 @@
        [dndDraggable]="item"
        [dndEffectAllowed]="item.effectAllowed"
        [dndDisableIf]="item.disable"
-       (dndStart)="onDragStart($event)"
-       (dndCopied)="onDragged(item, 'copy')"
-       (dndLinked)="onDragged(item,'link')"
-       (dndMoved)="onDragged(item, 'move')"
-       (dndCanceled)="onDragged(item,'none')"
-       (dndEnd)="onDragEnd($event)">
+       (dndStart)="handler.onDragStart(data, $event)"
+       (dndCopied)="handler.onCopied(data, item)"
+       (dndLinked)="handler.onLinked(data, item)"
+       (dndMoved)="handler.onMoved(data, item)"
+       (dndCanceled)="handler.onCanceled(data, item)"
+       (dndEnd)="handler.onDragEnd(data, $event)">
     {{item.content}} [{{item.effectAllowed}}]
   </div>
 </div>
