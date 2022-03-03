@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {DndDropEvent} from 'ngx-drag-drop';
 import {ToastrService} from 'ngx-toastr';
-import {DragDropItem} from '../../core/drag-drop/drag-drop.model';
+import {DragDropItem, DragDropListZone} from '../../core/drag-drop/drag-drop.model';
 import {SIMPLE_DRAG_DROP_DATA} from '../drag-drop-simple-demo/drag-drop-data';
 import {DragDropSimpleService} from './drag-drop-simpe.service';
+import {DragDropListConsumerService} from '../drag-drop-list/drag-drop-list-consumer.service';
+import {DragDropSimpleConsumerService} from './drag-drop-simple-consumer.service';
 
 /**
  * Simple drag-drop without service.
@@ -23,36 +25,22 @@ export class DragDropSimple2DemoComponent implements OnInit {
 
   dropZoneDummyVal: string[] = [];
 
-  draggables: DragDropItem[] = SIMPLE_DRAG_DROP_DATA;
+  dragZone: DragDropListZone<DragDropItem> = {
+    id: 'Simple2Zone',
+    items: []
+  }
 
   constructor(
-    public handler: DragDropSimpleService
-  ) {}
+    public handler: DragDropSimpleService,
+    private consumer: DragDropSimpleConsumerService     // only for instantiating the consumer service
+  ) {
+    this.dragZone.items = SIMPLE_DRAG_DROP_DATA;
+  }
 
   ngOnInit(): void {
   }
 
-  onDragStart(event: DragEvent) {
-//    this.dragDropSimpleService.onDragStart(this.data, event);
-    this.lastDropEvent = null;
-
-    this.currentDragEffectMsg = '';
-    this.currentDraggableEvent = event;
-
-    this.toastr.info('Drag started!');
-  }
-
-  onDragged($event: DragEvent, effect: string) {
-
-    this.currentDragEffectMsg = `Drag ended with effect "${effect}"!`;
-  }
-
-  onDragEnd(event: DragEvent) {
-    this.currentDraggableEvent = event;
-    this.toastr.info(this.currentDragEffectMsg || `Drag ended!`);
-  }
-
   onDrop(event: DndDropEvent) {
-    this.lastDropEvent = event;
+    console.log('DROPPED:', event);
   }
 }

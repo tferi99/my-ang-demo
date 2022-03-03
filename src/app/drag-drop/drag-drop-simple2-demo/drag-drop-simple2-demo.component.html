@@ -1,17 +1,17 @@
 <div class="row">
   <div class="col-8">
-    <div *ngFor="let draggable of draggables"
+    <div *ngFor="let item of dragZone.items"
          class="alert alert-primary draggable" role="alert"
-         [dndDraggable]="draggable.content"
-         [dndEffectAllowed]="draggable.effectAllowed"
-         [dndDisableIf]="draggable.disable"
-         (dndStart)="handler.onDragStart($event)"
-         (dndCopied)="onDragged($event, 'copy')"
-         (dndLinked)="onDragged($event, 'link')"
-         (dndMoved)="onDragged($event, 'move')"
-         (dndCanceled)="onDragged($event, 'none')"
-         (dndEnd)="onDragEnd($event)">
-      {{draggable.content}}
+         [dndDraggable]="item.content"
+         [dndEffectAllowed]="item.effectAllowed"
+         [dndDisableIf]="item.disable"
+         (dndStart)="handler.onDragStart(dragZone, $event)"
+         (dndCopied)="handler.onCopied(dragZone, item)"
+         (dndLinked)="handler.onLinked(dragZone, item)"
+         (dndMoved)="handler.onMoved(dragZone, item)"
+         (dndCanceled)="handler.onCanceled(dragZone, item)"
+         (dndEnd)="handler.onDragEnd(dragZone, $event)">
+      {{item.content}}
     </div>
   </div>
   <div class="col-4">

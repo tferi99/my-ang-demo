@@ -5,7 +5,19 @@ import {Subject} from 'rxjs';
 import {AppInjector} from '../service/app-injector';
 import {ToastrService} from 'ngx-toastr';
 
-export abstract class DragDropServiceBase<Z, D> {
+export interface DragDropHandler<Z, D> {
+  onDragStart(sourceZone: Z | undefined, event: DragEvent): void;
+  onDrop(destinationZone: Z | undefined, event: DndDropEvent): void;
+  onDropRubbish(event: DndDropEvent): void;
+  onCopied(zone: Z | undefined, data: D): void;
+  onLinked(zone: Z | undefined, data: D): void;
+  onMoved(zone: Z | undefined, data: D): void;
+  onCanceled(zone: Z | undefined, data: D): void;
+  onDragged(zone: Z | undefined, data: D, effect: DropEffect): void;
+  onDragEnd(zone: Z | undefined, event: DragEvent): void;
+}
+
+export abstract class DragDropServiceBase<Z, D> implements DragDropHandler<Z, D>{
   action?: Partial<DragDropAction<Z, D>>;
   emitter: Subject<DragDropAction<Z, D>> = new Subject<DragDropAction<Z, D>>();
   protected tracing = false;

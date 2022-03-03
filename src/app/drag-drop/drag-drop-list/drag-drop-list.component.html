@@ -1,19 +1,19 @@
-<h3>Zone: {{data?.id}}</h3>
-<div class="drag-list" [dndDropzone]="dropZoneDummyVal" dndEffectAllowed="copyMove" (dndDrop)="handler.onDrop(data, $event)">
+<h3>Zone: {{dragZone?.id}}</h3>
+<div class="drag-list" [dndDropzone]="dropZoneDummyVal" dndEffectAllowed="copyMove" (dndDrop)="handler.onDrop(dragZone, $event)">
 
   <div dndPlaceholderRef class="drag-list-item dndPlaceholder"></div>
 
-  <div *ngFor="let item of data?.items"
+  <div *ngFor="let item of dragZone?.items"
        class="alert alert-primary draggable" role="alert"
        [dndDraggable]="item"
        [dndEffectAllowed]="item.effectAllowed"
        [dndDisableIf]="item.disable"
-       (dndStart)="handler.onDragStart(data, $event)"
-       (dndCopied)="handler.onCopied(data, item)"
-       (dndLinked)="handler.onLinked(data, item)"
-       (dndMoved)="handler.onMoved(data, item)"
-       (dndCanceled)="handler.onCanceled(data, item)"
-       (dndEnd)="handler.onDragEnd(data, $event)">
+       (dndStart)="handler.onDragStart(dragZone, $event)"
+       (dndCopied)="handler.onCopied(dragZone, item)"
+       (dndLinked)="handler.onLinked(dragZone, item)"
+       (dndMoved)="handler.onMoved(dragZone, item)"
+       (dndCanceled)="handler.onCanceled(dragZone, item)"
+       (dndEnd)="handler.onDragEnd(dragZone, $event)">
     {{item.content}} [{{item.effectAllowed}}]
   </div>
 </div>

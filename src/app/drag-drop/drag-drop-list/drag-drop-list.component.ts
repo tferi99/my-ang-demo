@@ -4,7 +4,7 @@ import {ToastrService} from 'ngx-toastr';
 import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
 import {NGXLogger} from 'ngx-logger';
 import {DragDropListService} from './drag-drop-list.service';
-import {DragDropEventConsumerService} from '../drag-drop-event-consumer.service';
+import {DragDropListConsumerService} from './drag-drop-list-consumer.service';
 
 @Component({
   selector: 'dd-drag-drop-list',
@@ -16,13 +16,13 @@ export class DragDropListComponent implements OnInit, DragDropComponentBase {
   id!: string;
 
   @Input()
-  data?: DragDropListZone<DragDropItem>;
+  dragZone?: DragDropListZone<DragDropItem>;
 
   dropZoneDummyVal: string[] = [];
 
   constructor(
     public handler: DragDropListService,
-    private dragDropEventConsumerService: DragDropEventConsumerService    // to force instantiation
+    private consumer: DragDropListConsumerService    // only for instantiating the consuumer service
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class DragDropListComponent implements OnInit, DragDropComponentBase {
 
   getId(): string {
     if (!this.id) {
-      this.id = this.data ? 'List-' + this.data.id : 'List-?';
+      this.id = this.dragZone ? 'List-' + this.dragZone.id : 'List-?';
     }
     return this.id;
   }

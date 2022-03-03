@@ -28,18 +28,16 @@ export class DragDropSimpleService extends DragDropServiceBase<DragDropZone<Drag
     private toastr: ToastrService
   ) {
     super(logger);
+    this.tracing = true;
   }
 
-
-/*  onDragStart(sourceZone: DragDropListZone<DragDropItem> | undefined, event: DragEvent) {
-    super.onDragStart(sourceZone, event);
-
+  onDragStart(zone: DragDropListZone<DragDropItem>, event: DragEvent) {
+    super.onDragStart(zone, event);
     this.toastr.info('Drag started!');
   }
 
-  onDragEnd(zone: DragDropListZone<DragDropItem> | undefined, event: DragEvent) {
+  onDragEnd(zone: DragDropListZone<DragDropItem>, event: DragEvent) {
     super.onDragEnd(zone, event);
-
     this.toastr.info('Drag ended!');
-  }*/
+  }
 }
