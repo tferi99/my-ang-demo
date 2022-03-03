@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DragDropItem, DragDropListZone} from '../../core/drag-drop/drag-drop.model';
+import {DraggableItem, DragDropListZone} from '../../core/drag-drop/drag-drop.model';
 
 @Component({
   selector: 'dd-drag-drop-list-demo',
@@ -8,7 +8,9 @@ import {DragDropItem, DragDropListZone} from '../../core/drag-drop/drag-drop.mod
 })
 export class DragDropListDemoComponent implements OnInit {
 
-  draggableListLeft: DragDropListZone<DragDropItem> = {
+  dropZoneDummy: string[] = [];
+
+  draggableListLeft: DragDropListZone<string, DraggableItem> = {
     id: 'LEFT',
     items: [
       {
@@ -38,7 +40,7 @@ export class DragDropListDemoComponent implements OnInit {
     ]
   };
 
-  draggableListRight: DragDropListZone<DragDropItem> = {
+  draggableListRight: DragDropListZone<DraggableItem> = {
     id: 'RIGHT',
     items: [
       {

@@ -1,29 +1,29 @@
 import {DndDropEvent, DropEffect, EffectAllowed} from 'ngx-drag-drop';
 
-export interface DragDropItem {
+export interface DraggableItem {
   content: string;
   effectAllowed: EffectAllowed;
   disable: boolean;
   handle: boolean;
 };
 
-export interface DragDropZone<T> {
-  id: string;
+export interface DragDropZone<ID> {
+  id: ID;
 }
 
-export interface DragDropListZone<T> extends DragDropZone<T> {
-  items: T[];
+export interface DragDropListZone<ID, D> extends DragDropZone<ID> {
+  items: D[];
 }
 
 export interface DragDropComponentBase {
   getId(): string;
 }
 
-export interface DragDropAction<Z, D> {
+export interface DragDropAction<SRC, DEST, D> {
   dragEvent: DragEvent;
   dropEvent: DndDropEvent;
-  sourceData: Z;
-  destinationData: Z;
+  sourceZone: SRC;
+  destinationZone: DEST;
   effect: DropEffect;
   draggedData: D;
   state: DragDropState;

@@ -1,6 +1,6 @@
-import {DragDropItem} from '../../core/drag-drop/drag-drop.model';
+import {DraggableItem} from '../../core/drag-drop/drag-drop.model';
 
-export const SIMPLE_DRAG_DROP_DATA: DragDropItem[] = [
+export const SIMPLE_DRAG_DROP_DATA: DraggableItem[] = [
   {
     content: 'testdata',
     effectAllowed: 'copy',

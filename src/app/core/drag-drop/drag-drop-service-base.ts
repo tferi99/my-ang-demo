@@ -5,34 +5,40 @@ import {Subject} from 'rxjs';
 import {AppInjector} from '../service/app-injector';
 import {ToastrService} from 'ngx-toastr';
 
-export interface DragDropHandler<Z, D> {
-  onDragStart(sourceZone: Z | undefined, event: DragEvent): void;
-  onDrop(destinationZone: Z | undefined, event: DndDropEvent): void;
+export interface DragDropHandler<SRC, DEST, D> {
+  // drag
+  onDragStart(sourceZone: SRC, event: DragEvent): void;
+  onCopied(zone: SRC, data: D): void;
+  onLinked(zone: SRC, data: D): void;
+  onMoved(zone: SRC, data: D): void;
+  onCanceled(zone: SRC, data: D): void;
+  onDragged(zone: SRC, data: D, effect: DropEffect): void;
+  onDragEnd(zone: SRC, event: DragEvent): void;
+  onDragOver(zone: SRC, event: DragEvent): void;
+
+  // drop
+  onDrop(destinationZone: DEST, event: DndDropEvent): void;
   onDropRubbish(event: DndDropEvent): void;
-  onCopied(zone: Z | undefined, data: D): void;
-  onLinked(zone: Z | undefined, data: D): void;
-  onMoved(zone: Z | undefined, data: D): void;
-  onCanceled(zone: Z | undefined, data: D): void;
-  onDragged(zone: Z | undefined, data: D, effect: DropEffect): void;
-  onDragEnd(zone: Z | undefined, event: DragEvent): void;
 }
 
-export abstract class DragDropServiceBase<Z, D> implements DragDropHandler<Z, D>{
-  action?: Partial<DragDropAction<Z, D>>;
-  emitter: Subject<DragDropAction<Z, D>> = new Subject<DragDropAction<Z, D>>();
+export abstract class DragDropServiceBase<DRAG, DROP, D> implements DragDropHandler<DRAG, DROP, D> {
+  action?: Partial<DragDropAction<DRAG, DROP, D>>;
+  emitter: Subject<DragDropAction<DRAG, DROP, D>> = new Subject<DragDropAction<DRAG, DROP, D>>();
   protected tracing = false;
 
   constructor(
     protected _logger: NGXLogger
   ) {}
 
-  protected abstract zoneToDisplay(zone: Z | undefined): string;
-  protected abstract processOnDrop(destinationZone: Z | undefined, event: DndDropEvent): void;
-  protected abstract processOnDragged(zone: Z | undefined, data: D, effect: DropEffect): void;
+  protected abstract getDragZoneInfo(zone: DRAG): string;
+  protected abstract processOnDragged(zone: DRAG, data: D, effect: DropEffect): void;
 
-  onDragStart(sourceZone: Z | undefined, event: DragEvent) {
+  protected abstract getDropZoneInfo(zone: DROP): string;
+  protected abstract processOnDrop(destinationZone: DROP, event: DndDropEvent): void;
+
+  onDragStart(sourceZone: DRAG, event: DragEvent) {
     if (this.tracing) {
-      this._logger.info(`onDragStart - SourceZone[${this.zoneToDisplay(sourceZone)}]`, event);
+      this._logger.info(`onDragStart - SourceZone[${this.getDragZoneInfo(sourceZone)}]`, event);
     }
 
     if (!sourceZone) {
@@ -42,14 +48,91 @@ export abstract class DragDropServiceBase<Z, D> implements DragDropHandler<Z, D>
     // emitted action
     this.action = {
       dragEvent: event,
-      sourceData: sourceZone,
+      sourceZone: sourceZone,
       state: DragDropState.Started
     }
   }
 
-  onDrop(destinationZone: Z | undefined, event: DndDropEvent) {
+  onCopied(sourceZone: DRAG, data: D) {
     if (this.tracing) {
-      this._logger.info(`onDrop - DestinationZone[${this.zoneToDisplay(destinationZone)}]`, event);
+      this._logger.info(`onCopied - zone[${this.getDragZoneInfo(sourceZone)}]`, this.action);
+    }
+    this.onDragged(sourceZone, data, 'copy');
+  }
+
+  onLinked(sourceZone: DRAG, data: D) {
+    if (this.tracing) {
+      this._logger.info(`onLinked - zone[${this.getDragZoneInfo(sourceZone)}]`, this.action);
+    }
+    this.onDragged(sourceZone, data,'link');
+  }
+
+  onMoved(sourceZone: DRAG, data: D) {
+    if (this.tracing) {
+      this._logger.info(`onMoved - zone[${this.getDragZoneInfo(sourceZone)}]`, this.action);
+    }
+    this.onDragged(sourceZone, data,'move');
+  }
+
+  onCanceled(sourceZone: DRAG, data: D) {
+    if (this.tracing) {
+      this._logger.info(`onCanceled - zone[${this.getDragZoneInfo(sourceZone)}]`, this.action);
+    }
+    this.onDragged(sourceZone, data,'none');
+  }
+
+  onDragged(sourceZone: DRAG, data: D, effect: DropEffect) {
+    if (this.tracing) {
+      this._logger.info(`onDragged - Zone[${this.getDragZoneInfo(sourceZone)}] - effect:${effect}, data:`, data);
+    }
+    if (!sourceZone) {
+      return;
+    }
+
+    // checking emitted action
+    if (!this.action) {
+      if (this.tracing) {
+        this._logger.error('No action found for onDragged()');
+      }
+      return;
+    }
+
+    this.processOnDragged(sourceZone, data, effect);
+
+    // emitted action
+    this.action.draggedData = data;
+    this.action.effect = effect;
+  }
+
+  onDragOver(zone: DRAG, event: DragEvent): void {
+    if (this.tracing) {
+      this._logger.info(`onDragOver - zone[${this.getDragZoneInfo(zone)}]`, event);
+    }
+  }
+
+  onDragEnd(sourceZone: DRAG, event: DragEvent) {
+    if (this.tracing) {
+      this._logger.info(`[${this.getDragZoneInfo(sourceZone)}] onDragEnd`, event);
+    }
+
+    if (!sourceZone) {
+      return;
+    }
+
+    if (!this.action) {
+      if (this.tracing) {
+        this._logger.error('No action found for onDragEnd()');
+      }
+      return;
+    }
+
+    // emit
+    this.emitter.next(this.action as DragDropAction<DRAG, DROP, D>);
+  }
+
+  onDrop(destinationZone: DROP, event: DndDropEvent) {
+    if (this.tracing) {
+      this._logger.info(`onDrop - DestinationZone[${this.getDropZoneInfo(destinationZone)}]`, event);
     }
 
     if (!destinationZone) {
@@ -67,12 +150,12 @@ export abstract class DragDropServiceBase<Z, D> implements DragDropHandler<Z, D>
     this.processOnDrop(destinationZone, event);
 
     // emitted action
-    this.action.destinationData = destinationZone;
+    this.action.destinationZone = destinationZone;
     this.action.dropEvent = event;
     this.action.state = DragDropState.Dropped;
 
     if (this.tracing) {
-      this._logger.info(`onDrop - Destination[${this.zoneToDisplay(destinationZone)}]`, event, destinationZone);
+      this._logger.info(`onDrop - Destination[${this.getDropZoneInfo(destinationZone)}]`, event, destinationZone);
     }
   }
 
@@ -85,68 +168,5 @@ export abstract class DragDropServiceBase<Z, D> implements DragDropHandler<Z, D>
     }
     this.action.dropEvent = event;
     this.action.state = DragDropState.DroppedToRubbish;
-  }
-
-  onCopied(zone: Z | undefined, data: D) {
-    this.onDragged(zone, data, 'copy');
-  }
-
-  onLinked(zone: Z | undefined, data: D) {
-    this.onDragged(zone, data,'link');
-  }
-
-  onMoved(zone: Z | undefined, data: D) {
-    this.onDragged(zone, data,'move');
-  }
-
-  onCanceled(zone: Z | undefined, data: D) {
-    this.onDragged(zone, data,'none');
-  }
-
-  onDragged(zone: Z | undefined, data: D, effect: DropEffect) {
-    if (this.tracing) {
-      this._logger.info(`onDragged - Zone[${this.zoneToDisplay(zone)}]: ${effect}`);
-    }
-    if (!zone) {
-      return;
-    }
-
-    // checking emitted action
-    if (!this.action) {
-      if (this.tracing) {
-        this._logger.error('No action found for onDragged()');
-      }
-      return;
-    }
-
-    this.processOnDragged(zone, data, effect);
-
-    // emitted action
-    this.action.draggedData = data;
-    this.action.effect = effect;
-
-    if (this.tracing) {
-      this._logger.info(`[${this.zoneToDisplay(zone)}] onDragged with ${effect}`, data);
-    }
-  }
-
-  onDragEnd(zone: Z | undefined, event: DragEvent) {
-    if (this.tracing) {
-      this._logger.info(`[${this.zoneToDisplay(zone)}] onDragEnd`, event);
-    }
-
-    if (!zone) {
-      return;
-    }
-
-    if (!this.action) {
-      if (this.tracing) {
-        this._logger.error('No action found for onDragEnd()');
-      }
-      return;
-    }
-
-    // emit
-    this.emitter.next(this.action as DragDropAction<Z, D>);
   }
 }

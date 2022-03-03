@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {DragDropItem, DragDropListZone, DragDropZone} from '../../core/drag-drop/drag-drop.model';
+import {DraggableItem, DragDropListZone, DragDropZone} from '../../core/drag-drop/drag-drop.model';
 import {DragDropListServiceBase} from '../../core/drag-drop/drag-drop-list.service.base';
 import {NGXLogger} from 'ngx-logger';
 import {ToastrService} from 'ngx-toastr';
@@ -9,18 +9,23 @@ import { DndDropEvent, DropEffect } from 'ngx-drag-drop';
 @Injectable({
   providedIn: 'root'
 })
-export class DragDropSimpleService extends DragDropServiceBase<DragDropZone<DragDropItem>, DragDropItem> {
+export class DragDropSimpleService extends DragDropServiceBase<DragDropZone<string>, string, DraggableItem> {
 
-  protected zoneToDisplay(zone: DragDropZone<DragDropItem> | undefined): string {
-    if (!zone) {
+  protected getDragZoneInfo(dragZone: DragDropZone<string>): string {
+    if (!dragZone) {
       return 'null';
     }
-    return zone.id;
+    return dragZone.id;
   }
 
-  protected processOnDrop(destinationZone: DragDropZone<DragDropItem> | undefined, event: DndDropEvent): void {
+  protected getDropZoneInfo(dropZone: string): string {
+    return dropZone;
   }
-  protected processOnDragged(zone: DragDropZone<DragDropItem> | undefined, data: DragDropItem, effect: DropEffect): void {
+
+  protected processOnDragged(dragZone: DragDropZone<string>, data: DraggableItem, effect: DropEffect): void {
+  }
+
+  protected processOnDrop(dropZone: string, event: DndDropEvent): void {
   }
 
   constructor(
@@ -31,13 +36,13 @@ export class DragDropSimpleService extends DragDropServiceBase<DragDropZone<Drag
     this.tracing = true;
   }
 
-  onDragStart(zone: DragDropListZone<DragDropItem>, event: DragEvent) {
-    super.onDragStart(zone, event);
-    this.toastr.info('Drag started!');
+  onDragStart(dragZone: DragDropListZone<string, DraggableItem>, event: DragEvent) {
+    super.onDragStart(dragZone, event);
+    this.toastr.info(`Drag started: [${this.getDragZoneInfo(dragZone)}] --->`);
   }
 
-  onDragEnd(zone: DragDropListZone<DragDropItem>, event: DragEvent) {
-    super.onDragEnd(zone, event);
-    this.toastr.info('Drag ended!');
+  onDragEnd(dragZone: DragDropListZone<string, DraggableItem>, event: DragEvent) {
+    super.onDragEnd(dragZone, event);
+    this.toastr.info(`Drag ended: [${this.getDragZoneInfo(dragZone)}] --->`);
   }
 }

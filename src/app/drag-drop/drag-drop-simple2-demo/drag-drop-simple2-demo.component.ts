@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DndDropEvent} from 'ngx-drag-drop';
 import {ToastrService} from 'ngx-toastr';
-import {DragDropItem, DragDropListZone} from '../../core/drag-drop/drag-drop.model';
+import {DraggableItem, DragDropListZone} from '../../core/drag-drop/drag-drop.model';
 import {SIMPLE_DRAG_DROP_DATA} from '../drag-drop-simple-demo/drag-drop-data';
 import {DragDropSimpleService} from './drag-drop-simpe.service';
 import {DragDropListConsumerService} from '../drag-drop-list/drag-drop-list-consumer.service';
@@ -25,7 +25,11 @@ export class DragDropSimple2DemoComponent implements OnInit {
 
   dropZoneDummyVal: string[] = [];
 
-  dragZone: DragDropListZone<DragDropItem> = {
+  /**
+   * Any data can be a drag zone.
+   * Drag zone and droppable data can be independent (not-associated).
+   */
+  dragZone: DragDropListZone<string, DraggableItem> = {
     id: 'Simple2Zone',
     items: []
   }
@@ -38,9 +42,5 @@ export class DragDropSimple2DemoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  onDrop(event: DndDropEvent) {
-    console.log('DROPPED:', event);
   }
 }

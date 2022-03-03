@@ -5,12 +5,9 @@ import {Subject} from 'rxjs';
 import {AppInjector} from '../service/app-injector';
 import {DragDropServiceBase} from './drag-drop-service-base';
 
-export class DragDropListServiceBase<D> extends DragDropServiceBase<DragDropListZone<D>, D> {
+export class DragDropListServiceBase<ID, D> extends DragDropServiceBase<DragDropListZone<ID, D>, DragDropListZone<ID, D>, D> {
 
-  protected zoneToDisplay(zone: DragDropListZone<D> | undefined): string {
-    if (!zone) {
-      return 'null';
-    }
+  protected getDragZoneInfo(zone: DragDropListZone<ID, D>): ID {
     return zone.id;
   }
 

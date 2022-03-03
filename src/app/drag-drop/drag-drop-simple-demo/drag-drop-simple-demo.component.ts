@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DndDropEvent} from 'ngx-drag-drop';
 import {ToastrService} from 'ngx-toastr';
-import {DragDropItem} from '../../core/drag-drop/drag-drop.model';
+import {DraggableItem} from '../../core/drag-drop/drag-drop.model';
 import {SIMPLE_DRAG_DROP_DATA} from './drag-drop-data';
 
 /**

@@ -17,14 +17,10 @@ export class DragDropRubbishComponent implements OnInit, DragDropComponentBase {
 
   constructor(
     private log: NGXLogger,
-    private dragDropService: DragDropListService,
+    private handler: DragDropListService,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  onDrop(event: DndDropEvent) {
-    this.dragDropService.onDropRubbish(event);
   }
 
   getId(): string {

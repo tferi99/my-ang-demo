@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DragDropItem, DragDropListZone} from '../../core/drag-drop/drag-drop.model';
+import {DraggableItem, DragDropListZone} from '../../core/drag-drop/drag-drop.model';
 
 @Component({
   selector: 'dd-drag-drop-list-dynamic-demo',
@@ -7,7 +7,7 @@ import {DragDropItem, DragDropListZone} from '../../core/drag-drop/drag-drop.mod
   styleUrls: ['./drag-drop-list-dynamic-demo.component.css']
 })
 export class DragDropListDynamicDemoComponent implements OnInit {
-  zones: DragDropListZone<DragDropItem>[] = [
+  zones: DragDropListZone<DraggableItem>[] = [
     {
       id: 'LEFT (dyn)',
       items: [

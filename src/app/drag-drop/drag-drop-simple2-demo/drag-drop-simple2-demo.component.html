@@ -24,7 +24,7 @@
       [dndDropzone]="dropZoneDummyVal"
       dndDragoverClass="custom-drag-over"
       [dndDisableIf]="!dropzoneEnabled"
-      (dndDrop)="onDrop($event)">
+      (dndDrop)="handler.onDrop('This is the drop zone', $event)">
       <span>D R O P Z O N E</span>
       <pre *ngIf="lastDropEvent">{{ lastDropEvent | json }}</pre>
     </div>
