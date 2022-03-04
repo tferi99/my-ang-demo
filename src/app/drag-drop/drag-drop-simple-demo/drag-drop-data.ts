@@ -1,4 +1,4 @@
-import {DraggableItem} from '../../core/drag-drop/drag-drop.model';
+import {DraggableItem} from '../drag-drop.model';
 
 export const SIMPLE_DRAG_DROP_DATA: DraggableItem[] = [
   {

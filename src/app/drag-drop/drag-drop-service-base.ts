@@ -2,7 +2,7 @@ import {DragDropAction, DragDropListZone, DragDropState} from './drag-drop.model
 import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
 import {NGXLogger} from 'ngx-logger';
 import {Subject} from 'rxjs';
-import {AppInjector} from '../service/app-injector';
+import {AppInjector} from '../core/service/app-injector';
 import {ToastrService} from 'ngx-toastr';
 
 export abstract class DragDropServiceBase<DRAG, DROP, D> {

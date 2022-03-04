@@ -1,14 +1,22 @@
 import {DndDropEvent, DropEffect, EffectAllowed} from 'ngx-drag-drop';
 
-export interface DraggableItem {
-  content: string;
+export interface DraggableItem<C> {
+  content: C;
   effectAllowed: EffectAllowed;
   disable: boolean;
-  handle: boolean;
+  handle: boolean;  // you can start dragging of an element only by catching its sub-element with dndHandle
+  type?: string;    // if you want to specify type for typed dropzone
 };
 
+export interface Zone<ID> {
+  id: string;
+
+}
+
+
 export interface DragDropZone<ID> {
-  id: ID;
+  id: string;
+
 }
 
 export interface DragDropListZone<ID, D> extends DragDropZone<ID> {

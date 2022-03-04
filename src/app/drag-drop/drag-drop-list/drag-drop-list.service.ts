@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {DraggableItem, DragDropListZone} from '../../core/drag-drop/drag-drop.model';
-import {DragDropListServiceBase} from '../../core/drag-drop/drag-drop-list.service.base';
+import {DraggableItem, DragDropListZone} from '../drag-drop.model';
+import {DragDropListServiceBase} from '../drag-drop-list.service.base';
 import {NGXLogger} from 'ngx-logger';
 import {ToastrService} from 'ngx-toastr';
 

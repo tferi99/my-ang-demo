@@ -2,7 +2,7 @@ import {DragDropAction, DragDropListZone, DragDropState} from './drag-drop.model
 import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
 import {NGXLogger} from 'ngx-logger';
 import {Subject} from 'rxjs';
-import {AppInjector} from '../service/app-injector';
+import {AppInjector} from '../core/service/app-injector';
 import {DragDropServiceBase} from './drag-drop-service-base';
 
 export class DragDropListServiceBase<ID, D> extends DragDropServiceBase<DragDropListZone<ID, D>, DragDropListZone<ID, D>, D> {

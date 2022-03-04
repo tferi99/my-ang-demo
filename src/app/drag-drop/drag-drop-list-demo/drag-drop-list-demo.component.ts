@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DraggableItem, DragDropListZone} from '../../core/drag-drop/drag-drop.model';
+import {DraggableItem, DragDropListZone} from '../drag-drop.model';
 
 @Component({
   selector: 'dd-drag-drop-list-demo',

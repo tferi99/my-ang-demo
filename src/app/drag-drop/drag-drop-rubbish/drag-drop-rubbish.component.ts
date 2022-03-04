@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DndDropEvent} from 'ngx-drag-drop';
 import {NGXLogger} from 'ngx-logger';
-import {DragDropComponentBase} from '../../core/drag-drop/drag-drop.model';
+import {DragDropComponentBase} from '../drag-drop.model';
 import {DragDropListService} from '../drag-drop-list/drag-drop-list.service';
 
 @Component({
