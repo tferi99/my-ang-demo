@@ -1,5 +1,5 @@
 <h3>Zone: {{dragZone?.id}}</h3>
-<div class="drag-list" [dndDropzone]="dropZoneDummy" dndEffectAllowed="copyMove" (dndDrop)="handler.onDrop(dragZone.id, $event)">
+<div class="drag-list" dndDropzone dndEffectAllowed="copyMove" (dndDrop)="handler.onDrop(dragZone.id, $event)">
 
   <div dndPlaceholderRef class="drag-list-item dndPlaceholder"></div>
 

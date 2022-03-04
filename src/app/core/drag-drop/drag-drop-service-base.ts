@@ -5,23 +5,7 @@ import {Subject} from 'rxjs';
 import {AppInjector} from '../service/app-injector';
 import {ToastrService} from 'ngx-toastr';
 
-export interface DragDropHandler<SRC, DEST, D> {
-  // drag
-  onDragStart(sourceZone: SRC, event: DragEvent): void;
-  onCopied(zone: SRC, data: D): void;
-  onLinked(zone: SRC, data: D): void;
-  onMoved(zone: SRC, data: D): void;
-  onCanceled(zone: SRC, data: D): void;
-  onDragged(zone: SRC, data: D, effect: DropEffect): void;
-  onDragEnd(zone: SRC, event: DragEvent): void;
-  onDragOver(zone: SRC, event: DragEvent): void;
-
-  // drop
-  onDrop(destinationZone: DEST, event: DndDropEvent): void;
-  onDropRubbish(event: DndDropEvent): void;
-}
-
-export abstract class DragDropServiceBase<DRAG, DROP, D> implements DragDropHandler<DRAG, DROP, D> {
+export abstract class DragDropServiceBase<DRAG, DROP, D> {
   action?: Partial<DragDropAction<DRAG, DROP, D>>;
   emitter: Subject<DragDropAction<DRAG, DROP, D>> = new Subject<DragDropAction<DRAG, DROP, D>>();
   protected tracing = false;

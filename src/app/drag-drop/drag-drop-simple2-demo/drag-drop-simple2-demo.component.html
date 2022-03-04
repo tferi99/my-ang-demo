@@ -2,6 +2,7 @@
   <div class="col-8">
     <div *ngFor="let item of dragZone.items"
          class="alert alert-primary draggable" role="alert"
+         [dndType]=""
          [dndDraggable]="item.content"
          [dndEffectAllowed]="item.effectAllowed"
          [dndDisableIf]="item.disable"
