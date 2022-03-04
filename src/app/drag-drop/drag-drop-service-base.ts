@@ -1,146 +1,96 @@
-import {DragDropAction, DragDropListZone, DragDropState} from './drag-drop.model';
+import {DragDropAction, DragDropState} from './drag-drop.model';
 import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
 import {NGXLogger} from 'ngx-logger';
 import {Subject} from 'rxjs';
-import {AppInjector} from '../core/service/app-injector';
-import {ToastrService} from 'ngx-toastr';
 
-export abstract class DragDropServiceBase<DRAG, DROP, D> {
-  action?: Partial<DragDropAction<DRAG, DROP, D>>;
-  emitter: Subject<DragDropAction<DRAG, DROP, D>> = new Subject<DragDropAction<DRAG, DROP, D>>();
+export abstract class DragDropServiceBase {
+  action?: Partial<DragDropAction>;
+  emitter: Subject<DragDropAction> = new Subject<DragDropAction>();
   protected tracing = false;
 
   constructor(
     protected _logger: NGXLogger
   ) {}
 
-  protected abstract getDragZoneInfo(zone: DRAG): string;
-  protected abstract processOnDragged(zone: DRAG, data: D, effect: DropEffect): void;
-
-  protected abstract getDropZoneInfo(zone: DROP): string;
-  protected abstract processOnDrop(destinationZone: DROP, event: DndDropEvent): void;
-
-  onDragStart(sourceZone: DRAG, event: DragEvent) {
+  onDragStart(dragZoneId: string, event: DragEvent) {
     if (this.tracing) {
-      this._logger.info(`onDragStart - SourceZone[${this.getDragZoneInfo(sourceZone)}]`, event);
+      this._logger.info(`onDragStart - DragZone[${dragZoneId}]`, event);
     }
 
-    if (!sourceZone) {
+    if (!dragZoneId) {
       return;
     }
 
     // emitted action
     this.action = {
       dragEvent: event,
-      sourceZone: sourceZone,
-      state: DragDropState.Started
+      dragZoneId: dragZoneId,
+      state: DragDropState.Dragged
     }
   }
 
-  onCopied(sourceZone: DRAG, data: D) {
-    if (this.tracing) {
-      this._logger.info(`onCopied - zone[${this.getDragZoneInfo(sourceZone)}]`, this.action);
-    }
-    this.onDragged(sourceZone, data, 'copy');
+  onCopied(dragZoneId: string, event: DragEvent) {
+    this.onDragged(dragZoneId, event, 'copy');
   }
 
-  onLinked(sourceZone: DRAG, data: D) {
-    if (this.tracing) {
-      this._logger.info(`onLinked - zone[${this.getDragZoneInfo(sourceZone)}]`, this.action);
-    }
-    this.onDragged(sourceZone, data,'link');
+  onLinked(dragZoneId: string, event: DragEvent) {
+    this.onDragged(dragZoneId, event,'link');
   }
 
-  onMoved(sourceZone: DRAG, data: D) {
-    if (this.tracing) {
-      this._logger.info(`onMoved - zone[${this.getDragZoneInfo(sourceZone)}]`, this.action);
-    }
-    this.onDragged(sourceZone, data,'move');
+  onMoved(dragZoneId: string, event: DragEvent) {
+    this.onDragged(dragZoneId, event,'move');
   }
 
-  onCanceled(sourceZone: DRAG, data: D) {
-    if (this.tracing) {
-      this._logger.info(`onCanceled - zone[${this.getDragZoneInfo(sourceZone)}]`, this.action);
-    }
-    this.onDragged(sourceZone, data,'none');
+  onCanceled(dragZoneId: string, event: DragEvent) {
+    this.onDragged(dragZoneId, event,'none');
   }
 
-  onDragged(sourceZone: DRAG, data: D, effect: DropEffect) {
+  onDragged(dragZoneId: string, event: DragEvent, effect: DropEffect) {
     if (this.tracing) {
-      this._logger.info(`onDragged - Zone[${this.getDragZoneInfo(sourceZone)}] - effect:${effect}, data:`, data);
+      this._logger.info(`onDragged - DragZone[${dragZoneId}] - effect:${effect}`, event);
     }
-    if (!sourceZone) {
-      return;
-    }
-
-    // checking emitted action
-    if (!this.action) {
-      if (this.tracing) {
-        this._logger.error('No action found for onDragged()');
-      }
-      return;
-    }
-
-    this.processOnDragged(sourceZone, data, effect);
 
     // emitted action
-    this.action.draggedData = data;
-    this.action.effect = effect;
-  }
-
-  onDragOver(zone: DRAG, event: DragEvent): void {
-    if (this.tracing) {
-      this._logger.info(`onDragOver - zone[${this.getDragZoneInfo(zone)}]`, event);
-    }
-  }
-
-  onDragEnd(sourceZone: DRAG, event: DragEvent) {
-    if (this.tracing) {
-      this._logger.info(`[${this.getDragZoneInfo(sourceZone)}] onDragEnd`, event);
-    }
-
-    if (!sourceZone) {
-      return;
-    }
-
-    if (!this.action) {
-      if (this.tracing) {
-        this._logger.error('No action found for onDragEnd()');
-      }
-      return;
+    if (this.action) {
+      this.action.effect = effect;
     }
 
     // emit
-    this.emitter.next(this.action as DragDropAction<DRAG, DROP, D>);
+    if (this.action && this.action.effect == 'none') {
+      this.action.state = DragDropState.Cancelled;
+      this.emitter.next(this.action as DragDropAction);
+      delete this.action;
+    }
   }
 
-  onDrop(destinationZone: DROP, event: DndDropEvent) {
+  onDragOver(dragZoneId: string, event: DragEvent): void {
     if (this.tracing) {
-      this._logger.info(`onDrop - DestinationZone[${this.getDropZoneInfo(destinationZone)}]`, event);
+      this._logger.info(`onDragOver - zone[${dragZoneId}]`, event);
     }
+  }
 
-    if (!destinationZone) {
-      return;
+  onDragEnd(dragZoneId: string, event: DragEvent) {
+    if (this.tracing) {
+      this._logger.info(`onDragEnd - [${dragZoneId}]`, event);
     }
+  }
 
-    // checking emitted action
-    if (!this.action) {
-      if (this.tracing) {
-        this._logger.error('No action found for onDrop()');
-      }
-      return;
+  onDrop(dropZoneId: string, event: DndDropEvent) {
+    if (this.tracing) {
+      this._logger.info(`onDrop - DropZone[${dropZoneId}]`, event);
     }
-
-    this.processOnDrop(destinationZone, event);
 
     // emitted action
-    this.action.destinationZone = destinationZone;
-    this.action.dropEvent = event;
-    this.action.state = DragDropState.Dropped;
-
-    if (this.tracing) {
-      this._logger.info(`onDrop - Destination[${this.getDropZoneInfo(destinationZone)}]`, event, destinationZone);
+    if (this.action) {
+      this.action.draggedData = event.data;
+      this.action.dropZoneId = dropZoneId;
+      this.action.dropEvent = event;
+      this.action.state = DragDropState.Dropped;
     }
+
+    // emit
+    this.emitter.next(this.action as DragDropAction);
+    delete this.action;
   }
 
   onDropRubbish(event: DndDropEvent) {
@@ -152,5 +102,9 @@ export abstract class DragDropServiceBase<DRAG, DROP, D> {
     }
     this.action.dropEvent = event;
     this.action.state = DragDropState.DroppedToRubbish;
+
+    // emit
+    this.emitter.next(this.action as DragDropAction);
+    delete this.action;
   }
 }

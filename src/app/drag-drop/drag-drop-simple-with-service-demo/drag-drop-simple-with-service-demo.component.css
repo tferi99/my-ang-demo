@@ -1,0 +1,30 @@
+.my-dropzone {
+  padding: 8px;
+  transition: all 300ms ease;
+  border: #003591 1px solid;
+  height: 300px;
+}
+
+.custom-drag-over {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-color: limegreen;
+  transform: scale(1.05);
+}
+
+.draggable {
+  cursor: grab;
+}
+
+.dndDragging {
+  border: 1px solid blue;
+}
+
+.dndDraggingSource {
+  background-color: transparent;
+}
+
+.dndDraggableDisabled {
+  /*backdrop-filter: blur(5px);*/
+  background-color: beige;
+  cursor: not-allowed;
+}

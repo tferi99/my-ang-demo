@@ -9,14 +9,14 @@ import {DragDropListDynamicDemoComponent} from './drag-drop-list-dynamic-demo/dr
 import {DragDropListDemoComponent} from './drag-drop-list-demo/drag-drop-list-demo.component';
 import {DragDropListComponent} from './drag-drop-list/drag-drop-list.component';
 import {DragDropRubbishComponent} from './drag-drop-rubbish/drag-drop-rubbish.component';
-import { DragDropSimple2DemoComponent } from './drag-drop-simple2-demo/drag-drop-simple2-demo.component';
+import { DragDropSimpleWithServiceDemoComponent } from './drag-drop-simple-with-service-demo/drag-drop-simple-with-service-demo.component';
 
 
 @NgModule({
   declarations: [
     MainComponent,
     DragDropSimpleDemoComponent,
-    DragDropSimple2DemoComponent,
+    DragDropSimpleWithServiceDemoComponent,
     DragDropListDynamicDemoComponent,
     DragDropListDemoComponent,
     DragDropListComponent,

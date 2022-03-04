@@ -1,7 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DndDropEvent} from 'ngx-drag-drop';
 import {NGXLogger} from 'ngx-logger';
-import {DragDropComponentBase} from '../drag-drop.model';
 import {DragDropListService} from '../drag-drop-list/drag-drop-list.service';
 
 @Component({
@@ -9,7 +7,7 @@ import {DragDropListService} from '../drag-drop-list/drag-drop-list.service';
   templateUrl: './drag-drop-rubbish.component.html',
   styleUrls: ['./drag-drop-rubbish.component.css']
 })
-export class DragDropRubbishComponent implements OnInit, DragDropComponentBase {
+export class DragDropRubbishComponent implements OnInit {
   @Input()
   id!: string;
 
@@ -17,13 +15,9 @@ export class DragDropRubbishComponent implements OnInit, DragDropComponentBase {
 
   constructor(
     private log: NGXLogger,
-    private handler: DragDropListService,
+    public handler: DragDropListService,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  getId(): string {
-    return this.id;
   }
 }

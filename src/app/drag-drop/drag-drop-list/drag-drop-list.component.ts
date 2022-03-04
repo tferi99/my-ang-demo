@@ -1,8 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DragDropComponentBase, DraggableItem, DragDropListZone, DragDropZone} from '../drag-drop.model';
-import {ToastrService} from 'ngx-toastr';
-import {DndDropEvent, DropEffect} from 'ngx-drag-drop';
-import {NGXLogger} from 'ngx-logger';
+import {DraggableItem, DraggableItemList} from '../drag-drop.model';
 import {DragDropListService} from './drag-drop-list.service';
 import {DragDropListConsumerService} from './drag-drop-list-consumer.service';
 
@@ -11,27 +8,21 @@ import {DragDropListConsumerService} from './drag-drop-list-consumer.service';
   templateUrl: './drag-drop-list.component.html',
   styleUrls: ['./drag-drop-list.component.css']
 })
-export class DragDropListComponent implements OnInit, DragDropComponentBase {
+export class DragDropListComponent implements OnInit {
   @Input()
   id!: string;
 
+  NO_FILTER: string[] = [];
+
   @Input()
-  dragZone!: DragDropListZone<string, DraggableItem>;
-  dropZone!: DragDropZone<string>
+  dragZone!: DraggableItemList<DraggableItem>;
 
   constructor(
     public handler: DragDropListService,
-    private consumer: DragDropListConsumerService    // only for instantiating the consuumer service
+    private consumer: DragDropListConsumerService    // only for instantiating the consumer service
   ) {}
 
   ngOnInit(): void {
-  }
-
-  getId(): string {
-    if (!this.id) {
-      this.id = this.dragZone ? 'List-' + this.dragZone.id : 'List-?';
-    }
-    return this.id;
   }
 }
 
