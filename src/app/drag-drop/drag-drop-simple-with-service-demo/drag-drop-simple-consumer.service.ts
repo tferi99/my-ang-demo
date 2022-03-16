@@ -10,9 +10,9 @@ export class DragDropSimpleConsumerService {
     private dds: DragDropSimpleService,
     private logger: NGXLogger,
   ) {
-      logger.log('DragDropSimpleConsumerService created');
-      dds.emitter.subscribe(
-      action => logger.log('>>>>>>>>>>>>>>>>>>>> DRAG-DROP SIMPLE - [ACTION]:', action)
+    logger.log('DragDropSimpleConsumerService created');
+    dds.emitter.subscribe(
+    action => logger.log('>>>>>>>>>>>>>>>>>>>> DRAG-DROP SIMPLE - [ACTION]:', action)
     );
   }
 }
