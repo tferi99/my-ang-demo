@@ -12,7 +12,7 @@
          (dndMoved)="handler.onMoved(dragZoneId, $event)"
          (dndCanceled)="handler.onCanceled(dragZoneId, $event)"
          (dndEnd)="handler.onDragEnd(dragZoneId, $event)">
-      {{item.content}}
+      {{item.content}} [{{item.effectAllowed}}]
     </div>
   </div>
   <div class="col-4">

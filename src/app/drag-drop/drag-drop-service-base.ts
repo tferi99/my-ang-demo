@@ -14,18 +14,20 @@ export abstract class DragDropServiceBase {
 
   onDragStart(dragZoneId: string, event: DragEvent) {
     if (this.tracing) {
-      this._logger.info(`onDragStart - DragZone[${dragZoneId}]`, event);
+      this._logger.info(`onDragStart(1) - DragZone[${dragZoneId}]`, event);
     }
 
     if (!dragZoneId) {
       return;
     }
 
-    // emitted action
     this.action = {
       dragEvent: event,
       dragZoneId: dragZoneId,
       state: DragDropState.Dragged
+    }
+    if (this.tracing) {
+      this._logger.info('onDragStart(2) - [ACTION]:', this.action);
     }
   }
 
@@ -47,19 +49,20 @@ export abstract class DragDropServiceBase {
 
   onDragged(dragZoneId: string, event: DragEvent, effect: DropEffect) {
     if (this.tracing) {
-      this._logger.info(`onDragged - DragZone[${dragZoneId}] - effect:${effect}`, event);
+      this._logger.info(`onDragged(1) - DragZone[${dragZoneId}] - effect:${effect}`, event);
     }
-
-    // emitted action
     if (this.action) {
       this.action.effect = effect;
-    }
 
-    // emit
-    if (this.action && this.action.effect == 'none') {
-      this.action.state = DragDropState.Cancelled;
-      this.emitter.next(this.action as DragDropAction);
-      delete this.action;
+      if (this.action.effect === 'none') {
+        this.action.state = DragDropState.Cancelled;
+
+        this.emit('onDragged');
+        return;
+      }
+    }
+    if (this.tracing) {
+      this._logger.info('onDragged(2) - [ACTION]:', this.action);
     }
   }
 
@@ -77,25 +80,23 @@ export abstract class DragDropServiceBase {
 
   onDrop(dropZoneId: string, event: DndDropEvent) {
     if (this.tracing) {
-      this._logger.info(`onDrop - DropZone[${dropZoneId}]`, event);
+      this._logger.info(`onDrop(1) - DropZone[${dropZoneId}]`, event);
     }
 
-    // emitted action
     if (this.action) {
       this.action.draggedData = event.data;
       this.action.dropZoneId = dropZoneId;
       this.action.dropEvent = event;
+      this.action.effect = event.dropEffect;
       this.action.state = DragDropState.Dropped;
-    }
 
-    // emit
-    this.emitter.next(this.action as DragDropAction);
-    delete this.action;
+      this.emit('onDrop');
+    }
   }
 
   onDropRubbish(event: DndDropEvent) {
     if (this.tracing) {
-      this._logger.info(`onDrop to rubbish`, event, this.action);
+      this._logger.info('onDropRubbish: ', event);
     }
     if (!this.action) {
       return;
@@ -103,7 +104,13 @@ export abstract class DragDropServiceBase {
     this.action.dropEvent = event;
     this.action.state = DragDropState.DroppedToRubbish;
 
-    // emit
+    this.emit('onDropRubbish');
+  }
+
+  private emit(source: string) {
+    if (this.tracing) {
+      this._logger.info(`EMITTING from '${source}' - [ACTION]:`, this.action);
+    }
     this.emitter.next(this.action as DragDropAction);
     delete this.action;
   }

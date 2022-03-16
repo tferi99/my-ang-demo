@@ -6,14 +6,13 @@ import {NGXLogger} from 'ngx-logger';
   providedIn: 'root'
 })
 export class DragDropSimpleConsumerService {
-
   constructor(
     private dds: DragDropSimpleService,
     private logger: NGXLogger,
   ) {
       logger.log('DragDropSimpleConsumerService created');
       dds.emitter.subscribe(
-      dde => logger.log('############################## DRAG-DROP SIMPLE ##############################', dde)
+      action => logger.log('>>>>>>>>>>>>>>>>>>>> DRAG-DROP SIMPLE - [ACTION]:', action)
     );
   }
 }

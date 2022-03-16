@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DndDropEvent} from 'ngx-drag-drop';
-import {DraggableItem} from '../drag-drop.model';
+import {DragDropAction, DraggableItem} from '../drag-drop.model';
 import {SIMPLE_DRAG_DROP_DATA} from '../drag-drop-simple-demo/drag-drop-data';
 import {DragDropSimpleService} from './drag-drop-simpe.service';
 import {DragDropSimpleConsumerService} from './drag-drop-simple-consumer.service';
@@ -18,7 +18,7 @@ export class DragDropSimpleWithServiceDemoComponent implements OnInit {
   @Input() dropZoneId!: string;
 
   public dropzoneEnabled = true;
-  public lastDropEvent: DndDropEvent | null = null;
+  public lastDropEvent!: DragDropAction;
 
   private currentDraggableEvent?: DragEvent;
   private currentDragEffectMsg?: string;
@@ -37,5 +37,8 @@ export class DragDropSimpleWithServiceDemoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.handler.emitter.subscribe(actiom => {
+      this.lastDropEvent = actiom;
+    });
   }
 }

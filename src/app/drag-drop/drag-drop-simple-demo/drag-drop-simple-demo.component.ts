@@ -42,7 +42,6 @@ export class DragDropSimpleDemoComponent implements OnInit {
   }
 
   onDragged($event: DragEvent, effect: string) {
-
     this.currentDragEffectMsg = `Drag ended with effect "${effect}"!`;
   }
 

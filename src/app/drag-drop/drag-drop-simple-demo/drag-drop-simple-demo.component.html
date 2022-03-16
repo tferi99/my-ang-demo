@@ -11,7 +11,7 @@
          (dndMoved)="onDragged($event, 'move')"
          (dndCanceled)="onDragged($event, 'none')"
          (dndEnd)="onDragEnd($event)">
-      {{draggable.content}}
+      {{draggable.content}} [{{draggable.effectAllowed}}]
     </div>
   </div>
   <div class="col-4">
