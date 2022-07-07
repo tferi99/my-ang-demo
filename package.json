@@ -39,7 +39,7 @@
     "bootstrap": "^4.5.3",
     "express": "^4.17.1",
     "lodash": "^4.17.21",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "ngx-bootstrap": "^7.1.0",
     "ngx-drag-drop": "^2.0.0",
     "ngx-logger": "^4.3.3",
