@@ -39,6 +39,7 @@ import {DirectPage404Component} from "./router-direct/direct-page404/direct-page
 import {AuthGuard} from "./core/guard/auth-guard";
 import {LoginComponent} from "./ngrx/login/login.component";
 import {ModuleTestComponent} from './module-test/module-test.component';
+import { CounterPauseResumeComponent } from './rxjs/counter-pause-resume/counter-pause-resume.component';
 
 
 const routes: Routes = [
@@ -59,6 +60,7 @@ const routes: Routes = [
       { path: 'imperativefilter', component: ImperativeFilterComponent},
       { path: 'reactivefilter', component: ReactiveFilterComponent},
       { path: 'custompipe', component: LogTestComponent},
+      { path: 'counter', component: CounterPauseResumeComponent},
     ]},
   { path: 'chd', component: ChdMain },
   { path: 'content', component: ContentMain },

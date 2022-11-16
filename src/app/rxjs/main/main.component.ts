@@ -24,6 +24,7 @@ export class MainComponent implements OnInit {
     {name: 'Custom piped operator', active: false, route: 'custompipe'},
     {name: 'Hot vs Cold', active: false, route: 'hotcold'},
     {name: 'Snippets', active: false, route: 'snippets'},
+    {name: 'Counter', active: false, route: 'counter'},
     {name: 'Sandbox', active: false, route: 'sandbox'}
   ];
 

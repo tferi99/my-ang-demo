@@ -39,12 +39,13 @@ import {FlatteningComponent} from "./flattening/flattening.component";
 import {HotVsColdComponent} from "./hot-vs-cold/hot-vs-cold.component";
 import {ImperativeFilterComponent} from "./imperative-filter/imperative-filter.component";
 import {ReactiveFilterComponent} from "./reactive-filter/reactive-filter.component";
+import { CounterPauseResumeComponent } from './counter-pause-resume/counter-pause-resume.component';
 
 @NgModule({
   declarations: [
     MainComponent, AvoidMemLeakComponent, SnippetsComponent, CourseListComponent, TypeAheadComponent, ObservablesComponent,
     ObservableCardComponent, EventCardComponent, ArrayCardComponent, SandboxComponent, LogTestComponent, FormTestComponent,
-    ErrorTestComponent, FlatteningComponent, HotVsColdComponent, ImperativeFilterComponent, ReactiveFilterComponent
+    ErrorTestComponent, FlatteningComponent, HotVsColdComponent, ImperativeFilterComponent, ReactiveFilterComponent, CounterPauseResumeComponent
   ],
   imports: [
     CommonModule,

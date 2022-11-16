@@ -1,0 +1,15 @@
+<span class="mr-2">
+  <button [disabled]="!running" #btnPause>Pause</button>
+</span>
+<span class="mr-2">
+  <button [disabled]="!running" #btnResume>Resume</button>
+</span>
+<span class="mr-2">
+  <button (click)="restart()" [disabled]="running">RESTART</button>
+</span>
+<div class="m-2">
+  {{count}}
+</div>
+<div class="m-2">
+  {{running}}
+</div>
