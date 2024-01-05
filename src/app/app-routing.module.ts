@@ -85,7 +85,6 @@ const routes: Routes = [
 
   { path: '',   redirectTo: '/home', pathMatch: 'full' },   // default
   { path: '**', component: Page404Component}
-
 ];
 
 @NgModule({
